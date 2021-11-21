@@ -1,15 +1,13 @@
 const User = require('../models/userModel');
 const AsyncErrorHandler = require('../middlewares/asyncErrorHandler');
 const ErrorHandler = require('../utils/errorHandler');
+const sendToken = require('../utils/jwtToken');
 
 // register a new user
 const registerUser = AsyncErrorHandler(async (req, res, next) => {
         const user = await User.create(req.body);
 
-        res.status(201).json({
-            success: true,
-            user
-        });
+       sendToken(user, 201, res);
 })
 
 // login user
@@ -32,15 +30,24 @@ const logInUser = AsyncErrorHandler(async (req, res, next) => {
         return next(new ErrorHandler('Invalid email or password', 403));
     }
 
-    const token = user.getJWTToken();
-    
+    sendToken(user, 200, res);
+})
+
+// logout user
+const logOutUser = AsyncErrorHandler(async (req, res, next) => {
+    res.cookie('token', null, {
+        httpOnly: true,
+        expires: new Date(Date.now())
+    });
+
     res.status(200).json({
         success: true,
-        token
+        message: 'Logged out successfully'
     });
 })
 
 module.exports = {
     registerUser,
-    logInUser
+    logInUser,
+    logOutUser
 }
