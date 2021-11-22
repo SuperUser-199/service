@@ -107,3 +107,8 @@
 .container-reg .row {
     position: relative;
 }
+
+.avatar-img{
+    height: 30px;
+    width: auto;
+}
