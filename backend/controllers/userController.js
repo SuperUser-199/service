@@ -144,6 +144,24 @@ const updatePassword = AsyncErrorHandler(async (req, res, next) => {
     sendToken(user, 200, res);
 })
 
+// update profile user
+const updateProfile = AsyncErrorHandler(async (req, res, next) => {
+    const updatedUserData = {
+        name: req.body.name,
+        email: req.body.email
+    };
+
+    const user = await User.findByIdAndUpdate(req.user.id, updatedUserData, {
+        new: true,
+        runValidators: true,
+        findAndModify: false
+    });
+
+    res.status(200).json({
+        success: true
+    });
+})
+
 module.exports = {
     registerUser,
     logInUser,
@@ -151,5 +169,6 @@ module.exports = {
     forgotPassword,
     resetPassword,
     getUserDetails,
-    updatePassword
+    updatePassword,
+    updateProfile
 }
