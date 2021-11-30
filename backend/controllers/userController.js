@@ -112,10 +112,44 @@ const resetPassword = AsyncErrorHandler(async (req, res, next) => {
     sendToken(user, 200, res);
 });
 
+// get my details
+const getUserDetails = AsyncErrorHandler(async (req, res, next) => {
+    const user = await User.findById(req.user.id);
+    res.status(200).json({
+        success: true,
+        user
+    });
+})
+
+// change/update user password
+const updatePassword = AsyncErrorHandler(async (req, res, next) => {
+    const { oldPassword, newPassword, confirmPassword } = req.body;
+
+    const user = await User.findById(req.user._id).select('+password');
+    
+    const isOldPasswordMatched = await user.comparePassword(oldPassword);
+
+    if (!isOldPasswordMatched) {
+        return next(new ErrorHandler('Old password is incorrect', 400));
+    }
+
+    if (newPassword !== confirmPassword) {
+        return next(new ErrorHandler('Password didn\'t match', 400));
+    }
+
+    user.password = newPassword;
+
+    await user.save();
+
+    sendToken(user, 200, res);
+})
+
 module.exports = {
     registerUser,
     logInUser,
     logOutUser,
     forgotPassword,
-    resetPassword
+    resetPassword,
+    getUserDetails,
+    updatePassword
 }
