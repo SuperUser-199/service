@@ -14,20 +14,15 @@ import ProfRegister from './pages/ProfRegister';
 import ProfessionalProfile from './pages/ProfessionalProfile';
 import Signup from './pages/Signup';
 import {
-<<<<<<< HEAD
   Switch,
   BrowserRouter as Router,
- 
-=======
-  BrowserRouter as Router,
-  Routes,
->>>>>>> e0c3c30e43e0720e60c0b453e2b8a2cdce83d7c7
+
   Route,
 } from "react-router-dom";
 function App (){
   return( 
     <Router>
-    <Routes>
+   
       <Route exact path ="/" element={<Home />} />
       <Route exact path="/register" element={<Register />} />  
       <Route exact path="/signup" element={<Signup />} />  
@@ -42,7 +37,7 @@ function App (){
       <Route exact path="/orderdetails" element={<Orderdetails />} />
       <Route exact path="/service-menu" element={<Detailedservice />} />
       <Route exact path="/cart" element={<Cart />} />
-    </Routes>
+    
   </Router>
   );
 }
