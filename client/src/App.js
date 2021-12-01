@@ -14,58 +14,35 @@ import ProfRegister from './pages/ProfRegister';
 import ProfessionalProfile from './pages/ProfessionalProfile';
 import Signup from './pages/Signup';
 import {
+<<<<<<< HEAD
   Switch,
   BrowserRouter as Router,
  
+=======
+  BrowserRouter as Router,
+  Routes,
+>>>>>>> e0c3c30e43e0720e60c0b453e2b8a2cdce83d7c7
   Route,
 } from "react-router-dom";
 function App (){
   return( 
     <Router>
-    <Switch>
-      <Route exact path ="/">
-       <Home />
-      </Route>
-      <Route path="/register">  
-        <Register />
-      </Route>
-      <Route path="/signup">  
-        <Signup />
-      </Route>
-      <Route path="/proregister">  
-        <ProfRegister />
-      </Route>
-      <Route path="/profilePro">  
-        <ProfessionalProfile />
-      </Route>
-      <Route path="/login">  
-        <Login />
-      </Route>
-      <Route path="/forgotpassword">  
-        <Forgotpass />
-      </Route>
-      <Route path="/setupprofile">
-        <Setupprofile />
-      </Route>
-    <Route path="/profile">
-        <Profile />
-    </Route>
-    <Route path="/dashboard">
-        <Dashboard />
-    </Route>
-    <Route path="/orders">
-        <Orders />
-    </Route>
-    <Route path="/orderdetails">
-       <Orderdetails />
-    </Route>
-    <Route path="/service-menu">
-      <Detailedservice />
-    </Route>
-    <Route path="/cart">
-      <Cart />
-    </Route>
-    </Switch>
+    <Routes>
+      <Route exact path ="/" element={<Home />} />
+      <Route exact path="/register" element={<Register />} />  
+      <Route exact path="/signup" element={<Signup />} />  
+      <Route exact path="/proregister" element={<ProfRegister />} />
+      <Route exact path="/profilePro" element={<ProfessionalProfile />} />
+      <Route exact path="/login" element={<Login />} />
+      <Route exact path="/forgotpassword" element={<Forgotpass />} /> 
+      <Route exact path="/setupprofile" element={<Setupprofile />} />
+      <Route exact path="/profile" element={<Profile />} />
+      <Route exact path="/dashboard" element={<Dashboard />} />
+      <Route exact path="/orders" element={<Orders />} />
+      <Route exact path="/orderdetails" element={<Orderdetails />} />
+      <Route exact path="/service-menu" element={<Detailedservice />} />
+      <Route exact path="/cart" element={<Cart />} />
+    </Routes>
   </Router>
   );
 }

@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './login.css'
 import Header from "../components/header"
 function Login() {
-    const history = useHistory();
+    const navigate = useNavigate();
     const [user, setUser] = useState({
         email: "",
         password: "",
@@ -25,7 +25,7 @@ function Login() {
         .then(res => {
             if (res && res.status === 200) {
                 console.log(res.data.message);
-                history.push('/service-menu');
+                navigate('/service-menu');
             }
         })
         .catch(err => {
