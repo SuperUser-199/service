@@ -23,6 +23,9 @@ const userSchema = new mongoose.Schema({
         required: [true, 'Please enter a password'],
         minlength: [8, 'Password must not have less than 8 characters']
     },
+    gender: {
+        type: String
+    },
     avatar: {
         public_id: {
             type: String,
@@ -32,6 +35,10 @@ const userSchema = new mongoose.Schema({
             type: String,
             required: true
         }
+    },
+    address: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'address'
     },
     role: {
         type: String,
