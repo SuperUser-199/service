@@ -46,7 +46,7 @@ export const profileReducer = (state = {}, action) => {
             return {
                 ...state,
                 loading: false,
-                isUpdated: action.payload
+                isSetup: action.payload
             };
         case UPDATE_PROFILE_FAIL:
             return {
@@ -57,7 +57,7 @@ export const profileReducer = (state = {}, action) => {
         case UPDATE_PROFILE_RESET:
             return {
                 ...state,
-                isUpdated: false
+                isSetup: false
             };
         default:
             return state;

@@ -54,7 +54,7 @@ function Login() {
         <div className="row">
             <div className="login-form">
                 <h2>Login</h2>
-                <form autocomplete="off" onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit}>
                     <input type="email" value={user.email} name="email" id="login-ml" required placeholder="Enter your Email" onChange={handleUser}/>
                     <input type="password" vlue={user.password} name="password" id="login-pd" required placeholder="Enter your password" onChange={handleUser}/>
                     

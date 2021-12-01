@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const addressSchema = new mongoose.Schema({
+    user: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'user'
+    },
     city: {
         type: 'String',
         required: [true, 'Please enter city name']

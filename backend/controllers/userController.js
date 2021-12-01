@@ -1,4 +1,5 @@
 const User = require('../models/userModel');
+const Address = require('../models/addressModel');
 const AsyncErrorHandler = require('../middlewares/asyncErrorHandler');
 const ErrorHandler = require('../utils/errorHandler');
 const sendToken = require('../utils/jwtToken');
@@ -179,9 +180,34 @@ const updateProfile = AsyncErrorHandler(async (req, res, next) => {
 
 // setup profile user
 const setupProfile = AsyncErrorHandler(async (req, res, next) => {
-    console.log(req.body);
+    const { gender, city, district, state, country, pincode } = req.body;
+    await User.findByIdAndUpdate(req.user.id, gender , {
+        new: true,
+        runValidators: true,
+        findAndModify: false
+    });
+
+    let user = await Address.findOne({ user: req.user.id });
+
+    if (!user) {
+        await Address.create({
+            city, district, state, country, pincode, user: req.user.id
+        });
+    } else {
+        await Address.findOneAndUpdate({ user: req.user.id }, {
+            city, district, state, country, pincode
+        }, {
+            new: true,
+            runValidators: true,
+            findAndModify: false
+        });
+    }
+
+    user = await User.findById(req.user.id);
+
     res.status(200).json({
-        success: true
+        success: true,
+        user
     });
 })
 

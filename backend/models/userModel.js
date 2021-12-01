@@ -36,10 +36,6 @@ const userSchema = new mongoose.Schema({
             required: true
         }
     },
-    address: {
-        type: mongoose.Schema.ObjectId,
-        ref: 'address'
-    },
     role: {
         type: String,
         default: 'user'
