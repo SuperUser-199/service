@@ -1,51 +1,22 @@
 import React from 'react'
 import Header from "../components/header"
 import './setupprofile.css';
+import MetaData from './layout/MetaData';
+import { useAlert } from 'react-alert';
+import { useSelector, useDispatch } from 'react-redux';
+import Profile from '../images/Profile.png';
 
 function Setupprofile() {
-    var stateObject = {
-"Haryana": { "Gurugram": ["new Delhi", "North Delhi"],
-"Faridabad": ["Thiruvananthapuram", "Palakkad"],
-"Goa": ["North Goa", "South Goa"],
-},
-"Delhi": {
-"South Australia": ["Dunstan", "Mitchell"],
-"Victoria": ["Altona", "Euroa"]
-}, "Rajasthan": {
-"Alberta": ["Acadia", "Bighorn"],
-"Columbia": ["Washington", ""]
-},
-}
-window.onload = function () {
-var countySel = document.getElementById("countySel"),
-stateSel = document.getElementById("stateSel"),
-districtSel = document.getElementById("districtSel");
-for (var country in stateObject) {
-countySel.options[countySel.options.length] = new Option(country, country);
-}
-countySel.onchange = function () {
-stateSel.length = 1; // remove all options bar first
-districtSel.length = 1; // remove all options bar first
-if (this.selectedIndex < 1) return; // done
-for (var state in stateObject[this.value]) {
-stateSel.options[stateSel.options.length] = new Option(state, state);
-}
-}
-countySel.onchange(); // reset in case page is reloaded
-stateSel.onchange = function () {
-districtSel.length = 1; // remove all options bar first
-if (this.selectedIndex < 1) return; // done
-var district = stateObject[countySel.value][this.value];
-for (var i = 0; i < district.length; i++) {
-districtSel.options[districtSel.options.length] = new Option(district[i], district[i]);
-}
-}
-}
-    
-    
-    
+    const alert = useAlert();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const { user } = useSelector(state => state.user);
+    const { error, isUpdated, loading } = useSelector(state => state.profile);
+
     return (
         <>
+        <MetaData title='Setup Profile'/>
         <Header />
         <div className="reg-body"> 
         <div className="container-setup">
@@ -57,9 +28,10 @@ districtSel.options[districtSel.options.length] = new Option(district[i], distri
                 <form autocomplete="off">
                     <label id="gender">Choose your Gender :  </label>
                     <select id="gender" >
-                        <option>select</option>
+                        <option value=''>Select</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
+                        <option value="other">Other</option>
 
                         </select>
                         <br />
