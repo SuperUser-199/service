@@ -12,9 +12,7 @@ const registerUser = AsyncErrorHandler(async (req, res, next) => {
       width: 150,
       crop: "scale",
     });
-  
     const { name, email, password } = req.body;
-  
     const user = await User.create({
       name,
       email,
@@ -47,7 +45,7 @@ const logInUser = AsyncErrorHandler(async (req, res, next) => {
     if (!isPasswordMatched) {
         return next(new ErrorHandler('Invalid email or password', 403));
     }
-
+    console.log(user);
     sendToken(user, 200, res);
 })
 

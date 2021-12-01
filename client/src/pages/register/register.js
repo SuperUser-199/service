@@ -6,72 +6,39 @@ import {useDispatch,useSelector} from "react-redux";
 import {useAlert} from "react-alert";
 import {useHistory,useLocation} from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
-
+import axios from 'axios';
 import { clearErrors, register } from "../../actions/userAction";
 
 function Register() {
-    const history = useHistory();
-    const location = useLocation();
-    const redirect = location.search ? location.search.split("=")[1]:"/";
-    const dispatch = useDispatch();
-    const alert = useAlert();
-
   const { error, loading, isAuthenticated } = useSelector(
     (state) => state.user
   );
-    
-  
-  const [user, setUser] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
+  const dispatch = useDispatch();
+  const [user, setNewUser] = useState(
+    {
+        name: '',
+        email: '',
+        
+        password:'',
+    }
+);
 
-  const { name, email, password } = user;
-
-  const [avatar, setAvatar] = useState("/Profile.png");
-  const [avatarPreview, setAvatarPreview] = useState("/Profile.png");
-
-  const registerSubmit = (e) => {
+const handleSubmit = (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append('password', user.password);
+ 
+    formData.append('email', user.email);
+    formData.append('name', user.name);
+    dispatch(register(formData));
+}
 
-    const myForm = new FormData();
+const handleChange = (e) => {
+    setNewUser({...user, [e.target.name]: e.target.value});
+}
 
-    myForm.set("name", name);
-    myForm.set("email", email);
-    myForm.set("password", password);
-    myForm.set("avatar", avatar);
-    dispatch(register(myForm));
-    
-  };
 
-  const registerDataChange = (e) => {
-    if (e.target.name === "avatar") {
-      const reader = new FileReader();
-
-      reader.onload = () => {
-        if (reader.readyState === 2) {
-          setAvatarPreview(reader.result);
-          setAvatar(reader.result);
-        }
-      };
-
-      reader.readAsDataURL(e.target.files[0]);
-    } else {
-      setUser({ ...user, [e.target.name]: e.target.value });
-    }
-  };
-
- useEffect(() => {
-    if (error) {
-      alert.error(error);
-      dispatch(clearErrors());
-    }
-
-    if (isAuthenticated) {
-      history.push('/');
-    }
-  }, [dispatch, error, alert, history, isAuthenticated, redirect]);
+  
 
     return (
         <Fragment>
@@ -91,7 +58,7 @@ function Register() {
                 className="signUpForm"
                
                 encType="multipart/form-data"
-                onSubmit={registerSubmit}
+                onSubmit={handleSubmit}
               >
                 <div className="signUpName">
                 
@@ -100,8 +67,8 @@ function Register() {
                     placeholder="Name"
                     required
                     name="name"
-                    value={name}
-                    onChange={registerDataChange}
+                    value={user.name}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="signUpEmail">
@@ -111,8 +78,8 @@ function Register() {
                     placeholder="Email"
                     required
                     name="email"
-                    value={email}
-                    onChange={registerDataChange}
+                    value={user.email}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="signUpPassword">
@@ -122,20 +89,12 @@ function Register() {
                     placeholder="Password"
                     required
                     name="password"
-                    value={password}
-                    onChange={registerDataChange}
+                    value={user.password}
+                    onChange={handleChange}
                   />
                 </div>
 
-                <div id="registerImage">
-                  <img src={avatarPreview} alt="Avatar Preview" className="avatar-img"/>
-                  <input
-                    type="file"
-                    name="avatar"
-                    accept="image/*"
-                    onChange={registerDataChange}
-                  />
-                </div>
+               
                 <input type="submit" value="Register" className="signUpBtn" />
               </form>
             </div>

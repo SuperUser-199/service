@@ -3,6 +3,7 @@ const app = require('./app');
 const connectDB = require('./config/database');
 const cloudinary = require("cloudinary");
 // handling uncaught errors
+connectDB();
 process.on('uncaughtException', (err) => {
     console.log(`Error: ${err}`);
     console.log('Shutting down the server due to uncaught exceptions.');
@@ -16,7 +17,7 @@ cloudinary.config({
 });
 
 // connect database
-connectDB();
+
 
 const PORT = process.env.PORT || 8000;
 const server = app.listen(PORT, () => {
