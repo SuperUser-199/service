@@ -14,8 +14,9 @@ import ProfRegister from './pages/ProfRegister';
 import ProfessionalProfile from './pages/ProfessionalProfile';
 import Signup from './pages/Signup';
 import {
-  BrowserRouter as Router,
   Switch,
+  BrowserRouter as Router,
+ 
   Route,
 } from "react-router-dom";
 function App (){
