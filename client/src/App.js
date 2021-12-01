@@ -14,14 +14,15 @@ import ProfRegister from './pages/ProfRegister';
 import ProfessionalProfile from './pages/ProfessionalProfile';
 import Signup from './pages/Signup';
 import {
+  Switch,
   BrowserRouter as Router,
-  Routes,
+
   Route,
 } from "react-router-dom";
 function App (){
   return( 
     <Router>
-    <Routes>
+   
       <Route exact path ="/" element={<Home />} />
       <Route exact path="/register" element={<Register />} />  
       <Route exact path="/signup" element={<Signup />} />  
@@ -36,7 +37,7 @@ function App (){
       <Route exact path="/orderdetails" element={<Orderdetails />} />
       <Route exact path="/service-menu" element={<Detailedservice />} />
       <Route exact path="/cart" element={<Cart />} />
-    </Routes>
+    
   </Router>
   );
 }
