@@ -1,14 +1,22 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import './login.css'
 import Header from "../components/header"
+import { useSelector, useDispatch } from 'react-redux';
+import { useAlert } from 'react-alert';
+import { clearErrors, loginUser } from '../actions/userActions';
+
+
 function Login() {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const alert = useAlert();
+
+    const { error, isAuthenticated } = useSelector(state => state.user); 
+
     const [user, setUser] = useState({
         email: "",
-        password: "",
-        remPassword: "off",
-
+        password: ""
     })
 
     const handleUser = (e) => {
@@ -21,7 +29,19 @@ function Login() {
     const handleSubmit = (e) => {
         e.preventDefault();
         
+        dispatch(loginUser(user.email, user.password));
     }
+
+    useEffect(() => {
+        if (error) {
+            alert.error(error);
+            dispatch(clearErrors());
+        }
+
+        if (isAuthenticated) {
+            navigate('/');
+        }
+    }, [error, alert, navigate, dispatch, isAuthenticated]);
 
     return (
         <>
@@ -35,8 +55,8 @@ function Login() {
             <div className="login-form">
                 <h2>Login</h2>
                 <form autocomplete="off" onSubmit={handleSubmit}>
-                    <input type="email" name="email" id="login-ml" required placeholder="Enter your Email" onChange={handleUser}/>
-                    <input type="password" name="password" id="login-pd" required placeholder="Enter your password" onChange={handleUser}/>
+                    <input type="email" value={user.email} name="email" id="login-ml" required placeholder="Enter your Email" onChange={handleUser}/>
+                    <input type="password" vlue={user.password} name="password" id="login-pd" required placeholder="Enter your password" onChange={handleUser}/>
                     
                     <div className="login-row">
                         <label for="login-chk">
@@ -46,11 +66,6 @@ function Login() {
                         <a href="/forgotpassword">Forgot password</a>
                     </div>
                     <button type="submit">Login</button>
-                    <p>Or login with</p>
-                    <div className="login-social">
-                        <a href="/" id="fb">Facebook</a>
-                        <a href="/" id="gg">Google</a>
-                    </div>
                     <p>Don't have an account? <a href="/register" className="switch">Register Now</a></p>
                 </form>
             </div>
