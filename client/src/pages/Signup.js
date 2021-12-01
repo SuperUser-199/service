@@ -1,66 +1,123 @@
-import React, { useState } from 'react'
-import './Register.css'
-import Header from "../components/header"
-import axios from 'axios'
-import {useNavigate} from 'react-router-dom'
+import React, { useEffect, useState } from "react";
+import "./Register.css";
+import Header from "../components/header";
+import { useNavigate } from "react-router-dom";
+import Profile from "../images/Profile.png";
+import { useDispatch, useSelector } from "react-redux";
+import { useAlert } from "react-alert";
+import { clearErrors, registerUser } from "../actions/userActions";
 
 function Signup() {
-    const navigate = useNavigate();
-    const [user, setUser] = useState({
-        email: "",
-        pwd: "",
-        confirmpwd: ""
-    })
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const alert = useAlert();
 
-    const handleUser = (e) => {
-        const {name, value} = e.target;
-        setUser(prevState => ({...prevState, [name] : value}));
+  const { error, isAuthenticated } = useSelector(
+    (state) => state.user
+  );
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [avatar, setAvatar] = useState();
+  const [avatarPreview, setAvatarPreview] = useState(Profile);
+
+  const imgDataChange = (e) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        setAvatarPreview(reader.result);
+        setAvatar(reader.result);
+      }
+    };
+
+    reader.readAsDataURL(e.target.files[0]);
+  };
+
+  const registerSubmit = (e) => {
+    e.preventDefault();
+
+    const myForm = new FormData();
+    myForm.set("name", name);
+    myForm.set("email", email);
+    myForm.set("password", password);
+    myForm.set("avatar", avatar);
+
+    dispatch(registerUser(myForm));
+  };
+
+  useEffect(() => {
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (user.pwd === user.confirmpwd) {
-            axios.post('/signup', {email : user.email, pwd: user.pwd, cpwd: user.confirmpwd})
-            .then(res => {
-                if (res && res.status === 200) {
-                    console.log(res.data.message);
-                    navigate('/service-menu');
-                }
-            })
-            .catch(err => {
-                console.log(err);
-                window.alert('Registration unsuccessfull! An unexpected error occured at the server');
-            });
-        } else {
-            window.alert('Registration unsuccessfull\nPassword didn\'t match!');
-        }
-    }
+    if (isAuthenticated) 
+        navigate('/');
+  }, [error, dispatch, alert, navigate, isAuthenticated]);
 
-    return (
-        <>
-        <Header />
-        <div className="reg-body"> 
+  return (
+    <>
+      <Header />
+      <div className="reg-body">
         <div class="container-reg">
-        <div class="logo">
+          <div class="logo">
             <h3>Service Fare</h3>
+          </div>
+          <div class="register-form toggle">
+            <h2 className="heading2">Signup</h2>
+            <form className="regForm" onSubmit={registerSubmit}>
+              <input
+                type="text"
+                value={name}
+                name="name"
+                id="register-ml"
+                required
+                placeholder="Enter your name"
+                onChange={(e) => setName(e.target.value)}
+              />
+              <input
+                type="email"
+                value={email}
+                name="email"
+                id="register-ml"
+                required
+                placeholder="Enter your email"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <input
+                type="password"
+                value={password}
+                name="password"
+                id="register-pd"
+                required
+                placeholder="Enter your password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <div id="registerImage">
+                <img src={avatarPreview} alt="Avatar Preview" />
+                <input
+                  type="file"
+                  name="avatar"
+                  accept="image/*"
+                  onChange={imgDataChange}
+                />
+              </div>
+              <button type="submit" className="reg-btn">
+                SignUp
+              </button>
+              <p className="account">
+                Do you have an account?{" "}
+                <a href="/login" className="switch">
+                  Login Now
+                </a>
+              </p>
+            </form>
+          </div>
         </div>
-            <div class="register-form toggle">
-                <h2 className="heading2">Signup</h2>
-                <form autocomplete="off" className="regForm" onSubmit={handleSubmit}>
-                    <input type="email" name="email" id="register-ml" required placeholder="Enter your Email" onChange={handleUser}/>
-                    <input type="password" name="pwd" id="register-pd" required placeholder="Enter your password" onChange={handleUser}/>
-                    <input type="password" name="confirmpwd" id="register-cpd" required placeholder="Confirm your password" onChange={handleUser}/>
-                    <div class="register-row">
-                        
-                    </div>
-                    <button type="submit" className="reg-btn">SignUp</button>
-                    <p className="account">Do you have an account? <a href="/login" className="switch">Login Now</a></p>
-                </form>
-            </div>
-        </div>
-        </div>
-        </>
-    )
+      </div>
+    </>
+  );
 }
 
-export default Signup
+export default Signup;
