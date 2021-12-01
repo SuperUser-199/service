@@ -4,13 +4,13 @@ import "./header.css";
 function Header() {
   return (
     <>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/">
-          <img class="navbar-logo" src={logo} alt="" />
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <a className="navbar-brand" href="/">
+          <img className="navbar-logo" src={logo} alt="" />
           ServiceFare
         </a>
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-toggle="collapse"
           data-target="#navbarTogglerDemo02"
@@ -18,29 +18,29 @@ function Header() {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item ">
-              <a class="nav-link" href="/">
+        <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+          <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li className="nav-item ">
+              <a className="nav-link" href="/">
                 Home
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/dashboard">
+            <li className="nav-item">
+              <a className="nav-link" href="/dashboard">
                 Dashboard
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link " href="/profile">
+            <li className="nav-item">
+              <a className="nav-link " href="/profile">
                 Profile
               </a>
             </li>
-            <li class="nav-item dropdown">
+            <li className="nav-item dropdown">
               <a
-                class="nav-link dropdown-toggle"
+                className="nav-link dropdown-toggle"
                 href="/"
                 id="navbarDropdown"
                 role="button"
@@ -50,41 +50,41 @@ function Header() {
               >
                 Other Pages
               </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="/orders">
+              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a className="dropdown-item" href="/orders">
                   Orders
                 </a>
-                <a class="dropdown-item" href="/setupprofile">
+                <a className="dropdown-item" href="/setupprofile">
                   Set Up Profile
                 </a>
-                <a class="dropdown-item" href="/forgotpassword">
+                <a className="dropdown-item" href="/forgotpassword">
                   Forgot Password
                 </a>
-                <a class="dropdown-item" href="/service-menu">
+                <a className="dropdown-item" href="/service-menu">
                   Detailed Service
                 </a>
-                <a class="dropdown-item" href="/proregister">
+                <a className="dropdown-item" href="/proregister">
                   Professional Registration
                 </a>
-                <a class="dropdown-item" href="/profilePro">
+                <a className="dropdown-item" href="/profilePro">
                   Professional Profile
                 </a>
               </div>
             </li>
           </ul>
-          <a class="nav-link" href="/cart">
+          <a className="nav-link" href="/cart">
             <img
               alt="..."
-              class="cart"
+              className="cart"
               src="https://img.icons8.com/external-flatart-icons-solid-flatarticons/64/000000/external-cart-grocery-flatart-icons-solid-flatarticons.png"
             />
             Cart
           </a>
           <a href="/signup">
             
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+            <button className="btn btn-outline-success my-2 my-sm-0" type="submit">
               <img
-                class="login"
+                className="login"
                 alt="..."
                 src="https://img.icons8.com/external-bearicons-outline-color-bearicons/64/000000/external-sign-up-call-to-action-bearicons-outline-color-bearicons-1.png"
               />
@@ -94,12 +94,12 @@ function Header() {
           <div>
             <a href="/login">
               <button
-                class="btn btn-outline-success my-2 my-sm-0"
+                className="btn btn-outline-success my-2 my-sm-0"
                 type="submit"
               >
                 <img
                   alt="..."
-                  class="login"
+                  className="login"
                   src="https://img.icons8.com/fluency/64/000000/login-rounded-right.png"
                 />
                 Login
