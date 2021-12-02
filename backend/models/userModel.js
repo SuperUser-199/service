@@ -26,6 +26,10 @@ const userSchema = new mongoose.Schema({
     gender: {
         type: String
     },
+    phoneno: {
+        type: Number,
+        validate: [validator.isMobilePhone('en-IN')]
+    },
     avatar: {
         public_id: {
             type: String,

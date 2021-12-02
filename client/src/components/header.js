@@ -1,23 +1,22 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
-import {useSelector} from 'react-redux'
-import axios from 'axios'
-import './header.css'
+import React from "react";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import axios from "axios";
+import "./header.css";
 function Header() {
-    const auth = useSelector(state => state.user)
+  const auth = useSelector((state) => state.user);
 
-    const {user, isAuthenticated} = auth
+  const { user, isAuthenticated } = auth;
 
-
-    const handleLogout = async () => {
-        try {
-            await axios.get('/user/logout')
-            localStorage.removeItem('firstLogin')
-            window.location.href = "/";
-        } catch (err) {
-            window.location.href = "/";
-        }
+  const handleLogout = async () => {
+    try {
+      await axios.get("/user/logout");
+      localStorage.removeItem("firstLogin");
+      window.location.href = "/";
+    } catch (err) {
+      window.location.href = "/";
     }
+  };
 
     const userLink = () => {
         return <ul id="tranform-ul">
@@ -34,13 +33,13 @@ function Header() {
         </ul>
     }
 
-    const transForm = {
-        transform: isAuthenticated ? "translateY(-1px)" : 0
-    }
+  const transForm = {
+    transform: isAuthenticated ? "translateY(-1px)" : 0,
+  };
 
-    return (
-        <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  return (
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="/">
           <img class="navbar-logo" src="./logo192.png" alt="" />
           ServiceFare
@@ -122,20 +121,28 @@ function Header() {
               isAuthenticated 
               ? userLink() :
               <li>
-              <button class="btn btn-outline-success my-2 my-sm-0"  type="submit"><Link to="/login"><i className="fas fa-user"></i><img
-        class="login"
-        alt="..."
-        src="https://img.icons8.com/external-bearicons-outline-color-bearicons/64/000000/external-sign-up-call-to-action-bearicons-outline-color-bearicons-1.png"
-      /> Sign in</Link></button> </li>
-
-         }
+                <button
+                  class="btn btn-outline-success my-2 my-sm-0"
+                  type="submit"
+                >
+                  <Link to="/login">
+                    <i className="fas fa-user"></i>
+                    <img
+                      class="login"
+                      alt="..."
+                      src="https://img.icons8.com/external-bearicons-outline-color-bearicons/64/000000/external-sign-up-call-to-action-bearicons-outline-color-bearicons-1.png"
+                    />
+                    Sign in
+                  </Link>
+                </button>
+              </li>
+            }
           </ul>
           </div>
       </div>
       </nav>
-           
-        </header>
-    )
+    </header>
+  );
 }
 
-export default Header
+export default Header;
