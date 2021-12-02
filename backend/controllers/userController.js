@@ -131,9 +131,11 @@ const resetPassword = AsyncErrorHandler(async (req, res, next) => {
 // get my details
 const getUserDetails = AsyncErrorHandler(async (req, res, next) => {
     const user = await User.findById(req.user.id);
+    const address = await Address.findOne({ user: req.user.id });
     res.status(200).json({
         success: true,
-        user
+        user,
+        address
     });
 })
 

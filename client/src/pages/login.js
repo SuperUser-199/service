@@ -42,7 +42,7 @@ function Login() {
     }
 
     if (isAuthenticated) {
-      navigate("/");
+      navigate("/service-menu");
     }
   }, [error, alert, navigate, dispatch, isAuthenticated]);
 

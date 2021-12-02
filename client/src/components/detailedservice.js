@@ -5,22 +5,22 @@ function Detailedservice(){
     return(
         <>
         <Header/>
-        <div class="service-main">
-            <div class="service-menu">
-                <div class="service-name">
+        <div className="service-main">
+            <div className="service-menu">
+                <div className="service-name">
                   <h2>  AC Repair & Installation </h2>
                 </div>
                 <hr />
-                <div class="service-product">
-                    <div class="card" id="product-card">
+                <div className="service-product">
+                    <div className="card" id="product-card">
                         <img
                             src="https://mdbootstrap.com/img/new/standard/city/062.jpg"
-                            class="card-img-top"
+                            className="card-img-top"
                             alt="..."
                         />
-                        <div class="card-body">
-                            <h5 class="card-title">AC Reparing</h5>
-                            <p class="card-text">
+                        <div className="card-body">
+                            <h5 className="card-title">AC Reparing</h5>
+                            <p className="card-text">
                             Included services:                            
                                 Error Detection
                                 Manpower<br />
@@ -30,19 +30,19 @@ function Detailedservice(){
                             
                             </p>
                         </div>
-                        <div class="card-body">
-                            <a href="/" class="card-link"><button type="button" class="btn btn-primary">Add to Cart</button></a> 
+                        <div className="card-body">
+                            <a href="/" className="card-link"><button type="button" className="btn btn-primary">Add to Cart</button></a> 
                         </div>
                     </div>
-                    <div class="card" id="product-card">
+                    <div className="card" id="product-card">
                         <img
                             src="https://mdbootstrap.com/img/new/standard/city/062.jpg"
-                            class="card-img-top"
+                            className="card-img-top"
                             alt="..."
                         />
-                        <div class="card-body">
-                            <h5 class="card-title">AC Reparing</h5>
-                            <p class="card-text">
+                        <div className="card-body">
+                            <h5 className="card-title">AC Reparing</h5>
+                            <p className="card-text">
                             Included services:                            
                                 Error Detection
                                 Manpower<br />
@@ -52,19 +52,19 @@ function Detailedservice(){
                             
                             </p>
                         </div>
-                        <div class="card-body">
-                            <a href="/" class="card-link"><button type="button" class="btn btn-primary">Add to Cart</button></a> 
+                        <div className="card-body">
+                            <a href="/" className="card-link"><button type="button" className="btn btn-primary">Add to Cart</button></a> 
                         </div>
                     </div>
-                    <div class="card" id="product-card">
+                    <div className="card" id="product-card">
                         <img
                             src="https://mdbootstrap.com/img/new/standard/city/062.jpg"
-                            class="card-img-top"
+                            className="card-img-top"
                             alt="..."
                         />
-                        <div class="card-body">
-                            <h5 class="card-title">AC Reparing</h5>
-                            <p class="card-text">
+                        <div className="card-body">
+                            <h5 className="card-title">AC Reparing</h5>
+                            <p className="card-text">
                             Included services:                            
                                 Error Detection
                                 Manpower<br />
@@ -74,19 +74,19 @@ function Detailedservice(){
                             
                             </p>
                         </div>
-                        <div class="card-body">
-                            <a href="/" class="card-link"><button type="button" class="btn btn-primary">Add to Cart</button></a> 
+                        <div className="card-body">
+                            <a href="/" className="card-link"><button type="button" className="btn btn-primary">Add to Cart</button></a> 
                         </div>
                     </div>
-                    <div class="card" id="product-card">
+                    <div className="card" id="product-card">
                         <img
                             src="https://mdbootstrap.com/img/new/standard/city/062.jpg"
-                            class="card-img-top"
+                            className="card-img-top"
                             alt="..."
                         />
-                        <div class="card-body">
-                            <h5 class="card-title">AC Reparing</h5>
-                            <p class="card-text">
+                        <div className="card-body">
+                            <h5 className="card-title">AC Reparing</h5>
+                            <p className="card-text">
                             Included services:                            
                                 Error Detection
                                 Manpower<br />
@@ -96,19 +96,19 @@ function Detailedservice(){
                             
                             </p>
                         </div>
-                        <div class="card-body">
-                            <a href="/" class="card-link"><button type="button" class="btn btn-primary">Add to Cart</button></a> 
+                        <div className="card-body">
+                            <a href="/" className="card-link"><button type="button" className="btn btn-primary">Add to Cart</button></a> 
                         </div>
                     </div>
-                    <div class="card" id="product-card">
+                    <div className="card" id="product-card">
                         <img
                             src="https://mdbootstrap.com/img/new/standard/city/062.jpg"
-                            class="card-img-top"
+                            className="card-img-top"
                             alt="..."
                         />
-                        <div class="card-body">
-                            <h5 class="card-title">AC Reparing</h5>
-                            <p class="card-text">
+                        <div className="card-body">
+                            <h5 className="card-title">AC Reparing</h5>
+                            <p className="card-text">
                             Included services:                            
                                 Error Detection
                                 Manpower<br />
@@ -118,8 +118,8 @@ function Detailedservice(){
                             
                             </p>
                         </div>
-                        <div class="card-body">
-                            <a href="/" class="card-link"><button type="button" class="btn btn-primary">Add to Cart</button></a> 
+                        <div className="card-body">
+                            <a href="/" className="card-link"><button type="button" className="btn btn-primary">Add to Cart</button></a> 
                         </div>
                     </div>
                 </div>
