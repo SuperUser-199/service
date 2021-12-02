@@ -6,13 +6,15 @@ import Profile from "../images/Profile.png";
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
 import { clearErrors, registerUser } from "../actions/userActions";
+import MetaData from "../components/layout/MetaData";
+import Loader from "../components/layout/Loader/Loader";
 
 function Signup() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const alert = useAlert();
 
-  const { error, isAuthenticated } = useSelector(
+  const { error, isAuthenticated, loading } = useSelector(
     (state) => state.user
   );
 
@@ -52,70 +54,76 @@ function Signup() {
       dispatch(clearErrors());
     }
 
-    if (isAuthenticated) 
-        navigate('/');
+    if (isAuthenticated) navigate("/");
   }, [error, dispatch, alert, navigate, isAuthenticated]);
 
   return (
     <>
-      <Header />
-      <div className="reg-body">
-        <div class="container-reg">
-          <div class="logo">
-            <h3>Service Fare</h3>
-          </div>
-          <div class="register-form toggle">
-            <h2 className="heading2">Signup</h2>
-            <form className="regForm" onSubmit={registerSubmit}>
-              <input
-                type="text"
-                value={name}
-                name="name"
-                id="register-ml"
-                required
-                placeholder="Enter your name"
-                onChange={(e) => setName(e.target.value)}
-              />
-              <input
-                type="email"
-                value={email}
-                name="email"
-                id="register-ml"
-                required
-                placeholder="Enter your email"
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <input
-                type="password"
-                value={password}
-                name="password"
-                id="register-pd"
-                required
-                placeholder="Enter your password"
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <div id="registerImage">
-                <img src={avatarPreview} alt="Avatar Preview" />
-                <input
-                  type="file"
-                  name="avatar"
-                  accept="image/*"
-                  onChange={imgDataChange}
-                />
+      <MetaData title="Signup" />
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <Header />
+          <div className="reg-body">
+            <div class="container-reg">
+              <div class="logo">
+                <h3>Service Fare</h3>
               </div>
-              <button type="submit" className="reg-btn">
-                SignUp
-              </button>
-              <p className="account">
-                Do you have an account?{" "}
-                <a href="/login" className="switch">
-                  Login Now
-                </a>
-              </p>
-            </form>
+              <div class="register-form toggle">
+                <h2 className="heading2">Signup</h2>
+                <form className="regForm" onSubmit={registerSubmit}>
+                  <input
+                    type="text"
+                    value={name}
+                    name="name"
+                    id="register-ml"
+                    required
+                    placeholder="Enter your name"
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                  <input
+                    type="email"
+                    value={email}
+                    name="email"
+                    id="register-ml"
+                    required
+                    placeholder="Enter your email"
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                  <input
+                    type="password"
+                    value={password}
+                    name="password"
+                    id="register-pd"
+                    required
+                    placeholder="Enter your password"
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                  <div id="registerImage">
+                    <img src={avatarPreview} alt="Avatar Preview" />
+                    <input
+                      type="file"
+                      name="avatar"
+                      accept="image/*"
+                      onChange={imgDataChange}
+                    />
+                  </div>
+                  <button type="submit" className="reg-btn">
+                    SignUp
+                  </button>
+                  <p className="account">
+                    Do you have an account?{" "}
+                    <a href="/login" className="switch">
+                      Login Now
+                    </a>
+                  </p>
+                </form>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        </>
+      )}
     </>
   );
 }
