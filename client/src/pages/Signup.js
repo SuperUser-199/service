@@ -77,7 +77,7 @@ function Signup() {
                     type="text"
                     value={name}
                     name="name"
-                    id="register-ml"
+                    id="register-m2"
                     required
                     placeholder="Enter your name"
                     onChange={(e) => setName(e.target.value)}

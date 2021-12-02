@@ -22,7 +22,7 @@ function Profile() {
     }
 
     if (!address) {
-        navigate('/setupprofile');
+      navigate("/setupprofile");
     }
   }, [error, navigate, dispatch, alert, address]);
 
@@ -46,7 +46,7 @@ function Profile() {
                       <div className="col-md-6">
                         <div className="media">
                           <label>Joining Date</label>
-                          <p>{user.createdAt}</p>
+                          <p>{String(user.createdAt).substr(0, 10)}</p>
                         </div>
 
                         <div className="media">
@@ -56,8 +56,7 @@ function Profile() {
                         <div className="media">
                           <label>Address</label>
                           <p>
-                            {address.city},{address.district},{address.state},
-                            {address.pincode}
+                            {address.district},{address.state},{address.pincode}
                           </p>
                         </div>
                       </div>
@@ -81,10 +80,7 @@ function Profile() {
                 </div>
                 <div className="col-lg-6">
                   <div className="about-avatar">
-                    <img
-                      src={user.avatar.url}
-                      alt='Profile'
-                    />
+                    <img src={user.avatar.url} alt="Profile" />
                   </div>
                 </div>
               </div>

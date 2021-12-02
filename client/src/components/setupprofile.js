@@ -6,7 +6,7 @@ import { useAlert } from "react-alert";
 import { useSelector, useDispatch } from "react-redux";
 import { Country, State } from "country-state-city";
 import { useNavigate } from "react-router-dom";
-import { clearErrors, setupProfile } from "../actions/userActions";
+import { clearErrors, loadUser, setupProfile } from "../actions/userActions";
 
 function Setupprofile() {
   const alert = useAlert();
@@ -17,9 +17,9 @@ function Setupprofile() {
 
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
-  const [city, setCity] = useState(address.city);
-  const [district, setDistrict] = useState(address.district);
-  const [pincode, setPincode] = useState(address.pincode);
+  const [city, setCity] = useState(address ? address.city : '');
+  const [district, setDistrict] = useState(address ? address.district : '');
+  const [pincode, setPincode] = useState(address ? address.pincode : '');
   const [gender, setGender] = useState(user.gender);
   const [phoneno, setPhoneno] = useState(user.phoneno);
 
@@ -58,6 +58,7 @@ function Setupprofile() {
 
     if (isSetup) {
       alert.success("Profile setup successfully");
+      dispatch(loadUser());
       navigate("/profile");
     }
   }, [error, alert, dispatch, navigate, isSetup, LoadingError]);
