@@ -84,15 +84,7 @@ function Login() {
                     />
 
                     <div className="login-row">
-                      <label htmlFor="login-chk">
-                        <input
-                          type="checkbox"
-                          name="remPassword"
-                          id="login-chk"
-                          onChange={handleUser}
-                        />
-                        Remember password
-                      </label>
+                      
                       <a href="/forgotpassword">Forgot password</a>
                     </div>
                     <button type="submit">Login</button>

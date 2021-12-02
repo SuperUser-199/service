@@ -3,6 +3,7 @@ import Home from './pages/home';
 import Dashboard from './pages/dashboard';
 import Login  from './users/login';
 import Profile from './users/profile';
+import EditProfile from './users/editprofile';
 import Forgotpass from './components/Forgotpassword';
 import Setupprofile from './users/setupprofile';
 import Orders from './product/orders';
@@ -39,6 +40,8 @@ function App (){
       <Route exact path="/forgotpassword" element={<Forgotpass />} /> 
       <Route exact path="/setupprofile" element={<ProtectedRoute component={Setupprofile} />} />
       <Route exact path="/profile" element={<ProtectedRoute component={Profile} />} />
+      <Route exact path="/editprofile" element={< EditProfile /> } />
+
       <Route exact path="/dashboard" element={<Dashboard />} />
       <Route exact path="/orders" element={<ProtectedRoute component={Orders} />} />
       <Route exact path="/orderdetails" element={<ProtectedRoute component={Orderdetails} />} />

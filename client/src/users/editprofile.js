@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Header from "../components/header";
-import "./setupprofile.css";
+import "./editprofile.css";
 import MetaData from "../components/layout/MetaData";
 import { useAlert } from "react-alert";
 import { useSelector, useDispatch } from "react-redux";
 import { Country, State } from "country-state-city";
 import { useNavigate } from "react-router-dom";
 import { clearErrors, loadUser, setupProfile } from "../actions/userActions";
+import Profile from "../images/Profile.png";
 
-function Setupprofile() {
+function EditProfile() {
   const alert = useAlert();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -20,10 +21,24 @@ function Setupprofile() {
   const [city, setCity] = useState(address ? address.city : '');
   const [district, setDistrict] = useState(address ? address.district : '');
   const [pincode, setPincode] = useState(address ? address.pincode : '');
-  const [gender, setGender] = useState(user.gender);
-  const [phoneno, setPhoneno] = useState(user.phoneno);
-
+  const [gender, setGender] = useState(user ? user.gender: '');
+  const [phoneno, setPhoneno] = useState(user ? user.phoneno: '');
+  const [avatar, setAvatar] = useState();
+  const [avatarPreview, setAvatarPreview] = useState(Profile);
   const { error, isSetup } = useSelector((state) => state.profile);
+  
+  const imgDataChange = (e) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        setAvatarPreview(reader.result);
+        setAvatar(reader.result);
+      }
+    };
+
+    reader.readAsDataURL(e.target.files[0]);
+  };
+
 
   const setupProfileHandler = (e) => {
     e.preventDefault();
@@ -37,6 +52,7 @@ function Setupprofile() {
     myForm.set("country", country);
     myForm.set("pincode", pincode);
     myForm.set("phoneno", phoneno);
+    myForm.set("avatar", avatar);
 
     dispatch(setupProfile(myForm));
   };
@@ -65,7 +81,7 @@ function Setupprofile() {
 
   return (
     <>
-      <MetaData title="Setup Profile" />
+      <MetaData title="Edit Profile" />
       <Header />
       <div className="reg-body">
         <div className="container-setup">
@@ -73,8 +89,46 @@ function Setupprofile() {
             <h3>Service Fare</h3>
           </div>
           <div className="setup">
-            <h2 className="setup-head2">Setup your Profile</h2>
+            <h2 className="setup-head2">Edit your Profile</h2>
             <form onSubmit={setupProfileHandler}>
+              <div className="edit-name">
+              <input 
+               type="text"
+               value=""
+               name="username"
+               required
+               placeholder="Enter your name"
+               />
+              </div>
+              <div className="edit-email">
+              <input 
+               type="email"
+               value=""
+               name="email"
+               required
+               placeholder="Enter your email"
+               />
+
+              </div>
+              <div className="edit-phoneno">
+              <input 
+               type="number"
+               value=""
+               name="phoneno"
+               required
+               placeholder="Enter your mobile number"
+               />
+
+              </div>
+              <div id="registerImage">
+                    <img src={avatarPreview} alt="Avatar Preview" />
+                    <input
+                      type="file"
+                      name="avatar"
+                      accept="image/*"
+                      onChange={imgDataChange}
+                    />
+                  </div>          
               <div className="select-style">
                 <select
                   id="gender"
@@ -162,10 +216,12 @@ function Setupprofile() {
                   onChange={(e) => setPincode(e.target.value)}
                 />
               </div>
-              <button type="submit" className="setup-btn">
+
+              <button type="submit" class="setup-btn">
                 Submit
               </button>
-              <button type="submit" className="setup-btn" onClick={handleCancel}>
+              
+              <button type="submit" id="profile-cancel" class="setup-btn" onClick={handleCancel}>
                 Cancel
               </button>
             </form>
@@ -176,4 +232,4 @@ function Setupprofile() {
   );
 }
 
-export default Setupprofile;
+export default EditProfile;
