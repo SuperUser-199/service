@@ -4,7 +4,7 @@ import "./login.css";
 import Header from "../components/header";
 import { useSelector, useDispatch } from "react-redux";
 import { useAlert } from "react-alert";
-import { clearErrors, loginUser } from "../actions/userActions";
+import { clearErrors, loadUser, loginUser } from "../actions/userActions";
 import MetaData from "../components/layout/MetaData";
 import Loader from "../components/layout/Loader/Loader";
 
@@ -42,7 +42,8 @@ function Login() {
     }
 
     if (isAuthenticated) {
-      navigate("/service-menu");
+      dispatch(loadUser());
+      navigate('/setupprofile');
     }
   }, [error, alert, navigate, dispatch, isAuthenticated]);
 

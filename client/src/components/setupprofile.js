@@ -13,12 +13,15 @@ function Setupprofile() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const { user, error: LoadingError, address } = useSelector(state => state.user);
+
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
-  const [city, setCity] = useState("");
-  const [district, setDistrict] = useState("");
-  const [pincode, setPincode] = useState(0);
-  const [gender, setGender] = useState("");
+  const [city, setCity] = useState(address.city);
+  const [district, setDistrict] = useState(address.district);
+  const [pincode, setPincode] = useState(address.pincode);
+  const [gender, setGender] = useState(user.gender);
+  const [phoneno, setPhoneno] = useState(user.phoneno);
 
   const { error, isSetup } = useSelector((state) => state.profile);
 
@@ -33,12 +36,22 @@ function Setupprofile() {
     myForm.set("state", state);
     myForm.set("country", country);
     myForm.set("pincode", pincode);
+    myForm.set("phoneno", phoneno);
 
     dispatch(setupProfile(myForm));
   };
 
+  const handleCancel = (e) => {
+    navigate('/profile');
+  }
+
   useEffect(() => {
     if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
+    }
+
+    if (LoadingError) {
       alert.error(error);
       dispatch(clearErrors());
     }
@@ -47,7 +60,7 @@ function Setupprofile() {
       alert.success("Profile setup successfully");
       navigate("/profile");
     }
-  }, [error, alert, dispatch, navigate, isSetup]);
+  }, [error, alert, dispatch, navigate, isSetup, LoadingError]);
 
   return (
     <>
@@ -73,6 +86,16 @@ function Setupprofile() {
                   <option value="female">Female</option>
                   <option value="other">Other</option>
                 </select>
+              </div>
+              <div>
+                <input
+                  type="number"
+                  value={phoneno}
+                  name="phoneno"
+                  required
+                  placeholder="Enter phoneno"
+                  onChange={(e) => setPhoneno(e.target.value)}
+                />
               </div>
               <div className="select-style">
                 <select
@@ -140,6 +163,9 @@ function Setupprofile() {
               </div>
               <button type="submit" className="setup-btn">
                 Submit
+              </button>
+              <button type="submit" className="setup-btn" onClick={handleCancel}>
+                Cancel
               </button>
             </form>
           </div>

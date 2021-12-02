@@ -54,7 +54,7 @@ function Signup() {
       dispatch(clearErrors());
     }
 
-    if (isAuthenticated) navigate("/service-menu");
+    if (isAuthenticated) navigate("/setupprofile");
   }, [error, dispatch, alert, navigate, isAuthenticated]);
 
   return (

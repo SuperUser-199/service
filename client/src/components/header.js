@@ -1,37 +1,47 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
 import "./header.css";
+import { useAlert } from "react-alert";
+import { logoutUser } from "../actions/userActions";
 function Header() {
-  const auth = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const alert = useAlert();
 
-  const { user, isAuthenticated } = auth;
+  const { user, isAuthenticated } = useSelector((state) => state.user);
 
-  const handleLogout = async () => {
-    try {
-      await axios.get("/user/logout");
-      localStorage.removeItem("firstLogin");
-      window.location.href = "/";
-    } catch (err) {
-      window.location.href = "/";
-    }
+  const handleLogout = () => {
+    dispatch(logoutUser());
+    alert.success("Logged out successfully");
   };
 
-    const userLink = () => {
-        return <ul id="tranform-ul">
-            
-          
-                <li><button class="btn btn-outline-success my-2 my-sm-0"><Link to="/profile">  <img class="user-avatar" src={user.avatar} alt=""/>  Profile</Link> </button></li>
-                <li><button class="btn btn-outline-success my-2 my-sm-0"
-                type="submit" ><Link to="/" onClick={handleLogout}> <img
+  const userLink = () => {
+    return (
+      <ul id="tranform-ul">
+        <li>
+          <button class="btn btn-outline-success my-2 my-sm-0">
+            <Link to="/profile">
+              {" "}
+              <img class="user-avatar" src={user.avatar.url} alt="" /> Profile
+            </Link>{" "}
+          </button>
+        </li>
+        <li>
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+            <Link to="/" onClick={handleLogout}>
+              {" "}
+              <img
                 alt="..."
                 class="login"
-                src="https://img.icons8.com/fluency/64/000000/login-rounded-right.png"/>Logout</Link></button>
-              </li>
-           
-        </ul>
-    }
+                src="https://img.icons8.com/fluency/64/000000/login-rounded-right.png"
+              />
+              Logout
+            </Link>
+          </button>
+        </li>
+      </ul>
+    );
+  };
 
   const transForm = {
     transform: isAuthenticated ? "translateY(-1px)" : 0,
@@ -116,30 +126,30 @@ function Header() {
             Cart
           </a>
           <div id="ul-div">
-          <ul id="tranform-ul" style={transForm}>
-            {
-              isAuthenticated 
-              ? userLink() :
-              <li>
-                <button
-                  class="btn btn-outline-success my-2 my-sm-0"
-                  type="submit"
-                >
-                  <Link to="/login">
-                    <i className="fas fa-user"></i>
-                    <img
-                      class="login"
-                      alt="..."
-                      src="https://img.icons8.com/external-bearicons-outline-color-bearicons/64/000000/external-sign-up-call-to-action-bearicons-outline-color-bearicons-1.png"
-                    />
-                    Sign in
-                  </Link>
-                </button>
-              </li>
-            }
-          </ul>
+            <ul id="tranform-ul" style={transForm}>
+              {isAuthenticated ? (
+                userLink()
+              ) : (
+                <li>
+                  <button
+                    class="btn btn-outline-success my-2 my-sm-0"
+                    type="submit"
+                  >
+                    <Link to="/login">
+                      <i className="fas fa-user"></i>
+                      <img
+                        class="login"
+                        alt="..."
+                        src="https://img.icons8.com/external-bearicons-outline-color-bearicons/64/000000/external-sign-up-call-to-action-bearicons-outline-color-bearicons-1.png"
+                      />
+                      Sign in
+                    </Link>
+                  </button>
+                </li>
+              )}
+            </ul>
           </div>
-      </div>
+        </div>
       </nav>
     </header>
   );
