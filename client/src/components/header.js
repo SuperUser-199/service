@@ -18,18 +18,32 @@ function Header() {
   const userLink = () => {
     return (
       <ul id="tranform-ul">
-        <li>
-          <button class="btn btn-outline-success my-2 my-sm-0">
-            <Link to="/profile">
-              {" "}
-              <img class="user-avatar" src={user.avatar.url} alt="" /> Profile
-            </Link>{" "}
-          </button>
-        </li>
-        <li>
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-            <Link to="/" onClick={handleLogout}>
-              {" "}
+        
+        <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="/"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+               <img class="user-avatar" src={user.avatar.url} alt="" />  {user.name}
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/dashboard">
+                  Dashboard
+                </a>
+                <a class="dropdown-item" href="/profile">
+                  Profile
+                </a>
+                <a class="dropdown-item" href="/orders">
+                  Orders
+                </a>
+               
+                <Link to="/" onClick={handleLogout}>
+              
               <img
                 alt="..."
                 class="login"
@@ -37,8 +51,10 @@ function Header() {
               />
               Logout
             </Link>
-          </button>
-        </li>
+               
+               
+              </div>
+            </li>
       </ul>
     );
   };
@@ -73,14 +89,9 @@ function Header() {
                 Home
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/dashboard">
-                Dashboard
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link " href="/profile">
-                Profile
+            <li class="nav-item ">
+              <a class="nav-link" href="/service-menu">
+                Services
               </a>
             </li>
             <li class="nav-item dropdown">
@@ -96,9 +107,7 @@ function Header() {
                 Other Pages
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="/orders">
-                  Orders
-                </a>
+                
                 <a class="dropdown-item" href="/setupprofile">
                   Set Up Profile
                 </a>
@@ -117,7 +126,7 @@ function Header() {
               </div>
             </li>
           </ul>
-          <a class="nav-link" href="/cart">
+            <a class="nav-link" href="/cart">
             <img
               alt="..."
               class="cart"
@@ -149,6 +158,7 @@ function Header() {
               )}
             </ul>
           </div>
+        
         </div>
       </nav>
     </header>

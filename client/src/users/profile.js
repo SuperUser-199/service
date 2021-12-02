@@ -34,7 +34,8 @@ function Profile() {
       ) : (
         <>
           <Header />
-          <section className="section about-section gray-bg" id="about">
+          <div>
+         
             <div className="container">
               <div className="row align-items-center flex-row-reverse">
                 <div className="col-lg-6">
@@ -85,7 +86,8 @@ function Profile() {
                 </div>
               </div>
             </div>
-          </section>
+          
+          </div>
         </>
       )}
     </>

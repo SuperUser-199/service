@@ -36,6 +36,7 @@
 }
 #ul-div{
     display: inline;
+    margin-right: 50px;
 }
 #tranform-ul li{
  display: inline-table;
