@@ -20,7 +20,7 @@ function Header() {
     }
 
     const userLink = () => {
-        return <ul class="tranform-ul">
+        return <ul id="tranform-ul">
             
           
                 <li><button class="btn btn-outline-success my-2 my-sm-0"><Link to="/profile">  <img class="user-avatar" src={user.avatar} alt=""/>  Profile</Link> </button></li>
@@ -28,8 +28,8 @@ function Header() {
                 type="submit" ><Link to="/" onClick={handleLogout}> <img
                 alt="..."
                 class="login"
-                src="https://img.icons8.com/fluency/64/000000/login-rounded-right.png"
-              />Logout</Link></button></li>
+                src="https://img.icons8.com/fluency/64/000000/login-rounded-right.png"/>Logout</Link></button>
+              </li>
            
         </ul>
     }
@@ -116,7 +116,8 @@ function Header() {
             />
             Cart
           </a>
-          <ul class="tranform-ul" style={transForm}>
+          <div id="ul-div">
+          <ul id="tranform-ul" style={transForm}>
             {
               isAuthenticated 
               ? userLink() :
@@ -129,6 +130,7 @@ function Header() {
 
          }
           </ul>
+          </div>
       </div>
       </nav>
            
