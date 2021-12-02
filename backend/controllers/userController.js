@@ -182,8 +182,8 @@ const updateProfile = AsyncErrorHandler(async (req, res, next) => {
 
 // setup profile user
 const setupProfile = AsyncErrorHandler(async (req, res, next) => {
-    const { gender, city, district, state, country, pincode } = req.body;
-    await User.findByIdAndUpdate(req.user.id, gender , {
+    const { gender, city, district, state, country, pincode, phoneno } = req.body;
+    await User.findByIdAndUpdate(req.user.id, {gender, phoneno} , {
         new: true,
         runValidators: true,
         findAndModify: false
