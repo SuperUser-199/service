@@ -105,7 +105,7 @@ function Header() {
                 <a class="dropdown-item" href="/forgotpassword">
                   Forgot Password
                 </a>
-                <a class="dropdown-item" href="/services">
+                <a class="dropdown-item" href="/service-menu">
                   Detailed Service
                 </a>
                 <a class="dropdown-item" href="/proregister">

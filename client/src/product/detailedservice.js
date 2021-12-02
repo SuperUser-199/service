@@ -1,6 +1,6 @@
 import React from 'react'
 import './detailed.css'
-import Header from './header'
+import Header from '../components/header'
 function Detailedservice(){
     return(
         <>

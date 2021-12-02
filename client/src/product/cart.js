@@ -1,6 +1,6 @@
 import React from 'react'
 import './cart.css'
-import Header from './header'
+import Header from '../components/header'
 function Cart(){
     return(
         <>

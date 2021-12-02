@@ -1,18 +1,17 @@
 import React, { useEffect } from 'react';
 import Home from './pages/home';
 import Dashboard from './pages/dashboard';
-import Login  from './pages/login';
-import Register from './pages/Register';
-import Profile from './pages/profile';
+import Login  from './users/login';
+import Profile from './users/profile';
 import Forgotpass from './components/Forgotpassword';
-import Setupprofile from './components/setupprofile';
-import Orders from './components/orders';
-import Orderdetails from './components/orderdetails';
-import Detailedservice from './components/detailedservice';
-import Cart  from './components/cart';
-import ProfRegister from './pages/ProfRegister';
-import ProfessionalProfile from './pages/ProfessionalProfile';
-import Signup from './pages/Signup';
+import Setupprofile from './users/setupprofile';
+import Orders from './product/orders';
+import Orderdetails from './product/orderdetails';
+import Detailedservice from './product/detailedservice';
+import Cart  from './product/cart';
+import ProfRegister from './professional/ProfRegister';
+import ProfessionalProfile from './professional/ProfessionalProfile';
+import Signup from './users/Signup';
 import {
   Routes,
   BrowserRouter as Router,
@@ -32,10 +31,10 @@ function App (){
     <Router>
       <Routes>
       <Route exact path ="/" element={<Home />} />
-      <Route exact path="/register" element={<Register />} />  
+     
       <Route exact path="/signup" element={<Signup />} />  
       <Route exact path="/proregister" element={<ProfRegister />} />
-      <Route exact path="/profilePro" element={<ProfessionalProfile />} />
+      <Route exact path="/professionalprofile" element={<ProfessionalProfile />} />
       <Route exact path="/login" element={<Login />} />
       <Route exact path="/forgotpassword" element={<Forgotpass />} /> 
       <Route exact path="/setupprofile" element={<ProtectedRoute component={Setupprofile} />} />

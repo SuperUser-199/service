@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Header from "../components/header";
 import "./setupprofile.css";
-import MetaData from "./layout/MetaData";
+import MetaData from "../components/layout/MetaData";
 import { useAlert } from "react-alert";
 import { useSelector, useDispatch } from "react-redux";
 import { Country, State } from "country-state-city";
