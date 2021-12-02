@@ -20,6 +20,7 @@ import {
 } from "react-router-dom";
 import store from './store';
 import { loadUser } from './actions/userActions';
+import ProtectedRoute from './components/Route/ProtectedRoute';
 
 function App (){
 
@@ -37,13 +38,13 @@ function App (){
       <Route exact path="/profilePro" element={<ProfessionalProfile />} />
       <Route exact path="/login" element={<Login />} />
       <Route exact path="/forgotpassword" element={<Forgotpass />} /> 
-      <Route exact path="/setupprofile" element={<Setupprofile />} />
-      <Route exact path="/profile" element={<Profile />} />
+      <Route exact path="/setupprofile" element={<ProtectedRoute component={Setupprofile} />} />
+      <Route exact path="/profile" element={<ProtectedRoute component={Profile} />} />
       <Route exact path="/dashboard" element={<Dashboard />} />
-      <Route exact path="/orders" element={<Orders />} />
-      <Route exact path="/orderdetails" element={<Orderdetails />} />
-      <Route exact path="/service-menu" element={<Detailedservice />} />
-      <Route exact path="/cart" element={<Cart />} />
+      <Route exact path="/orders" element={<ProtectedRoute component={Orders} />} />
+      <Route exact path="/orderdetails" element={<ProtectedRoute component={Orderdetails} />} />
+      <Route exact path="/service-menu" element={<ProtectedRoute component={Detailedservice} />} />
+      <Route exact path="/cart" element={<ProtectedRoute component={Cart} />} />
       </Routes>
   </Router>
   );
