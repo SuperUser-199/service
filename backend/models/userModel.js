@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema({
     phoneno: {
         type: Number,
         validate(value) {
-            return validator.isMobilePhone(value.toString(), 'en-IN');
+            return validator.isMobilePhone(value.toString());
         }
     },
     avatar: {
