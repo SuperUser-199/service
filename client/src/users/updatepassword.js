@@ -1,11 +1,56 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./updatepassword.css";
 import Header from "../components/header";
 import MetaData from "../components/layout/MetaData";
+import { useSelector, useDispatch } from "react-redux";
+import { useAlert } from "react-alert";
+import { useNavigate } from "react-router";
+import Loader from "../components/layout/Loader/Loader";
+import { clearErrors, updatePassword } from "../actions/userActions";
+import { UPDATE_PASSWORD_RESET } from "../constants/userConstants";
 
-function UpdatePassword(){
-return (
+function UpdatePassword() {
+  const dispatch = useDispatch();
+  const alert = useAlert();
+  const navigate = useNavigate();
+
+  const { error, isUpdated, loading } = useSelector((state) => state.updateProfile);
+
+  const [oldPassword, setOldPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const myForm = new FormData();
+
+    myForm.set('oldPassword', oldPassword);
+    myForm.set('newPassword', newPassword);
+    myForm.set('confirmPassword', confirmPassword);
+
+    dispatch(updatePassword(myForm));
+  }
+
+  useEffect(() => {
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
+    }
+
+    if (isUpdated) {
+      alert.success('Password updated successfully');
+      navigate('/profile');
+      dispatch({ type: UPDATE_PASSWORD_RESET });
+    }
+  }, [error, alert, dispatch, isUpdated, navigate]);
+
+  return (
     <>
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
           <MetaData title="Update Password" />
           <Header />
           <div className="reg-body">
@@ -15,35 +60,35 @@ return (
               </div>
               <div className="setup">
                 <h2 className="setup-head2">Update Password</h2>
-                <form >
-                <div>
+                <form onSubmit={handleSubmit}>
+                  <div>
                     <input
                       type="password"
-                    //   value={password}
-                      name="old password"
+                      value={oldPassword}
+                      name="oldPassword"
                       required
                       placeholder="Enter Old Password"
-                    //   onChange={(e) => setPassword(e.target.value)}
+                      onChange={(e) => setOldPassword(e.target.value)}
                     />
                   </div>
                   <div>
                     <input
                       type="password"
-                    //   value={password}
-                      name="new password"
+                      value={newPassword}
+                      name="newPassword"
                       required
                       placeholder="Enter New Password"
-                    //   onChange={(e) => setPassword(e.target.value)}
+                      onChange={(e) => setNewPassword(e.target.value)}
                     />
                   </div>
                   <div>
                     <input
                       type="password"
-                    //   value={newpassword}
-                      name="confirm new password"
+                      value={confirmPassword}
+                      name="confirmPassword"
                       required
                       placeholder="Confirm New Password"
-                    //   onChange={(e) => setNewPassword(e.target.value)}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
                     />
                   </div>
                   <div className="btn-container">
@@ -53,7 +98,7 @@ return (
                     <button
                       type="submit"
                       style={{ marginLeft: "3px" }}
-                    //   onClick={handleCancel}
+                      //   onClick={handleCancel}
                     >
                       Cancel
                     </button>
@@ -63,8 +108,9 @@ return (
             </div>
           </div>
         </>
-);
-
+      )}
+    </>
+  );
 }
 
 export default UpdatePassword;
