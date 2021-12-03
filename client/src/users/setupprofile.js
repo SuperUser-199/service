@@ -27,7 +27,7 @@ function Setupprofile() {
   const [gender, setGender] = useState(user.gender);
   const [phoneno, setPhoneno] = useState(user.phoneno);
 
-  const { error, isSetup } = useSelector((state) => state.profile);
+  const { error, isSetup } = useSelector((state) => state.setupProfile);
 
   const setupProfileHandler = (e) => {
     e.preventDefault();
