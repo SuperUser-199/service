@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-export const sendToken = (user, statusCode, res) => {
+const sendToken = (user, statusCode, res) => {
     const token = user.getJWTToken();
 
     // options for cookie
@@ -18,7 +18,7 @@ export const sendToken = (user, statusCode, res) => {
     });
 }
 
-export const sendTokenForProfessional = (professional, statusCode, res) => {
+const sendTokenForProfessional = (professional, statusCode, res) => {
     const token = professional.getJWTToken();
 
     // options for cookie
@@ -34,4 +34,9 @@ export const sendTokenForProfessional = (professional, statusCode, res) => {
         professional,
         token
     });
+}
+
+module.exports = {
+    sendToken,
+    sendTokenForProfessional
 }

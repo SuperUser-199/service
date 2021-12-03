@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 const professionSchema = new mongoose.Schema({
     name: {
@@ -10,8 +11,7 @@ const professionSchema = new mongoose.Schema({
         maxlength: [30, 'Name must not have more than 30 characters']
     },
     about: {
-        type: String,
-        required: [true, 'Please enter your bio']
+        type: String
     },
     email: {
         type: String,

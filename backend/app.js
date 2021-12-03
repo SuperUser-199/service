@@ -13,8 +13,10 @@ app.use(fileUpload());
 
 // setting up routes
 const user = require('./routes/userRoute');
+const professional = require('./routes/professionalRoute');
 
 app.use('/api/v1/user', user);
+app.use('/api/v1/professional', professional);
 
 app.use(errorMiddlerware);
 
