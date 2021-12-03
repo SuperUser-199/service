@@ -66,11 +66,11 @@ function Signup() {
         <>
           <Header />
           <div className="reg-body">
-            <div class="container-reg">
-              <div class="logo">
+            <div className="container-reg">
+              <div className="logo">
                 <h3>Service Fare</h3>
               </div>
-              <div class="register-form toggle">
+              <div className="register-form toggle">
                 <h2 className="heading2">Signup</h2>
                 <form className="regForm" onSubmit={registerSubmit}>
                   <input

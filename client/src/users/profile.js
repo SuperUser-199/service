@@ -28,66 +28,74 @@ function Profile() {
 
   return (
     <>
-      <MetaData title={user ? `${user.name}'s Profile` : "Profile"} />
       {loading ? (
         <Loader />
       ) : (
         <>
-          <Header />
-          <div>
-         
-            <div className="container">
-              <div className="row align-items-center flex-row-reverse">
-                <div className="col-lg-6">
-                  <div className="about-text go-to">
-                    <h3 className="dark-color">About </h3>
-                    <h6 className="theme-color lead">{user.name}</h6>
+          <MetaData title={user ? `${user.name}'s Profile` : "Profile"} />
+          {loading ? (
+            <Loader />
+          ) : (
+            <>
+              <Header />
+              <div>
+                <div className="container">
+                  <div className="row align-items-center flex-row-reverse">
+                    <div className="col-lg-6">
+                      <div className="about-text go-to">
+                        <h3 className="dark-color">About </h3>
+                        <h6 className="theme-color lead">{user.name}</h6>
 
-                    <div className="row about-list">
-                      <div className="col-md-6">
-                        <div className="media">
-                          <label>Joining Date</label>
-                          <p>{String(user.createdAt).substr(0, 10)}</p>
-                        </div>
+                        <div className="row about-list">
+                          <div className="col-md-6">
+                            <div className="media">
+                              <label>Joining Date</label>
+                              <p>{String(user.createdAt).substr(0, 10)}</p>
+                            </div>
 
-                        <div className="media">
-                          <label>City/Village</label>
-                          <p>{address.city}</p>
-                        </div>
-                        <div className="media">
-                          <label>Address</label>
-                          <p>
-                            {address.district},{address.state},{address.pincode}
-                          </p>
+                            <div className="media">
+                              <label>City/Village</label>
+                              <p>{address.city}</p>
+                            </div>
+                            <div className="media">
+                              <label>Address</label>
+                              <p>
+                                {address.district},{address.state},
+                                {address.pincode}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="col-md-6">
+                            <div className="media">
+                              <label>E-mail</label>
+                              <p>{user.email}</p>
+                            </div>
+                            <div className="media">
+                              <label>Phone</label>
+                              <p>{user.phoneno}</p>
+                            </div>
+                            <div className="media">
+                              <label>Gender</label>
+                              <p>{user.gender}</p>
+                            </div>
+                          </div>
+                          <a className="edit-a" href="/editprofile">
+                            {" "}
+                            <button id="edit-profile">Edit Profile</button>
+                          </a>
                         </div>
                       </div>
-                      <div className="col-md-6">
-                        <div className="media">
-                          <label>E-mail</label>
-                          <p>{user.email}</p>
-                        </div>
-                        <div className="media">
-                          <label>Phone</label>
-                          <p>{user.phoneno}</p>
-                        </div>
-                        <div className="media">
-                          <label>Gender</label>
-                          <p>{user.gender}</p>
-                        </div>
+                    </div>
+                    <div className="col-lg-6">
+                      <div className="about-avatar">
+                        <img src={user.avatar.url} alt="Profile" />
                       </div>
-                      <a className="edit-a" href="/editprofile"> <button id="edit-profile">Edit Profile</button></a>
                     </div>
                   </div>
                 </div>
-                <div className="col-lg-6">
-                  <div className="about-avatar">
-                    <img src={user.avatar.url} alt="Profile" />
-                  </div>
-                </div>
               </div>
-            </div>
-          
-          </div>
+            </>
+          )}
         </>
       )}
     </>
