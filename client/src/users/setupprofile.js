@@ -13,13 +13,17 @@ function Setupprofile() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { user, error: LoadingError, address } = useSelector(state => state.user);
+  const {
+    user,
+    error: LoadingError,
+    address,
+  } = useSelector((state) => state.user);
 
-  const [country, setCountry] = useState(address ? address.country : '');
-  const [state, setState] = useState(address ? address.state : '');
-  const [city, setCity] = useState(address ? address.city : '');
-  const [district, setDistrict] = useState(address ? address.district : '');
-  const [pincode, setPincode] = useState(address ? address.pincode : '');
+  const [country, setCountry] = useState(address ? address.country : "");
+  const [state, setState] = useState(address ? address.state : "");
+  const [city, setCity] = useState(address ? address.city : "");
+  const [district, setDistrict] = useState(address ? address.district : "");
+  const [pincode, setPincode] = useState(address ? address.pincode : "");
   const [gender, setGender] = useState(user.gender);
   const [phoneno, setPhoneno] = useState(user.phoneno);
 
@@ -42,8 +46,8 @@ function Setupprofile() {
   };
 
   const handleCancel = (e) => {
-    navigate('/profile');
-  }
+    navigate("/dashboard");
+  };
 
   useEffect(() => {
     if (error) {
@@ -118,7 +122,7 @@ function Setupprofile() {
                 <div className="select-style">
                   <select
                     required
-                    name='state'
+                    name="state"
                     value={state}
                     onChange={(e) => setState(e.target.value)}
                   >
@@ -162,12 +166,18 @@ function Setupprofile() {
                   onChange={(e) => setPincode(e.target.value)}
                 />
               </div>
-              <button type="submit" className="setup-btn">
-                Submit
-              </button>
-              <button type="submit" className="setup-btn" onClick={handleCancel}>
-                Cancel
-              </button>
+              <div className="btn-container">
+                <button type="submit" style={{ marginRight: "3px" }}>
+                  Submit
+                </button>
+                <button
+                  type="submit"
+                  style={{ marginLeft: "3px" }}
+                  onClick={handleCancel}
+                >
+                  Cancel
+                </button>
+              </div>
             </form>
           </div>
         </div>

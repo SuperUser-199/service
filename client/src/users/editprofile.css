@@ -58,6 +58,18 @@
     padding: 5px;
 }
 
-.profile-cancel{
-    margin-top: 5px;
+.btn-sub-can {
+    display: flex;
+    flex-direction: row;
+    margin-top: 15px;
+}
+
+.btn-sub-can > button {
+    padding: 5px;
+    cursor: pointer;
+}
+
+.btn-sub-can > button:hover {
+    background-color: cadetblue;
+    color: black;
 }

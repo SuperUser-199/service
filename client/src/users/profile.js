@@ -75,7 +75,7 @@ function Profile() {
                           <p>{user.gender}</p>
                         </div>
                       </div>
-                      <a class="edit-a" href="/editprofile"> <button class="edit-profile">Edit Profile</button></a>
+                      <a className="edit-a" href="/editprofile"> <button id="edit-profile">Edit Profile</button></a>
                     </div>
                   </div>
                 </div>

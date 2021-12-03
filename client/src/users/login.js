@@ -43,7 +43,7 @@ function Login() {
 
     if (isAuthenticated) {
       dispatch(loadUser());
-      navigate('/setupprofile');
+      navigate('/profile');
     }
   }, [error, alert, navigate, dispatch, isAuthenticated]);
 

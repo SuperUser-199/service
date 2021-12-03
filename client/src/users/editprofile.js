@@ -14,19 +14,23 @@ function EditProfile() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { user, error: LoadingError, address } = useSelector(state => state.user);
+  const {
+    user,
+    error: LoadingError,
+    address,
+  } = useSelector((state) => state.user);
 
-  const [country, setCountry] = useState(address ? address.country : '');
-  const [state, setState] = useState(address ? address.state : '');
-  const [city, setCity] = useState(address ? address.city : '');
-  const [district, setDistrict] = useState(address ? address.district : '');
-  const [pincode, setPincode] = useState(address ? address.pincode : '');
-  const [gender, setGender] = useState(user ? user.gender: '');
-  const [phoneno, setPhoneno] = useState(user ? user.phoneno: '');
+  const [country, setCountry] = useState(address ? address.country : "");
+  const [state, setState] = useState(address ? address.state : "");
+  const [city, setCity] = useState(address ? address.city : "");
+  const [district, setDistrict] = useState(address ? address.district : "");
+  const [pincode, setPincode] = useState(address ? address.pincode : "");
+  const [gender, setGender] = useState(user ? user.gender : "");
+  const [phoneno, setPhoneno] = useState(user ? user.phoneno : "");
   const [avatar, setAvatar] = useState();
   const [avatarPreview, setAvatarPreview] = useState(Profile);
   const { error, isSetup } = useSelector((state) => state.profile);
-  
+
   const imgDataChange = (e) => {
     const reader = new FileReader();
     reader.onload = () => {
@@ -38,7 +42,6 @@ function EditProfile() {
 
     reader.readAsDataURL(e.target.files[0]);
   };
-
 
   const setupProfileHandler = (e) => {
     e.preventDefault();
@@ -58,8 +61,8 @@ function EditProfile() {
   };
 
   const handleCancel = (e) => {
-    navigate('/profile');
-  }
+    navigate("/profile");
+  };
 
   useEffect(() => {
     if (error) {
@@ -92,43 +95,41 @@ function EditProfile() {
             <h2 className="setup-head2">Edit your Profile</h2>
             <form onSubmit={setupProfileHandler}>
               <div className="edit-name">
-              <input 
-               type="text"
-               value=""
-               name="username"
-               required
-               placeholder="Enter your name"
-               />
+                <input
+                  type="text"
+                  value=""
+                  name="username"
+                  required
+                  placeholder="Enter your name"
+                />
               </div>
               <div className="edit-email">
-              <input 
-               type="email"
-               value=""
-               name="email"
-               required
-               placeholder="Enter your email"
-               />
-
+                <input
+                  type="email"
+                  value=""
+                  name="email"
+                  required
+                  placeholder="Enter your email"
+                />
               </div>
               <div className="edit-phoneno">
-              <input 
-               type="number"
-               value=""
-               name="phoneno"
-               required
-               placeholder="Enter your mobile number"
-               />
-
+                <input
+                  type="number"
+                  value=""
+                  name="phoneno"
+                  required
+                  placeholder="Enter your mobile number"
+                />
               </div>
               <div id="registerImage">
-                    <img src={avatarPreview} alt="Avatar Preview" />
-                    <input
-                      type="file"
-                      name="avatar"
-                      accept="image/*"
-                      onChange={imgDataChange}
-                    />
-                  </div>          
+                <img src={avatarPreview} alt="Avatar Preview" />
+                <input
+                  type="file"
+                  name="avatar"
+                  accept="image/*"
+                  onChange={imgDataChange}
+                />
+              </div>
               <div className="select-style">
                 <select
                   id="gender"
@@ -172,7 +173,7 @@ function EditProfile() {
                 <div className="select-style">
                   <select
                     required
-                    name='state'
+                    name="state"
                     value={state}
                     onChange={(e) => setState(e.target.value)}
                   >
@@ -217,13 +218,19 @@ function EditProfile() {
                 />
               </div>
 
-              <button type="submit" class="setup-btn">
-                Submit
-              </button>
-              
-              <button type="submit" id="profile-cancel" class="setup-btn" onClick={handleCancel}>
-                Cancel
-              </button>
+              <div className='btn-sub-can'>
+                <button type="submit" style={{margin: '0 3px 0 0'}}>
+                  Submit
+                </button>
+
+                <button
+                  type="submit"
+                  style={{margin: '0 0 0 3px'}}
+                  onClick={handleCancel}
+                >
+                  Cancel
+                </button>
+              </div>
             </form>
           </div>
         </div>

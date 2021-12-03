@@ -36,16 +36,18 @@
     border-bottom: 1px solid #0067b8;
 }
 
-.setup-btn {
-    width: 100%;
-    height: auto;
-    background: black;
-    
-    color: white;
-   
-    
+.btn-container {
+    display: flex;
+}
+
+.btn-container > button {
+    padding: 5px;
     cursor: pointer;
-  
+}
+
+.btn-container > button:hover {
+    background-color: cadetblue;
+    color: black;
 }
 
 .container-setup .row {

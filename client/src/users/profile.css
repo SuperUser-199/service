@@ -9,11 +9,12 @@
     border-radius: 10px;
     box-shadow: 0 0 30px rgb(31 45 61 / 13%);
 }
-.edit-profile{
-    width: 30%;
+#edit-profile{
+    width: 100%;
+    padding: 10px;
     border-radius: 9px;
 }
-.edit-profile:hover{
+#edit-profile:hover{
     background-color: cadetblue;
     color:black;
 }
