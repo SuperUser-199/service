@@ -1,4 +1,5 @@
 import {
+  CLEAR_ERRORS,
   REGISTER_PROFESSIONAL_FAIL,
   REGISTER_PROFESSIONAL_REQUEST,
   REGISTER_PROFESSIONAL_SUCCESS,
@@ -29,4 +30,11 @@ export const registerProf = (profData) => async (dispatch) => {
       error: error.response.data.message,
     });
   }
+};
+
+// Clearing all errors
+export const clearErrors = () => async (dispatch) => {
+  dispatch({
+    type: CLEAR_ERRORS,
+  });
 };
