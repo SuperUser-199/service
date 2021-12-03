@@ -79,10 +79,28 @@ function Profile() {
                               <p>{user.gender}</p>
                             </div>
                           </div>
-                          <a className="edit-a" href="/editprofile">
-                            {" "}
-                            <button id="edit-profile">Edit Profile</button>
-                          </a>
+                          
+                           
+                          
+                          
+                  <div className="btn-sub-can">
+                  <a id="edit-a" href="/editprofile">
+                    <button type="submit" id="profile-btn" >
+                    Edit Profile
+                    </button>
+                  </a>
+                  <br />
+                  <a id="edit-a" href="/resetpassword">
+                    <button
+                      type="submit"
+                      id="profile-btn"
+                      
+                    
+                    >
+                      Reset Password
+                    </button>
+                    </a>
+                    </div>
                         </div>
                       </div>
                     </div>
