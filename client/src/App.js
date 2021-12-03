@@ -40,7 +40,7 @@ function App (){
       <Route exact path="/forgotpassword" element={<Forgotpass />} /> 
       <Route exact path="/setupprofile" element={<ProtectedRoute component={Setupprofile} />} />
       <Route exact path="/profile" element={<ProtectedRoute component={Profile} />} />
-      <Route exact path="/editprofile" element={< EditProfile /> } />
+      <Route exact path="/editprofile" element={<ProtectedRoute component={EditProfile} /> } />
 
       <Route exact path="/dashboard" element={<Dashboard />} />
       <Route exact path="/orders" element={<ProtectedRoute component={Orders} />} />

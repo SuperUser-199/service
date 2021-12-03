@@ -76,7 +76,7 @@ function EditProfile() {
     }
 
     if (isSetup) {
-      alert.success("Profile setup successfully");
+      alert.success("Profile updated successfully");
       dispatch(loadUser());
       navigate("/profile");
     }

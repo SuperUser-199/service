@@ -1,4 +1,4 @@
-import { CLEAR_ERRORS, LOAD_USER_FAIL, LOAD_USER_REQUEST, LOAD_USER_SUCCESS, LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT_FAIL, LOGOUT_SUCCESS, REGISTER_USER_FAIL, REGISTER_USER_REQUEST, REGISTER_USER_SUCCESS, UPDATE_PROFILE_FAIL, UPDATE_PROFILE_REQUEST, UPDATE_PROFILE_RESET, UPDATE_PROFILE_SUCCESS } from "../constants/userConstants";
+import { CLEAR_ERRORS, LOAD_USER_FAIL, LOAD_USER_REQUEST, LOAD_USER_SUCCESS, LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT_FAIL, LOGOUT_SUCCESS, REGISTER_USER_FAIL, REGISTER_USER_REQUEST, REGISTER_USER_SUCCESS, SETUP_PROFILE_FAIL, SETUP_PROFILE_REQUEST, SETUP_PROFILE_RESET, SETUP_PROFILE_SUCCESS, UPDATE_PROFILE_FAIL, UPDATE_PROFILE_REQUEST, UPDATE_PROFILE_RESET, UPDATE_PROFILE_SUCCESS } from "../constants/userConstants";
 
 export const userReducer = (state = { user: {} }, action) => {
     switch (action.type) {
@@ -66,24 +66,24 @@ export const userReducer = (state = { user: {} }, action) => {
 
 export const profileReducer = (state = {}, action) => {
     switch (action.type) {
-        case UPDATE_PROFILE_REQUEST:
+        case SETUP_PROFILE_REQUEST:
             return {
                 ...state,
                 loading: true
             };
-        case UPDATE_PROFILE_SUCCESS:
+        case SETUP_PROFILE_SUCCESS:
             return {
                 ...state,
                 loading: false,
                 isSetup: action.payload
             };
-        case UPDATE_PROFILE_FAIL:
+        case SETUP_PROFILE_FAIL:
             return {
                 ...state,
                 loading: false,
                 error: action.payload
             };
-        case UPDATE_PROFILE_RESET:
+        case SETUP_PROFILE_RESET:
             return {
                 ...state,
                 isSetup: false

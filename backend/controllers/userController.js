@@ -166,10 +166,45 @@ const updatePassword = AsyncErrorHandler(async (req, res, next) => {
 const updateProfile = AsyncErrorHandler(async (req, res, next) => {
     const updatedUserData = {
         name: req.body.name,
-        email: req.body.email
+        email: req.body.email,
+        gender: req.body.gender,
+        phoneno: req.body.phoneno
     };
 
-    const user = await User.findByIdAndUpdate(req.user.id, updatedUserData, {
+    const addressData = {
+        city: req.body.city,
+        district: req.body.district,
+        pincode: req.body.pincode,
+        state: req.body.state,
+        country: req.body.country
+    };
+
+    if (req.body.avatar !== '') {
+        const user = await User.findById(req.user.id);
+
+        const imageId = user.avatar.public_id;
+
+        await cloudinary.v2.uploader.destroy(imageId);
+
+        const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+            folder: 'avatars',
+            width: 150,
+            crop: 'scale'
+        });
+
+        updatedUserData.avatar = {
+            public_id: myCloud.public_id,
+            url: myCloud.secure_url
+        };
+    }
+
+    await User.findByIdAndUpdate(req.user.id, updatedUserData, {
+        new: true,
+        runValidators: true,
+        findAndModify: false
+    });
+
+    await Address.findOneAndUpdate({ user: req.user.id }, addressData, {
         new: true,
         runValidators: true,
         findAndModify: false

@@ -11,6 +11,9 @@ import {
   REGISTER_USER_FAIL,
   REGISTER_USER_REQUEST,
   REGISTER_USER_SUCCESS,
+  SETUP_PROFILE_FAIL,
+  SETUP_PROFILE_REQUEST,
+  SETUP_PROFILE_SUCCESS,
   UPDATE_PROFILE_FAIL,
   UPDATE_PROFILE_REQUEST,
   UPDATE_PROFILE_SUCCESS,
@@ -57,7 +60,7 @@ export const loginUser = (email, password) => async (dispatch) => {
 
 export const setupProfile = (userData) => async (dispatch) => {
   try {
-    dispatch({ type: UPDATE_PROFILE_REQUEST });
+    dispatch({ type: SETUP_PROFILE_REQUEST });
     const config = {
       headers: {
         "Content-Type": "multipart/form-data",
@@ -69,10 +72,10 @@ export const setupProfile = (userData) => async (dispatch) => {
       userData,
       config
     );
-    dispatch({ type: UPDATE_PROFILE_SUCCESS, payload: data.success });
+    dispatch({ type: SETUP_PROFILE_SUCCESS, payload: data.success });
   } catch (error) {
     dispatch({
-      type: UPDATE_PROFILE_FAIL,
+      type: SETUP_PROFILE_FAIL,
       payload: error.response.data.message,
     });
   }
