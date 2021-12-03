@@ -14,14 +14,23 @@ return (
                 <h3>Service Fare</h3>
               </div>
               <div className="setup">
-                <h2 className="setup-head2">Setup your Profile</h2>
+                <h2 className="setup-head2">Reset Password</h2>
                 <form >
-                  
-                  <div>
+                <div>
                     <input
                       type="password"
                     //   value={password}
                       name="old password"
+                      required
+                      placeholder="Enter Old Password"
+                    //   onChange={(e) => setPassword(e.target.value)}
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="password"
+                    //   value={password}
+                      name="new password"
                       required
                       placeholder="Enter New Password"
                     //   onChange={(e) => setPassword(e.target.value)}
@@ -31,7 +40,7 @@ return (
                     <input
                       type="password"
                     //   value={newpassword}
-                      name="new password"
+                      name="confirm new password"
                       required
                       placeholder="Confirm New Password"
                     //   onChange={(e) => setNewPassword(e.target.value)}
