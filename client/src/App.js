@@ -40,7 +40,7 @@ function App (){
       <Route exact path="/professionalprofile" element={<ProfessionalProfile />} />
       <Route exact path="/login" element={<Login />} />
       <Route exact path="/forgotpassword" element={<Forgotpassword />} /> 
-      <Route exact path="/resetpassword" element={<ResetPassword />} /> 
+      <Route exact path="/resetpassword/:token" element={<ResetPassword />} /> 
       <Route exact path="/setupprofile" element={<ProtectedRoute component={Setupprofile} />} />
       <Route exact path="/profile" element={<ProtectedRoute component={Profile} />} />
       <Route exact path="/editprofile" element={<ProtectedRoute component={EditProfile} /> } />

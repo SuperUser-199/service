@@ -90,14 +90,14 @@ function Profile() {
                     </button>
                   </a>
                   <br />
-                  <a id="edit-a" href="/resetpassword">
+                  <a id="edit-a" href="/updatepassword">
                     <button
                       type="submit"
                       id="profile-btn"
                       
                     
                     >
-                      Reset Password
+                      Update Password
                     </button>
                     </a>
                     </div>
