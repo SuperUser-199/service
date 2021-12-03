@@ -5,6 +5,10 @@ const addressSchema = new mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref: 'user'
     },
+    professional: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'professional'
+    },
     city: {
         type: 'String',
         required: [true, 'Please enter city name']
