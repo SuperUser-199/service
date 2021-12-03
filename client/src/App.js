@@ -4,8 +4,8 @@ import Dashboard from './pages/dashboard';
 import Login  from './users/login';
 import Profile from './users/profile';
 import EditProfile from './users/editprofile';
-import ResetPassword from './users/resetpassword';
-import Forgotpass from './components/Forgotpassword';
+import UpdatePassword from './users/updatepassword';
+import Forgotpassword from './components/Forgotpassword';
 import Setupprofile from './users/setupprofile';
 import Orders from './product/orders';
 import Orderdetails from './product/orderdetails';
@@ -14,6 +14,7 @@ import Cart  from './product/cart';
 import ProfRegister from './professional/ProfRegister';
 import ProfessionalProfile from './professional/ProfessionalProfile';
 import Signup from './users/Signup';
+import ResetPassword from './users/ResetPassword';
 import {
   Routes,
   BrowserRouter as Router,
@@ -38,11 +39,12 @@ function App (){
       <Route exact path="/proregister" element={<ProfRegister />} />
       <Route exact path="/professionalprofile" element={<ProfessionalProfile />} />
       <Route exact path="/login" element={<Login />} />
-      <Route exact path="/forgotpassword" element={<Forgotpass />} /> 
+      <Route exact path="/forgotpassword" element={<Forgotpassword />} /> 
+      <Route exact path="/resetpassword" element={<ResetPassword />} /> 
       <Route exact path="/setupprofile" element={<ProtectedRoute component={Setupprofile} />} />
       <Route exact path="/profile" element={<ProtectedRoute component={Profile} />} />
       <Route exact path="/editprofile" element={<ProtectedRoute component={EditProfile} /> } />
-      <Route exact path="/resetpassword" element={<ResetPassword/>}/>
+      <Route exact path="/updatepassword" element={<ProtectedRoute component={UpdatePassword} />}/>
       <Route exact path="/dashboard" element={<Dashboard />} />
       <Route exact path="/orders" element={<ProtectedRoute component={Orders} />} />
       <Route exact path="/orderdetails" element={<ProtectedRoute component={Orderdetails} />} />
