@@ -18,6 +18,7 @@ function Setupprofile() {
     user,
     error: LoadingError,
     address,
+    professional,
     isAuthenticated,
   } = useSelector((state) => state.user);
 
@@ -28,9 +29,9 @@ function Setupprofile() {
   const [pincode, setPincode] = useState(address ? address.pincode : "");
   const [gender, setGender] = useState(user.gender);
   const [phoneno, setPhoneno] = useState(user.phoneno);
-  const [spec, setSpec] = useState("");
-  const [bio, setBio] = useState("");
-  const [exp, setExp] = useState("");
+  const [spec, setSpec] = useState(professional ? professional.specialization:"");
+  const [bio, setBio] = useState(professional ? professional.about:"");
+  const [exp, setExp] = useState(professional ? professional.experience:"");
 
   const { error, isSetup, loading } = useSelector(
     (state) => state.setupProfile
@@ -100,16 +101,7 @@ function Setupprofile() {
               <div className="setup">
                 <h2 className="setup-head2">Setup your Profile</h2>
                 <form onSubmit={setupProfileHandler}>
-                  <div>
-                    <input
-                      type="text"
-                      value={bio}
-                      name="bio"
-                      required
-                      placeholder="Enter your bio"
-                      onChange={(e) => setBio(e.target.value)}
-                    />
-                  </div>
+                  
                   <div className="select-style">
                     <select
                       id="gender"
@@ -202,6 +194,16 @@ function Setupprofile() {
                       userLink()
                     ) : (
                       <div class="tranform-ul">
+                        <div>
+                    <input
+                      type="text"
+                      value={bio}
+                      name="bio"
+                      required
+                      placeholder="Enter your bio"
+                      onChange={(e) => setBio(e.target.value)}
+                    />
+                  </div>
                         <div>
                           <select
                             className="selectStyle"

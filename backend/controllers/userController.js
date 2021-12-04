@@ -133,10 +133,12 @@ const resetPassword = AsyncErrorHandler(async (req, res, next) => {
 const getUserDetails = AsyncErrorHandler(async (req, res, next) => {
     const user = await User.findById(req.user.id);
     const address = await Address.findOne({ user: req.user.id });
+    const professional = await Professional.findOne({user: req.user.id})
     res.status(200).json({
         success: true,
         user,
-        address
+        address,
+        professional
     });
 })
 
@@ -179,6 +181,25 @@ const updateProfile = AsyncErrorHandler(async (req, res, next) => {
         state: req.body.state,
         country: req.body.country
     };
+    if (req.user.role === 'professional') {
+        const { exp: experience, spec: specialization, bio: about } = req.body;
+        
+        user = await Professional.findOne({ user: req.user.id });
+
+        if (!user) {
+            await Professional.create({
+                experience, specialization, about, user: req.user.id
+            });
+        } else {
+            await Professional.findOneAndUpdate({ user: req.user.id }, {
+                experience, specialization, about
+            }, {
+                new: true,
+                runValidators: true,
+                findAndModify: false
+            });
+        }
+    }
 
     if (req.body.avatar !== '') {
         const user = await User.findById(req.user.id);
@@ -212,7 +233,8 @@ const updateProfile = AsyncErrorHandler(async (req, res, next) => {
     });
 
     res.status(200).json({
-        success: true
+        success: true,
+        user
     });
 })
 

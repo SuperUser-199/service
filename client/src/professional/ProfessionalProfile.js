@@ -1,9 +1,41 @@
-import React from 'react';
+import React, { useEffect }  from 'react';
 import Header from '../components/header';
 import './ProfessionalProfile.css';
 
+import { useSelector, useDispatch } from "react-redux";
+import { useAlert } from "react-alert";
+import { useNavigate } from "react-router";
+import { clearErrors } from "../actions/userActions";
+import MetaData from "../components/layout/MetaData";
+import Loader from "../components/layout/Loader/Loader";
+
 function ProfessionalProfile() {
+    const dispatch = useDispatch();
+    const alert = useAlert();
+    const navigate = useNavigate();
+  
+    const { error, user, address, loading,professional } = useSelector((state) => state.user);
+  
+    useEffect(() => {
+      if (error) {
+        alert.error(error);
+        dispatch(clearErrors());
+      }
+  
+      if (!address) {
+        navigate("/setupprofile");
+      }
+      if (!professional) {
+        navigate("/setupprofile");
+      }
+    }, [error, navigate, dispatch, alert, address,professional]);
+  
     return (
+        <>
+          <MetaData title={user ? `${user.name}'s Profile` : "Professional Profile"} />
+          {loading ? (
+            <Loader />
+          ) : (
         <>
             <Header />
             <section className="section about-section gray-bg" id="about">
@@ -12,53 +44,71 @@ function ProfessionalProfile() {
                     <div className="col-lg-6">
                         <div className="about-text go-to">
                             <h3 className="dark-color">About </h3>
-                            <h6 className="theme-color lead">Professionl Name</h6>
-                            <p>I <mark>design and develop</mark> services for customers of all sizes, specializing in creating stylish, modern websites, web services and online stores. My passion is to design digital user experiences through the bold interface and meaningful interactions.</p>
+                            <h6 className="theme-color lead">{user.name}</h6>
+                            <p>{professional.about}.</p>
                             <div className="row about-list">
                                 <div className="col-md-6">
                                     <div className="media">
-                                        <label>Birthday</label>
-                                        <p>4th april 1998</p>
+                                        <label>Joined At</label>
+                                        <p>{String(user.createdAt).substr(0, 10)}</p>
                                     </div>
                                     
                                     <div className="media">
                                         <label>City/Village</label>
-                                        <p>Canada</p>
+                                        <p>{address.city}</p>
                                     </div>
                                     <div className="media">
                                         <label>Address</label>
-                                        <p>California, USA,122004</p>
+                                        <p>{address.district},{address.state},
+                                {address.pincode}</p>
                                     </div>
                                     <div className="media">
                                         <label>Experience</label>
-                                        <p>2 Yrs</p>
+                                        <p>{professional.experience} Years</p>
                                     </div>
                                 </div>
                                 <div className="col-md-6">
                                     <div className="media">
                                         <label>E-mail</label>
-                                        <p>info@domain.com</p>
+                                        <p>{user.email}</p>
                                     </div>
                                     <div className="media">
                                         <label>Phone</label>
-                                        <p>820-885-3321</p>
+                                        <p>{user.phoneno}</p>
                                     </div>
                                     <div className="media">
                                         <label>Gender</label>
-                                        <p>Male</p>
+                                        <p>{user.gender}</p>
                                     </div>
                                     <div className="media">
                                         <label>Domain</label>
-                                        <p>Service Provide Name</p>
+                                        <p>{professional.specialization}</p>
                                     </div>
                                 </div>
-                                <button class="edit-profile">Edit Profile</button>
+                                <div className="btn-sub-can">
+                  <a id="edit-a" href="/editprofile">
+                    <button type="submit" id="profile-btn" >
+                    Edit Profile
+                    </button>
+                  </a>
+                  <br />
+                  <a id="edit-a" href="/updatepassword">
+                    <button
+                      type="submit"
+                      id="profile-btn"
+                      
+                    
+                    >
+                      Update Password
+                    </button>
+                    </a>
+                    </div>
                             </div>
                         </div>
                     </div>
                     <div className="col-lg-6">
                         <div className="about-avatar">
-                            <img alt="..." src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqNTG7H8N2gOBaTKEjC_dEYZ-10zeZBWAYdaL_5eU-YP1GUHEIAEljhR4zTb_kbVj7ObE&usqp=CAU" title="" />
+                            <img alt="..." src={user.avatar.url} />
                         </div>
                     </div>
                 </div>
@@ -94,6 +144,8 @@ function ProfessionalProfile() {
             </div>
         </section>
         </>
+         )}
+         </>
     )
 }
 

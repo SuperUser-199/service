@@ -20,17 +20,16 @@ function Profile() {
       alert.error(error);
       dispatch(clearErrors());
     }
-
+    if(user.role==="professional"){
+      navigate("/professionalprofile")
+    }
     if (!address) {
       navigate("/setupprofile");
     }
   }, [error, navigate, dispatch, alert, address]);
 
   return (
-    <>
-      {loading ? (
-        <Loader />
-      ) : (
+    
         <>
           <MetaData title={user ? `${user.name}'s Profile` : "Profile"} />
           {loading ? (
@@ -115,8 +114,7 @@ function Profile() {
             </>
           )}
         </>
-      )}
-    </>
+      
   );
 }
 

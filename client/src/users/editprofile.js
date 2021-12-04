@@ -18,6 +18,8 @@ function EditProfile() {
     user,
     error: LoadingError,
     address,
+    professional,
+    isAuthenticated,
   } = useSelector((state) => state.user);
 
   const { error, isUpdated, loading } = useSelector(
@@ -35,6 +37,10 @@ function EditProfile() {
   const [phoneno, setPhoneno] = useState(user.phoneno);
   const [avatar, setAvatar] = useState();
   const [avatarPreview, setAvatarPreview] = useState(user.avatar.url);
+  const [spec, setSpec] = useState(professional ? professional.specialization:"");
+  const [bio, setBio] = useState(professional ? professional.about:"");
+  const [exp, setExp] = useState(professional ? professional.experience:"");
+
 
   const imgDataChange = (e) => {
     const reader = new FileReader();
@@ -63,7 +69,9 @@ function EditProfile() {
     myForm.set("avatar", avatar);
     myForm.set("name", name);
     myForm.set("email", email);
-
+    myForm.set("exp", exp);
+    myForm.set("bio", bio);
+    myForm.set("spec", spec);
     dispatch(updateProfile(myForm));
   };
 
@@ -88,6 +96,12 @@ function EditProfile() {
       navigate("/profile");
     }
   }, [error, alert, dispatch, navigate, isUpdated, LoadingError]);
+  const transForm = {
+    transform: isAuthenticated ? "translateY(-1px)" : 0,
+  };
+  const userLink = () => {
+    return <div></div>;
+  };
 
   return (
     <>
@@ -221,7 +235,74 @@ function EditProfile() {
                       onChange={(e) => setPincode(e.target.value)}
                     />
                   </div>
-
+                  <div class="transform-div" style={transForm}>
+                    {user.role === "user" ? (
+                      userLink()
+                    ) : (
+                      <div class="tranform-ul">
+                        <div>
+                    <input
+                      type="text"
+                      value={bio}
+                      name="bio"
+                      required
+                      placeholder="Enter your bio"
+                      onChange={(e) => setBio(e.target.value)}
+                    />
+                  </div>
+                        <div>
+                          <select
+                            className="selectStyle"
+                            id="domain"
+                            name="spec"
+                            value={spec}
+                            onChange={(e) => setSpec(e.target.value)}
+                          >
+                            <option value="select" selected="selected">
+                              -------------select your domain-------------
+                            </option>
+                            <option value="ACservice">
+                              AC Service and Repair
+                            </option>
+                            <option value="painter">Painter</option>
+                            <option value="electrician">Electrician</option>
+                            <option value="plumber">Plumber</option>
+                            <option value="carpenter">Carpenter</option>
+                            <option value="pestcontrol">Pest Control</option>
+                            <option value="webdev">Web Developer</option>
+                            <option value="appdev">App Developer</option>
+                          </select>
+                        </div>
+                        <div>
+                          <input
+                            type="number"
+                            name="exp"
+                            id="exp"
+                            value={exp}
+                            onChange={(e) => setExp(e.target.value)}
+                            required
+                            placeholder="Enter your experience(in years)"
+                          />
+                        </div>
+                        <div>
+                          <select
+                            className="selectStyle"
+                            id="domain"
+                            name="domain"
+                          >
+                            <option value="select" selected="selected">
+                              Rate your work out of 5
+                            </option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                          </select>
+                        </div>
+                      </div>
+                    )}
+                  </div>
                   <div className="btn-sub-can">
                     <button type="submit" style={{ margin: "0 3px 0 0" }}>
                       Submit

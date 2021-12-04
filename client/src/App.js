@@ -14,7 +14,7 @@ import Cart  from './product/cart';
 import ProfRegister from './professional/ProfRegister';
 import ProfessionalProfile from './professional/ProfessionalProfile';
 import Signup from './users/Signup';
-import ResetPassword from './users/ResetPassword';
+import ResetPassword from './users/Resetpassword';
 import {
   Routes,
   BrowserRouter as Router,
