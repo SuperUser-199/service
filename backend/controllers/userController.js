@@ -1,5 +1,6 @@
 const User = require('../models/userModel');
 const Address = require('../models/addressModel');
+const Professional = require('../models/professionalModel');
 const AsyncErrorHandler = require('../middlewares/asyncErrorHandler');
 const ErrorHandler = require('../utils/errorHandler');
 const { sendToken } = require('../utils/jwtToken');
@@ -238,6 +239,26 @@ const setupProfile = AsyncErrorHandler(async (req, res, next) => {
             runValidators: true,
             findAndModify: false
         });
+    }
+    
+    if (req.user.role === 'professional') {
+        const { exp: experience, spec: specialization, bio: about } = req.body;
+        
+        user = await Professional.findOne({ user: req.user.id });
+
+        if (!user) {
+            await Professional.create({
+                experience, specialization, about, user: req.user.id
+            });
+        } else {
+            await Professional.findOneAndUpdate({ user: req.user.id }, {
+                experience, specialization, about
+            }, {
+                new: true,
+                runValidators: true,
+                findAndModify: false
+            });
+        }
     }
 
     user = await User.findById(req.user.id);

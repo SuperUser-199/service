@@ -18,7 +18,7 @@ function Setupprofile() {
     user,
     error: LoadingError,
     address,
-    isAuthenticated
+    isAuthenticated,
   } = useSelector((state) => state.user);
 
   const [country, setCountry] = useState(address ? address.country : "");
@@ -28,6 +28,9 @@ function Setupprofile() {
   const [pincode, setPincode] = useState(address ? address.pincode : "");
   const [gender, setGender] = useState(user.gender);
   const [phoneno, setPhoneno] = useState(user.phoneno);
+  const [spec, setSpec] = useState("");
+  const [bio, setBio] = useState("");
+  const [exp, setExp] = useState("");
 
   const { error, isSetup, loading } = useSelector(
     (state) => state.setupProfile
@@ -45,6 +48,9 @@ function Setupprofile() {
     myForm.set("country", country);
     myForm.set("pincode", pincode);
     myForm.set("phoneno", phoneno);
+    myForm.set("exp", exp);
+    myForm.set("bio", bio);
+    myForm.set("spec", spec);
 
     dispatch(setupProfile(myForm));
   };
@@ -70,16 +76,12 @@ function Setupprofile() {
       navigate("/profile");
     }
   }, [error, alert, dispatch, navigate, isSetup, LoadingError]);
-  
+
   const transForm = {
     transform: isAuthenticated ? "translateY(-1px)" : 0,
   };
   const userLink = () => {
-    return (
-      <div>
-        
-      </div>
-    );
+    return <div></div>;
   };
 
   return (
@@ -98,6 +100,16 @@ function Setupprofile() {
               <div className="setup">
                 <h2 className="setup-head2">Setup your Profile</h2>
                 <form onSubmit={setupProfileHandler}>
+                  <div>
+                    <input
+                      type="text"
+                      value={bio}
+                      name="bio"
+                      required
+                      placeholder="Enter your bio"
+                      onChange={(e) => setBio(e.target.value)}
+                    />
+                  </div>
                   <div className="select-style">
                     <select
                       id="gender"
@@ -186,42 +198,63 @@ function Setupprofile() {
                     />
                   </div>
                   <div class="transform-div" style={transForm}>
-                  {user.role==="user" ? (
-                userLink()
-              ) : (
-                            
-                <div class="tranform-ul">
-                <div>
-                <select className="selectStyle" id="domain" name="domain">
-                                    <option value="select" selected="selected">-------------select your domain-------------</option>
-                                    <option value="ACservice">AC Service and Repair</option>
-                                    <option value="painter">Painter</option>
-                                    <option value="electrician">Electrician</option>
-                                    <option value="plumber">Plumber</option>
-                                    <option value="carpenter">Carpenter</option>
-                                    <option value="pestcontrol">Pest Control</option>
-                                    <option value="webdev">Web Developer</option>
-                                    <option value="appdev">App Developer</option>
-                            </select>
-                </div>
-                <div>
-                  <input type="number" name="exp" id="exp" required placeholder="Enter your experience(in years)"/>
-                </div>
-                <div>
-                <select className="selectStyle" id="domain" name="domain">
-                                    <option value="select" selected="selected">Rate your work out of 5</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                                  
-                </select>
-                </div>
-               </div>  
-                        )
-                    }
-                  </div> 
+                    {user.role === "user" ? (
+                      userLink()
+                    ) : (
+                      <div class="tranform-ul">
+                        <div>
+                          <select
+                            className="selectStyle"
+                            id="domain"
+                            name="spec"
+                            value={spec}
+                            onChange={(e) => setSpec(e.target.value)}
+                          >
+                            <option value="select" selected="selected">
+                              -------------select your domain-------------
+                            </option>
+                            <option value="ACservice">
+                              AC Service and Repair
+                            </option>
+                            <option value="painter">Painter</option>
+                            <option value="electrician">Electrician</option>
+                            <option value="plumber">Plumber</option>
+                            <option value="carpenter">Carpenter</option>
+                            <option value="pestcontrol">Pest Control</option>
+                            <option value="webdev">Web Developer</option>
+                            <option value="appdev">App Developer</option>
+                          </select>
+                        </div>
+                        <div>
+                          <input
+                            type="number"
+                            name="exp"
+                            id="exp"
+                            value={exp}
+                            onChange={(e) => setExp(e.target.value)}
+                            required
+                            placeholder="Enter your experience(in years)"
+                          />
+                        </div>
+                        <div>
+                          <select
+                            className="selectStyle"
+                            id="domain"
+                            name="domain"
+                          >
+                            <option value="select" selected="selected">
+                              Rate your work out of 5
+                            </option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                          </select>
+                        </div>
+                      </div>
+                    )}
+                  </div>
                   <div className="btn-container">
                     <button type="submit" style={{ marginRight: "3px" }}>
                       Submit
