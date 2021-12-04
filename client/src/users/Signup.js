@@ -21,6 +21,7 @@ function Signup() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState("");
   const [avatar, setAvatar] = useState();
   const [avatarPreview, setAvatarPreview] = useState(Profile);
 
@@ -43,6 +44,7 @@ function Signup() {
     myForm.set("name", name);
     myForm.set("email", email);
     myForm.set("password", password);
+    myForm.set("role", role);
     myForm.set("avatar", avatar);
 
     dispatch(registerUser(myForm));
@@ -100,6 +102,18 @@ function Signup() {
                     placeholder="Enter your password"
                     onChange={(e) => setPassword(e.target.value)}
                   />
+                  <div className="select-style">
+                    <select
+                      id="role"
+                      name="role"
+                      value={role}
+                      onChange={(e) => setRole(e.target.value)}
+                    >
+                      <option value="">Select your role</option>
+                      <option value="user">user</option>
+                      <option value="professional">professional</option>
+                    </select>
+                  </div>
                   <div id="registerImage">
                     <img src={avatarPreview} alt="Avatar Preview" />
                     <input

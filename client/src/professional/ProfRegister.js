@@ -44,6 +44,7 @@ function Register() {
     myForm.set("email", email);
     myForm.set("password", password);
     myForm.set("avatar", avatar);
+    myForm.append("role", "professional");
 
     dispatch(registerProf(myForm));
   };

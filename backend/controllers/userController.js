@@ -3,7 +3,7 @@ const Address = require('../models/addressModel');
 const Professional = require('../models/professionalModel');
 const AsyncErrorHandler = require('../middlewares/asyncErrorHandler');
 const ErrorHandler = require('../utils/errorHandler');
-const { sendToken } = require('../utils/jwtToken');
+const sendToken = require('../utils/jwtToken');
 const sendEmail = require('../utils/sendEmail');
 const crypto = require('crypto');
 const cloudinary = require('cloudinary');
@@ -17,9 +17,9 @@ const registerUser = AsyncErrorHandler(async (req, res, next) => {
             crop: 'scale'
         });
 
-        const {name, email, password} = req.body;
+        const {name, email, password, role} = req.body;
         const user = await User.create({
-            name, email, password,
+            name, email, password, role,
             avatar: {
                 public_id: myCloud.public_id,
                 url: myCloud.secure_url
