@@ -94,7 +94,8 @@ function Header() {
                 Services
               </a>
             </li>
-            <li className="nav-item dropdown">
+            {isAuthenticated ?(<li></li>):(
+            <li className="nav-item dropdown" style={transForm}>
               <a
                 className="nav-link dropdown-toggle"
                 href="/"
@@ -106,6 +107,7 @@ function Header() {
               >
                 Other Pages
               </a>
+              
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                 
                 <a className="dropdown-item" href="/setupprofile">
@@ -124,7 +126,9 @@ function Header() {
                   Professional Profile
                 </a>
               </div>
+              
             </li>
+            )}
           </ul>
             <a className="nav-link" href="/cart">
             <img
