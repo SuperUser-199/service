@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-import "./Resetpassword.css";
+import "./ResetPassword.css";
 import Header from "../components/header";
 import MetaData from "../components/layout/MetaData";
 import { useSelector, useDispatch } from "react-redux";

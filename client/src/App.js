@@ -14,7 +14,7 @@ import Cart  from './product/cart';
 import ProfRegister from './professional/ProfRegister';
 import ProfessionalProfile from './professional/ProfessionalProfile';
 import Signup from './users/Signup';
-import ResetPassword from './users/Resetpassword';
+import ResetPassword from './users/ResetPassword';
 import {
   Routes,
   BrowserRouter as Router,
@@ -23,6 +23,7 @@ import {
 import store from './store';
 import { loadUser } from './actions/userActions';
 import ProtectedRoute from './components/Route/ProtectedRoute';
+import ProfessionalRoute from './components/Route/ProfessionalRoute';
 
 function App (){
 
@@ -37,7 +38,7 @@ function App (){
      
       <Route exact path="/signup" element={<Signup />} />  
       <Route exact path="/proregister" element={<ProfRegister />} />
-      <Route exact path="/professionalprofile" element={<ProfessionalProfile />} />
+      <Route exact path="/professionalprofile" element={<ProfessionalRoute component={ProfessionalProfile} />} />
       <Route exact path="/login" element={<Login />} />
       <Route exact path="/forgotpassword" element={<Forgotpassword />} /> 
       <Route exact path="/resetpassword/:token" element={<ResetPassword />} /> 

@@ -14,21 +14,17 @@ function ProfessionalProfile() {
     const alert = useAlert();
     const navigate = useNavigate();
   
-    const { error, user, address, loading,professional } = useSelector((state) => state.user);
+    const { error, user, address, loading, professional } = useSelector((state) => state.user);
   
     useEffect(() => {
       if (error) {
         alert.error(error);
         dispatch(clearErrors());
       }
-  
-      if (!address) {
-        navigate("/setupprofile");
-      }
       if (!professional) {
         navigate("/setupprofile");
       }
-    }, [error, navigate, dispatch, alert, address,professional]);
+    }, [error, navigate, dispatch, alert, professional]);
   
     return (
         <>
@@ -38,7 +34,6 @@ function ProfessionalProfile() {
           ) : (
         <>
             <Header />
-            <section className="section about-section gray-bg" id="about">
             <div className="container">
                 <div className="row align-items-center flex-row-reverse">
                     <div className="col-lg-6">
@@ -142,7 +137,6 @@ function ProfessionalProfile() {
                   
                 </div>
             </div>
-        </section>
         </>
          )}
          </>

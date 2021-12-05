@@ -62,6 +62,7 @@ export const userReducer = (state = { user: {} }, action) => {
         loading: false,
         isAuthenticated: false,
         user: null,
+        professional: null,
       };
     case REGISTER_USER_FAIL:
     case LOGIN_FAIL:

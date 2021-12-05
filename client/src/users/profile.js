@@ -26,7 +26,7 @@ function Profile() {
     if (!address) {
       navigate("/setupprofile");
     }
-  }, [error, navigate, dispatch, alert, address]);
+  }, [error, navigate, dispatch, alert, address, user]);
 
   return (
     

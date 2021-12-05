@@ -173,7 +173,7 @@ const updateProfile = AsyncErrorHandler(async (req, res, next) => {
         gender: req.body.gender,
         phoneno: req.body.phoneno
     };
-
+    
     const addressData = {
         city: req.body.city,
         district: req.body.district,
@@ -181,16 +181,10 @@ const updateProfile = AsyncErrorHandler(async (req, res, next) => {
         state: req.body.state,
         country: req.body.country
     };
+
     if (req.user.role === 'professional') {
         const { exp: experience, spec: specialization, bio: about } = req.body;
         
-        user = await Professional.findOne({ user: req.user.id });
-
-        if (!user) {
-            await Professional.create({
-                experience, specialization, about, user: req.user.id
-            });
-        } else {
             await Professional.findOneAndUpdate({ user: req.user.id }, {
                 experience, specialization, about
             }, {
@@ -198,7 +192,6 @@ const updateProfile = AsyncErrorHandler(async (req, res, next) => {
                 runValidators: true,
                 findAndModify: false
             });
-        }
     }
 
     if (req.body.avatar !== '') {
@@ -233,8 +226,7 @@ const updateProfile = AsyncErrorHandler(async (req, res, next) => {
     });
 
     res.status(200).json({
-        success: true,
-        user
+        success: true
     });
 })
 
