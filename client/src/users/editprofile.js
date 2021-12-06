@@ -17,10 +17,11 @@ function EditProfile() {
   const {
     user,
     error: LoadingError,
-    address,
-    professional,
     isAuthenticated,
   } = useSelector((state) => state.user);
+
+  const address = user.address;
+  const professional = user.professional;
 
   const { error, isUpdated, loading } = useSelector(
     (state) => state.updateProfile

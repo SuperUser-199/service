@@ -13,7 +13,9 @@ function Profile() {
   const alert = useAlert();
   const navigate = useNavigate();
 
-  const { error, user, address, loading } = useSelector((state) => state.user);
+  const { error, user, loading } = useSelector((state) => state.user);
+
+  const address = user.address;
 
   useEffect(() => {
     if (error) {

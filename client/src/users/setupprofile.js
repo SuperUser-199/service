@@ -17,10 +17,11 @@ function Setupprofile() {
   const {
     user,
     error: LoadingError,
-    address,
-    professional,
     isAuthenticated,
   } = useSelector((state) => state.user);
+
+  const address = user.address;
+  const professional = user.professional;
 
   const [country, setCountry] = useState(address ? address.country : "");
   const [state, setState] = useState(address ? address.state : "");
