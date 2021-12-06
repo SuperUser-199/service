@@ -50,14 +50,14 @@ function AllUsers() {
                               <div>
                                 <img
                                   id="user-img"
-                                  src={data.user.avatar.url}
+                                  src={data.avatar.url}
                                   // src="#"
                                   alt=""
                                 />
                               </div>
                               <div>
                                 <div>
-                                  <div><h5>{data.user.name}</h5></div>
+                                  <div><h5>{data.name}</h5></div>
                                   <div>
                                     <ul>
                                       <li>

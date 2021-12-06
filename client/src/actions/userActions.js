@@ -193,7 +193,7 @@ export const updatePassword = (passwords) => async (dispatch) => {
 export const getAllProfs = () => async (dispatch) => {
   try {
     dispatch({ type: ALL_PROFS_REQUEST });
-    const { data } = await axios.get(`/api/v1/professional/getAll`);
+    const { data } = await axios.get(`/api/v1/user/professional/getAll`);
 
     dispatch({ type: ALL_PROFS_SUCCESS, payload: data.professionals });
   } catch (error) {

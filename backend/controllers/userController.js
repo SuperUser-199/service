@@ -254,6 +254,15 @@ const setupProfile = AsyncErrorHandler(async (req, res, next) => {
     });
 })
 
+const getAllProfessionals = AsyncErrorHandler(async (req, res, next) => {
+    const professionals = await User.find({ role: "professional" });
+
+    res.status(200).json({
+        success: true,
+        professionals
+    });
+})
+
 module.exports = {
     registerUser,
     logInUser,
@@ -263,5 +272,6 @@ module.exports = {
     getUserDetails,
     updatePassword,
     updateProfile,
-    setupProfile
+    setupProfile,
+    getAllProfessionals
 }
