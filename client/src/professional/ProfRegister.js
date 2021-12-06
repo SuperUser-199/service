@@ -4,7 +4,7 @@ import Header from "../components/header";
 import Profile from "../images/Profile.png";
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
-import { clearErrors, registerProf } from "../actions/profActions";
+import { clearErrors, registerUser } from "../actions/userActions";
 import { useNavigate } from "react-router";
 import Loader from "../components/layout/Loader/Loader";
 
@@ -14,7 +14,7 @@ function Register() {
   const navigate = useNavigate();
 
   const { error, loading, isAuthenticated } = useSelector(
-    (state) => state.prof
+    (state) => state.user
   );
 
   const [name, setName] = useState("");
@@ -46,7 +46,7 @@ function Register() {
     myForm.set("avatar", avatar);
     myForm.append("role", "professional");
 
-    dispatch(registerProf(myForm));
+    dispatch(registerUser(myForm));
   };
 
   useEffect(() => {
@@ -56,7 +56,7 @@ function Register() {
     }
 
     if (isAuthenticated) {
-      navigate("/professionalprofile");
+      navigate("/setupprofile");
     }
   }, [error, dispatch, navigate, alert, isAuthenticated]);
 
