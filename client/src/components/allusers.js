@@ -5,6 +5,9 @@ import MetaData from "./layout/MetaData";
 import { useSelector} from "react-redux";
 function AllUsers(){
     const { user, address,professional } = useSelector((state) => state.user);
+    if(user.role==="user"){
+        navigate("/")
+      }
 return(
     <>
     <Header/>
