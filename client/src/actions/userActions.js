@@ -100,7 +100,7 @@ export const updateProfile = (userData) => async (dispatch) => {
     };
 
     const { data } = await axios.put(
-      `api/v1/user/me/profile/update`,
+      `/api/v1/user/me/profile/update`,
       userData,
       config
     );

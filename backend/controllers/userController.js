@@ -194,9 +194,8 @@ const updateProfile = AsyncErrorHandler(async (req, res, next) => {
             });
     }
 
-    if (req.body.avatar !== '') {
+    if (typeof req.body.avatar !== 'string') {
         const user = await User.findById(req.user.id);
-
         const imageId = user.avatar.public_id;
 
         await cloudinary.v2.uploader.destroy(imageId);
