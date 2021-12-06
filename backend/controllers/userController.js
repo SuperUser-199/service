@@ -1,6 +1,4 @@
 const User = require('../models/userModel');
-const Address = require('../models/addressModel');
-const Professional = require('../models/professionalModel');
 const AsyncErrorHandler = require('../middlewares/asyncErrorHandler');
 const ErrorHandler = require('../utils/errorHandler');
 const sendToken = require('../utils/jwtToken');
@@ -132,13 +130,9 @@ const resetPassword = AsyncErrorHandler(async (req, res, next) => {
 // get my details
 const getUserDetails = AsyncErrorHandler(async (req, res, next) => {
     const user = await User.findById(req.user.id);
-    const address = await Address.findOne({ user: req.user.id });
-    const professional = await Professional.findOne({user: req.user.id})
     res.status(200).json({
         success: true,
-        user,
-        address,
-        professional
+        user
     });
 })
 
@@ -182,21 +176,17 @@ const updateProfile = AsyncErrorHandler(async (req, res, next) => {
         country: req.body.country
     };
 
+    let professionalData = {};
+
     if (req.user.role === 'professional') {
         const { exp: experience, spec: specialization, bio: about } = req.body;
-        
-            await Professional.findOneAndUpdate({ user: req.user.id }, {
-                experience, specialization, about
-            }, {
-                new: true,
-                runValidators: true,
-                findAndModify: false
-            });
+        professionalData.experience = exp;
+        professionalData.specialization = spec;
+        professionalData.about = bio;
     }
 
     if (typeof req.body.avatar !== 'string') {
-        const user = await User.findById(req.user.id);
-        const imageId = user.avatar.public_id;
+        const imageId = req.user.avatar.public_id;
 
         await cloudinary.v2.uploader.destroy(imageId);
 
@@ -212,13 +202,10 @@ const updateProfile = AsyncErrorHandler(async (req, res, next) => {
         };
     }
 
-    await User.findByIdAndUpdate(req.user.id, updatedUserData, {
-        new: true,
-        runValidators: true,
-        findAndModify: false
-    });
+    updatedUserData.address = addressData;
+    updatedUserData.professional = professionalData;
 
-    await Address.findOneAndUpdate({ user: req.user.id }, addressData, {
+    await User.findByIdAndUpdate(req.user.id, updatedUserData, {
         new: true,
         runValidators: true,
         findAndModify: false
@@ -232,49 +219,34 @@ const updateProfile = AsyncErrorHandler(async (req, res, next) => {
 // setup profile user
 const setupProfile = AsyncErrorHandler(async (req, res, next) => {
     const { gender, city, district, state, country, pincode, phoneno } = req.body;
-    await User.findByIdAndUpdate(req.user.id, {gender, phoneno} , {
-        new: true,
-        runValidators: true,
-        findAndModify: false
-    });
 
-    let user = await Address.findOne({ user: req.user.id });
-
-    if (!user) {
-        await Address.create({
-            city, district, state, country, pincode, user: req.user.id
-        });
-    } else {
-        await Address.findOneAndUpdate({ user: req.user.id }, {
-            city, district, state, country, pincode
-        }, {
-            new: true,
-            runValidators: true,
-            findAndModify: false
-        });
+    const data = {
+        gender,
+        phoneno,
+        address: {
+            city,
+            district,
+            state,
+            country,
+            pincode
+        }
     }
     
     if (req.user.role === 'professional') {
         const { exp: experience, spec: specialization, bio: about } = req.body;
         
-        user = await Professional.findOne({ user: req.user.id });
-
-        if (!user) {
-            await Professional.create({
-                experience, specialization, about, user: req.user.id
-            });
-        } else {
-            await Professional.findOneAndUpdate({ user: req.user.id }, {
-                experience, specialization, about
-            }, {
-                new: true,
-                runValidators: true,
-                findAndModify: false
-            });
-        }
+        data.professional = {
+            experience,
+            specialization,
+            about
+        };
     }
 
-    user = await User.findById(req.user.id);
+    const user = await User.findByIdAndUpdate(req.user.id, data, {
+        new: true,
+        runValidators: true,
+        findAndModify: false
+    });
 
     res.status(200).json({
         success: true,
