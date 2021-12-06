@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Home from './pages/home';
 import Dashboard from './pages/dashboard';
 import Login  from './users/login';
@@ -21,16 +21,10 @@ import {
   BrowserRouter as Router,
   Route,
 } from "react-router-dom";
-import store from './store';
-import { loadUser } from './actions/userActions';
 import ProtectedRoute from './components/Route/ProtectedRoute';
 import ProfessionalRoute from './components/Route/ProfessionalRoute';
 
 function App (){
-
-  useEffect(() => {
-    store.dispatch(loadUser());
-  }, []);
 
   return( 
     <Router>
