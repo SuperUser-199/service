@@ -7,13 +7,14 @@ import { useSelector, useDispatch } from "react-redux";
 import Loader from "./layout/Loader/Loader";
 import { useAlert } from "react-alert";
 import { clearErrors } from "../actions/userActions";
+import { Link } from "react-router-dom";
 
 function AllUsers() {
   const alert = useAlert();
   const dispatch = useDispatch();
   // const navigate = useNavigate();
 
-  const { error, loading, profs } = useSelector((state) => state.allProfs);
+  const { error, loading, profs} = useSelector((state) => state.allProfs);
 
   useState(() => {
     if (error) {
@@ -83,16 +84,14 @@ function AllUsers() {
                               />
                             </td>
                             <td id="user-td">
-                              <a
-                                href="/"
-                                data-toggle="tooltip"
-                                title=""
-                                data-original-title="view"
-                              >
+                            <Link
+                                 to={`/viewprofile/${data._id}`}
+                                 style={{ textDecoration: "none" }}>
+
                                 <button id="viewprofilebtn">
                                   View Profile
                                 </button>
-                              </a>
+                              </Link>
                             </td>
                           </tr>
                         ))}

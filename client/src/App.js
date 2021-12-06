@@ -25,7 +25,7 @@ import store from './store';
 import { loadUser } from './actions/userActions';
 import ProtectedRoute from './components/Route/ProtectedRoute';
 import ProfessionalRoute from './components/Route/ProfessionalRoute';
-
+import ViewProfile from './components/viewprofile';
 function App (){
 
   useEffect(() => {
@@ -35,8 +35,9 @@ function App (){
   return( 
     <Router>
       <Routes>
+      <Route exact path="/viewprofile/:id" element={<ProtectedRoute component={ViewProfile} />}/>
       <Route exact path ="/" element={<Home />} />
-      <Route exact path="/allusers" element={<ProfessionalRoute component={AllUsers}/>}/>
+      <Route exact path="/allusers" element={<ProtectedRoute component={AllUsers}/>}/>
       <Route exact path="/signup" element={<Signup />} />  
       <Route exact path="/proregister" element={<ProfRegister />} />
       <Route exact path="/professionalprofile" element={<ProfessionalRoute component={ProfessionalProfile} />} />

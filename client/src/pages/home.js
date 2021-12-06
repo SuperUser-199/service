@@ -9,7 +9,7 @@ export default function Home() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { user } = useSelector(state => state.user);
+  const { isAuthenticated  } = useSelector(state => state.user);
 
   const handleClick = (e) => {
     dispatch(getAllProfs());
@@ -31,7 +31,7 @@ export default function Home() {
           
         </header>
         {
-          user && user.role === 'professional' && <button id="user-button" onClick={handleClick}>All Users</button>
+          isAuthenticated   && <button id="user-button" onClick={handleClick}>All Users</button>
         }
       </div>
       
