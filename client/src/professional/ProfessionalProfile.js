@@ -14,7 +14,9 @@ function ProfessionalProfile() {
     const alert = useAlert();
     const navigate = useNavigate();
   
-    const { error, user, address, loading, professional } = useSelector((state) => state.user);
+    const { error, user, loading } = useSelector((state) => state.user);
+    const address = user.address;
+    const professional = user.professional;
   
     useEffect(() => {
       if (error) {

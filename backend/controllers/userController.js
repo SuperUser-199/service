@@ -178,11 +178,12 @@ const updateProfile = AsyncErrorHandler(async (req, res, next) => {
 
     
     if (req.user.role === 'professional') {
-        let professionalData = {};
         const { exp: experience, spec: specialization, bio: about } = req.body;
-        professionalData.experience = exp;
-        professionalData.specialization = spec;
-        professionalData.about = bio;
+        updatedUserData.professional = {
+            experience,
+            specialization,
+            about  
+        };
     }
 
     if (typeof req.body.avatar !== 'string') {
@@ -200,7 +201,6 @@ const updateProfile = AsyncErrorHandler(async (req, res, next) => {
             public_id: myCloud.public_id,
             url: myCloud.secure_url
         };
-        updatedUserData.professional = professionalData;
     }
 
     updatedUserData.address = addressData;
