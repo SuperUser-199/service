@@ -11,7 +11,7 @@ const ProfessionalRoute = ({ component : Component }) => {
                 loading ? <Loader /> : (
                     <>
                         {
-                            user.role !== 'professional' ? <Navigate to='/login'/> : (
+                            user == null || user.role !== 'professional' ? <Navigate to='/login'/> : (
                                 <Component />
                             )
                         }

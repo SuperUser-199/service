@@ -1,4 +1,7 @@
 import {
+  ALL_PROFS_FAIL,
+  ALL_PROFS_REQUEST,
+  ALL_PROFS_SUCCESS,
   CLEAR_ERRORS,
   FORGOT_PASSWORD_FAIL,
   FORGOT_PASSWORD_REQUEST,
@@ -193,6 +196,38 @@ export const forgotPasswordReducer = (state = {}, action) => {
         ...state,
         errors: null,
       };
+    default:
+      return state;
+  }
+};
+
+export const allProfsReducer = (state = { profs: [] }, action) => {
+  switch (action.type) {
+    case ALL_PROFS_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case ALL_PROFS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        profs: action.payload,
+      };
+
+    case ALL_PROFS_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
+
     default:
       return state;
   }

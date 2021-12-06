@@ -1,8 +1,8 @@
 const express = require('express');
-const { registerProfessional, setupProfProfile } = require('../controllers/professionalController');
+const { registerProfessional, getAllProfessionals } = require('../controllers/professionalController');
 const router = express.Router();
 
 router.route('/register').post(registerProfessional);
-router.route('/setup').put(setupProfProfile);
+router.route('/getAll').get(getAllProfessionals);
 
 module.exports = router;

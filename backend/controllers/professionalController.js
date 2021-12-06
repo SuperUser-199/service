@@ -1,4 +1,6 @@
 const User = require("../models/userModel");
+const Professional = require('../models/professionalModel');
+const Address = require('../models/addressModel');
 const AsyncErrorHandler = require("../middlewares/asyncErrorHandler");
 const { sendToken } = require("../utils/jwtToken");
 const cloudinary = require("cloudinary");
@@ -26,57 +28,25 @@ const registerProfessional = AsyncErrorHandler(async (req, res, next) => {
   sendToken(professional, 201, res);
 });
 
-// setup profile user
-const setupProfProfile = AsyncErrorHandler(async (req, res, next) => {
-  const { gender, city, district, state, country, pincode, phoneno } = req.body;
-  await User.findByIdAndUpdate(
-    req.user.id,
-    { gender, phoneno },
-    {
-      new: true,
-      runValidators: true,
-      findAndModify: false,
-    }
-  );
-
-  let user = await Address.findOne({ user: req.user.id });
-
-  if (!user) {
-    await Address.create({
-      city,
-      district,
-      state,
-      country,
-      pincode,
-      user: req.user.id,
+const getAllProfessionals = AsyncErrorHandler(async (req, res, next) => {
+  const cursor = Professional.find().cursor();
+  const professionals = [];
+  for (let doc = await cursor.next() ; doc != null ; doc = await cursor.next()) {
+    const user = await User.findById(doc.user);
+    const address = await Address.findOne({ user : user.id });
+    professionals.push({
+      user,
+      address,
+      professional : doc
     });
-  } else {
-    await Address.findOneAndUpdate(
-      { user: req.user.id },
-      {
-        city,
-        district,
-        state,
-        country,
-        pincode,
-      },
-      {
-        new: true,
-        runValidators: true,
-        findAndModify: false,
-      }
-    );
   }
-
-  user = await User.findById(req.user.id);
-
   res.status(200).json({
     success: true,
-    user,
-  });
-});
+    professionals
+  })
+}) 
 
 module.exports = {
   registerProfessional,
-  setupProfProfile
+  getAllProfessionals
 };

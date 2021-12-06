@@ -1,4 +1,7 @@
 import {
+  ALL_PROFS_FAIL,
+  ALL_PROFS_REQUEST,
+  ALL_PROFS_SUCCESS,
   CLEAR_ERRORS,
   FORGOT_PASSWORD_FAIL,
   FORGOT_PASSWORD_REQUEST,
@@ -183,6 +186,18 @@ export const updatePassword = (passwords) => async (dispatch) => {
       type: UPDATE_PASSWORD_FAIL,
       payload: error.response.data.message,
     });
+  }
+};
+
+// get All Users
+export const getAllProfs = () => async (dispatch) => {
+  try {
+    dispatch({ type: ALL_PROFS_REQUEST });
+    const { data } = await axios.get(`/api/v1/professional/getAll`);
+
+    dispatch({ type: ALL_PROFS_SUCCESS, payload: data.professionals });
+  } catch (error) {
+    dispatch({ type: ALL_PROFS_FAIL, payload: error.response.data.message });
   }
 };
 

@@ -1,7 +1,21 @@
 import logo from "../logo.svg";
 import Header from "../components/header"
 import './home.css';
+import { useDispatch, useSelector } from "react-redux";
+import { getAllProfs } from "../actions/userActions";
+import { useNavigate } from "react-router";
+
 export default function Home() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { user } = useSelector(state => state.user);
+
+  const handleClick = (e) => {
+    dispatch(getAllProfs());
+    navigate('/allusers');
+  }
+
   return (
     <>
       <Header />
@@ -16,7 +30,9 @@ export default function Home() {
             Jan 2022 </h3>
           
         </header>
-        <a href="/allusers"><button id="user-button" >All Users</button></a>
+        {
+          user && user.role === 'professional' && <button id="user-button" onClick={handleClick}>All Users</button>
+        }
       </div>
       
     </>
