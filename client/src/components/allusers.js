@@ -1,9 +1,12 @@
 import React from "react";
 import './allusers.css';
 import Header from "./header";
+import { useNavigate } from "react-router";
 import MetaData from "./layout/MetaData";
 import { useSelector} from "react-redux";
 function AllUsers(){
+    const navigate = useNavigate();
+
     const { user, address,professional } = useSelector((state) => state.user);
     if(user.role==="user"){
         navigate("/")
