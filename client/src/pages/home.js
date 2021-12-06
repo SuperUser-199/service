@@ -16,6 +16,7 @@ export default function Home() {
             Jan 2022 </h3>
           
         </header>
+        <a href="/allusers"><button id="user-button" >All Users</button></a>
       </div>
       
     </>

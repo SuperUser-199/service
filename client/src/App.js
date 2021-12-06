@@ -15,6 +15,7 @@ import ProfRegister from './professional/ProfRegister';
 import ProfessionalProfile from './professional/ProfessionalProfile';
 import Signup from './users/Signup';
 import ResetPassword from './users/ResetPassword';
+import AllUsers from './components/allusers';
 import {
   Routes,
   BrowserRouter as Router,
@@ -35,7 +36,7 @@ function App (){
     <Router>
       <Routes>
       <Route exact path ="/" element={<Home />} />
-     
+      <Route exact path="/allusers" element={<ProtectedRoute component={AllUsers}/>}/>
       <Route exact path="/signup" element={<Signup />} />  
       <Route exact path="/proregister" element={<ProfRegister />} />
       <Route exact path="/professionalprofile" element={<ProfessionalRoute component={ProfessionalProfile} />} />
