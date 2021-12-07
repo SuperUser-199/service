@@ -46,7 +46,7 @@ function AllUsers() {
                     <tbody>
                       {profs &&
                         profs.map((data, idx) => (
-                          <tr >
+                          <tr key={idx}>
                             <td>
                               <div>
                                 <img

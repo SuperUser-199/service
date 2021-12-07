@@ -1,10 +1,8 @@
 import React, { useEffect }  from 'react';
 import Header from '../components/header';
 import './viewprofile.css';
-
 import { useSelector, useDispatch } from "react-redux";
 import { useAlert } from "react-alert";
-import { useNavigate } from "react-router";
 import { clearErrors } from "../actions/userActions";
 import MetaData from "../components/layout/MetaData";
 import Loader from "../components/layout/Loader/Loader";
@@ -12,9 +10,13 @@ import { useParams } from "react-router";
 function ViewProfile() {
     const dispatch = useDispatch();
     const alert = useAlert();
-    const navigate = useNavigate();
-    const { error, loading, user} = useSelector((state) => state.user);
+    const { id } = useParams();
 
+    const { error, loading, profs} = useSelector((state) => state.allProfs);
+
+    const found = profs.filter(prof => prof.id === id);
+    console.log(found);
+    const user = profs[0];
     const address = user.address;
     const professional = user.professional;
   
@@ -23,10 +25,7 @@ function ViewProfile() {
         alert.error(error);
         dispatch(clearErrors());
       }
-      if (!professional) {
-        navigate("/setupprofile");
-      }
-    }, [error, navigate, dispatch, alert, professional]);
+    }, [error, dispatch, alert, professional, id]);
   
     return (
         <>
