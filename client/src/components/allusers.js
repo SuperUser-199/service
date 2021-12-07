@@ -46,7 +46,7 @@ function AllUsers() {
                     <tbody>
                       {profs &&
                         profs.map((data, idx) => (
-                          <tr>
+                          <tr >
                             <td>
                               <div>
                                 <img
@@ -62,11 +62,11 @@ function AllUsers() {
                                   <div>
                                     <ul>
                                       <li>
-                                        <i class="fas fa-filter pr-1"></i>
+                                        <i className="fas fa-filter pr-1"></i>
                                         {data.professional.specialization}
                                       </li>
                                       <li>
-                                        <i class="fas fa-map-marker-alt pr-1"></i>
+                                        <i className="fas fa-map-marker-alt pr-1"></i>
                                         {data.address.city},{data.address.district},
                                         {data.address.state},{data.address.pincode}
                                       </li>

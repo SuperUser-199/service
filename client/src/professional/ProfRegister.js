@@ -72,7 +72,7 @@ function Register() {
               <div className="logo">
                 <h3>Service Fare</h3>
               </div>
-              <div class="register-form toggle">
+              <div className="register-form toggle">
                 <h2>Professional Registration</h2>
                 <form className="proRegForm" onSubmit={handleSubmit}>
                   <input
@@ -111,7 +111,7 @@ function Register() {
                       onChange={imgDataChange}
                     />
                   </div>
-                  <div class="register-row"></div>
+                  <div className="register-row"></div>
                   <button type="submit" className="reg-btn">
                     Register
                   </button>

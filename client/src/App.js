@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Home from './pages/home';
 import Dashboard from './pages/dashboard';
 import Login  from './users/login';
@@ -24,12 +24,20 @@ import {
 import ProtectedRoute from './components/Route/ProtectedRoute';
 import ProfessionalRoute from './components/Route/ProfessionalRoute';
 import ViewProfile from './components/viewprofile';
+import store from './store';
+import { State } from 'country-state-city';
+import { loadUser } from './actions/userActions';
 function App (){
+useEffect(()=>{
+  store.dispatch(loadUser())
+},
+[store]
+)
 
   return( 
     <Router>
       <Routes>
-      <Route exact path="/viewprofile/:id" element={<ProtectedRoute component={ViewProfile} />}/>
+      <Route exact path="/viewprofile" element={<ProtectedRoute component={ViewProfile} />}/>
       <Route exact path ="/" element={<Home />} />
       <Route exact path="/allusers" element={<ProtectedRoute component={AllUsers}/>}/>
       <Route exact path="/signup" element={<Signup />} />  
@@ -46,7 +54,7 @@ function App (){
       <Route exact path="/orders" element={<ProtectedRoute component={Orders} />} />
       <Route exact path="/orderdetails" element={<ProtectedRoute component={Orderdetails} />} />
       <Route exact path="/service-menu" element={<ProtectedRoute component={Detailedservice} />} />
-      <Route exact path="/cart" element={<ProtectedRoute component={Cart} />} />
+      <Route exact path="/cart" element={<Cart/>}  />
       </Routes>
   </Router>
   );

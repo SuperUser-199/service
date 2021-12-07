@@ -236,11 +236,11 @@ function EditProfile() {
                       onChange={(e) => setPincode(e.target.value)}
                     />
                   </div>
-                  <div class="transform-div" style={transForm}>
+                  <div className="transform-div" style={transForm}>
                     {user.role === "user" ? (
                       userLink()
                     ) : (
-                      <div class="tranform-ul">
+                      <div className="tranform-ul">
                         <div>
                     <input
                       type="text"

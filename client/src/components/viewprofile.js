@@ -13,8 +13,8 @@ function ViewProfile() {
     const dispatch = useDispatch();
     const alert = useAlert();
     const navigate = useNavigate();
-    
-    const { error, user, loading } = useSelector((state) => state.user);
+    const { error, loading, user} = useSelector((state) => state.user);
+
     const address = user.address;
     const professional = user.professional;
   
@@ -82,24 +82,7 @@ function ViewProfile() {
                                         <p>{professional.specialization}</p>
                                     </div>
                                 </div>
-                                <div className="btn-sub-can">
-                  <a id="edit-a" href="/editprofile">
-                    <button type="submit" id="profile-btn" >
-                    Edit Profile
-                    </button>
-                  </a>
-                  <br />
-                  <a id="edit-a" href="/updatepassword">
-                    <button
-                      type="submit"
-                      id="profile-btn"
-                      
-                    
-                    >
-                      Update Password
-                    </button>
-                    </a>
-                    </div>
+                                
                             </div>
                         </div>
                     </div>

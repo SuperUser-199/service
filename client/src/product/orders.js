@@ -5,26 +5,26 @@ function Orders() {
     return (
         <>
         <Header />
-        <div class="order-main">
-            <table class="order-table">
+        <div className="order-main">
+            <table className="order-table">
                 <thead>
                     <tr>
-                        <th class="order-th">Order ID</th>
-                        <th class="order-th">Service Name</th>
-                        <th class="order-th">Status</th>
-                        <th class="order-th">Total Amount</th>
-                        <th class="order-th">Time</th>
-                        <th class="order-th">Details</th>
+                        <th className="order-th">Order ID</th>
+                        <th className="order-th">Service Name</th>
+                        <th className="order-th">Status</th>
+                        <th className="order-th">Total Amount</th>
+                        <th className="order-th">Time</th>
+                        <th className="order-th">Details</th>
                         
                     </tr>
                 </thead>
                 <tbody>
-                   <th class="order-th">1</th>
-                   <th class="order-th">AC Repairing</th>
-                   <th class="order-th">Delivered</th>
-                   <th class="order-th">400</th>
-                   <th class="order-th">07:00pm</th>
-                   <th class="order-th"><a href="/orderdetails"><button class="view-button">View</button></a></th>
+                   <th className="order-th">1</th>
+                   <th className="order-th">AC Repairing</th>
+                   <th className="order-th">Delivered</th>
+                   <th className="order-th">400</th>
+                   <th className="order-th">07:00pm</th>
+                   <th className="order-th"><a href="/orderdetails"><button className="view-button">View</button></a></th>
                 </tbody>
             </table>
         </div>
