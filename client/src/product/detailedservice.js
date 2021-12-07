@@ -19,7 +19,7 @@ function Detailedservice(){
                             alt="..."
                         />
                         <div className="card-body">
-                            <h5 className="card-title">AC Reparing</h5>
+                            <h5 className="card-title"><span id="text-left">AC Reparing</span><span id="text-right">&#8377;200</span>  </h5>
                             <p className="card-text">
                             Included services:                            
                                 Error Detection
@@ -41,7 +41,8 @@ function Detailedservice(){
                             alt="..."
                         />
                         <div className="card-body">
-                            <h5 className="card-title">AC Reparing</h5>
+                        <h5 className="card-title"><span id="text-left">AC Reparing</span><span id="text-right">&#8377;200</span>  </h5>
+
                             <p className="card-text">
                             Included services:                            
                                 Error Detection
@@ -63,7 +64,8 @@ function Detailedservice(){
                             alt="..."
                         />
                         <div className="card-body">
-                            <h5 className="card-title">AC Reparing</h5>
+                        <h5 className="card-title"><span id="text-left">AC Reparing</span><span id="text-right">&#8377;200</span>  </h5>
+
                             <p className="card-text">
                             Included services:                            
                                 Error Detection
@@ -85,7 +87,8 @@ function Detailedservice(){
                             alt="..."
                         />
                         <div className="card-body">
-                            <h5 className="card-title">AC Reparing</h5>
+                        <h5 className="card-title"><span id="text-left">AC Reparing</span><span id="text-right">&#8377;200</span>  </h5>
+
                             <p className="card-text">
                             Included services:                            
                                 Error Detection
@@ -107,7 +110,8 @@ function Detailedservice(){
                             alt="..."
                         />
                         <div className="card-body">
-                            <h5 className="card-title">AC Reparing</h5>
+                        <h5 className="card-title"><span id="text-left">AC Reparing</span><span id="text-right">&#8377;200</span>  </h5>
+
                             <p className="card-text">
                             Included services:                            
                                 Error Detection

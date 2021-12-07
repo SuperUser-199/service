@@ -67,7 +67,7 @@ function Header() {
     <header>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <a className="navbar-brand" href="/">
-          <img className="navbar-logo" src="./logo192.png" alt="" />
+          <img className="navbar-logo" src="https://img.icons8.com/bubbles/50/000000/react.png" alt="" />
           ServiceFare
         </a>
         <button

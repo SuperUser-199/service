@@ -28,3 +28,6 @@ width: auto;
 #user-td{
     text-align: center;
 }
+#user-ul{
+    list-style-type: none;
+}

@@ -60,7 +60,7 @@ function AllUsers() {
                                 <div>
                                   <div><h5>{data.name}</h5></div>
                                   <div>
-                                    <ul>
+                                    <ul id="user-ul">
                                       <li>
                                         <i className="fas fa-filter pr-1"></i>
                                         {data.professional.specialization}

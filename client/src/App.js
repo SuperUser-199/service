@@ -87,7 +87,7 @@ function App() {
           path="/service-menu"
           element={<ProtectedRoute component={Detailedservice} />}
         />
-        <Route exact path="/cart" element={<Cart />} />
+        <Route exact path="/cart" element={<ProtectedRoute component={Cart} />} />
       </Routes>
     </Router>
   );
