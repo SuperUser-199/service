@@ -1,4 +1,5 @@
 const Service = require('../models/serviceModel');
+const Category = require('../models/serviceModel');
 const AsyncErrorHandler = require('../middlewares/asyncErrorHandler');
 const cloudinary = require('cloudinary');
 
@@ -25,6 +26,22 @@ const createService = AsyncErrorHandler(async (req, res, next) => {
     });
 })
 
+// create a new service
+const createCategory= AsyncErrorHandler(async (req, res, next) => {
+    
+    const { name,imageUrl } = req.body;
+    const category = await Category.create({
+        name, imageUrl,
+       
+    });
+
+    res.status(201).json({
+        success: true,
+        category
+    });
+})
+
 module.exports = {
-    createService
+    createService,
+    createCategory,
 }

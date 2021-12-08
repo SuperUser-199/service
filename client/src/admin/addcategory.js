@@ -1,16 +1,41 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/header";
-import "./addservice.css";
+import "./addcategory.css";
 import MetaData from "../components/layout/MetaData";
 import { useSelector} from "react-redux";
-
+import { createCategory, clearErrors } from "../actions/serviceActions";
 import Loader from "../components/layout/Loader/Loader";
+import { useAlert } from "react-alert";
+import { useDispatch} from "react-redux";
 
 function AddCategory() {
-    const {
-        loading,
-      } = useSelector((state) => state.user);
+  const alert = useAlert();
+  const dispatch = useDispatch();
+  const {error, loading, success} = useSelector(state => state.newCategory);
+
+  const [name, setName] = useState('');
+  const [imageUrl, setimageUrl] = useState('');
+  
+  const handleSubmit =(e)=>{
+    e.preventDefault();
     
+    const myForm = new FormData();
+    myForm.set('name',name);
+    myForm.set('imageUrl',imageUrl);
+
+    dispatch(createCategory(myForm));
+  }
+  useEffect(() => {
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
+    }
+
+    if (success) {
+      alert.success('Category Added Successfully');
+    }
+  }, [error, alert, dispatch, success]);
+
   return (
     <>
       {loading ? (
@@ -26,22 +51,23 @@ function AddCategory() {
               </div>
               <div className="setup">
                 <h2 className="setup-head2">Add Category</h2>
-                <form >
+                <form onSubmit={handleSubmit}>
                   <div className="name">
                     <input
                       type="text"
-                    //   value={name}
-                      name="productname"
-                    //   onChange={(e) => setName(e.target.value)}
+                      value={name}
+                      name="name"
+                      onChange={(e) => setName(e.target.value)}
                       required
                       placeholder="Enter New Category Name"
                     />
                   </div>
                   <div className="url">
                     <input
-                      type="number"
-                  
-                      name="productprice"
+                      type="text"
+                      value={imageUrl}
+                      name="imageUrl"
+                      onChange={(e)=>setimageUrl(e.target.value)}
                       required
                       placeholder="Enter Icon Url"
                     />

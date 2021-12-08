@@ -2,7 +2,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { allProfsReducer, forgotPasswordReducer, setupprofileReducer, updateProfileReducer, userReducer } from './reducers/userReducer';
-import { newServiceReducer } from './reducers/serviceReducer';
+import { newServiceReducer,newCategoryReducer } from './reducers/serviceReducer';
 
 const reducer = combineReducers({
     user: userReducer,
@@ -10,7 +10,8 @@ const reducer = combineReducers({
     updateProfile: updateProfileReducer,
     forgotPassword: forgotPasswordReducer,
     allProfs: allProfsReducer,
-    newService: newServiceReducer
+    newService: newServiceReducer,
+    newCategory: newCategoryReducer,
 });
 
 let initialState = {};
