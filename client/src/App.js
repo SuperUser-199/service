@@ -23,6 +23,7 @@ import ViewProfile from "./components/viewprofile";
 import AddService from "./admin/addservice";
 import store from "./store";
 import { loadUser } from "./actions/userActions";
+import AdminRoute from "./components/Route/AdminRoute";
 function App() {
   useEffect(() => {
     store.dispatch(loadUser());
@@ -32,7 +33,7 @@ function App() {
     <Router>
        
       <Routes>
-        <Route exact path="/addservice" element={<ProtectedRoute component={AddService}/>}/>
+        <Route exact path="/addservice" element={<AdminRoute component={AddService}/>}/>
         <Route
           exact
           path="/viewprofile/:id"

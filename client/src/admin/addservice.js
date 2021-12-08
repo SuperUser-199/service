@@ -1,16 +1,61 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/header";
 import "./addservice.css";
 import MetaData from "../components/layout/MetaData";
-import { useSelector} from "react-redux";
-
 import Loader from "../components/layout/Loader/Loader";
+import { useDispatch, useSelector } from "react-redux";
+import { createService, clearErrors } from "../actions/serviceActions";
+import { useAlert } from "react-alert";
+import Profile from "../images/Profile.png";
 
 function AddService() {
-    const {
-        loading,
-      } = useSelector((state) => state.user);
+      const alert = useAlert();
+      const dispatch = useDispatch();
+      const {error, loading, success} = useSelector(state => state.newService);
+      const [name, setName] = useState('');
+      const [price, setPrice] = useState('');
+      const [description, setDescription] = useState('');
+      const [category, setCategory] = useState('');
+      const [avatar, setAvatar] = useState();
+      const [avatarPreview, setAvatarPreview] = useState(Profile);
     
+
+    const handleSubmit = (e) => {
+      e.preventDefault();
+
+      const myForm = new FormData();
+      myForm.set('name', name);
+      myForm.set('category', category);
+      myForm.set('description', description);
+      myForm.set('price', price);
+      myForm.set('avatar', avatar);
+
+      dispatch(createService(myForm));
+    }
+
+    const imgDataChange = (e) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (reader.readyState === 2) {
+          setAvatarPreview(reader.result);
+          setAvatar(reader.result);
+        }
+      };
+  
+      reader.readAsDataURL(e.target.files[0]);
+    };
+
+    useEffect(() => {
+      if (error) {
+        alert.error(error);
+        dispatch(clearErrors());
+      }
+
+      if (success) {
+        alert.success('Service created successfully');
+      }
+    }, [error, alert, dispatch, success]);
+
   return (
     <>
       {loading ? (
@@ -26,13 +71,13 @@ function AddService() {
               </div>
               <div className="setup">
                 <h2 className="setup-head2">Add Service</h2>
-                <form >
+                <form onSubmit={handleSubmit}>
                   <div className="name">
                     <input
                       type="text"
-                    //   value={name}
-                      name="productname"
-                    //   onChange={(e) => setName(e.target.value)}
+                      value={name}
+                      name="name"
+                      onChange={(e) => setName(e.target.value)}
                       required
                       placeholder="Enter Product Name"
                     />
@@ -40,9 +85,9 @@ function AddService() {
                   <div className="price">
                     <input
                       type="number"
-                  
-                      name="productprice"
-                    //   onChange={(e) => setEmail(e.target.value)}
+                      value={price}
+                      name="price"
+                      onChange={(e) => setPrice(e.target.value)}
                       required
                       placeholder="Enter Price"
                     />
@@ -51,9 +96,10 @@ function AddService() {
                     <input
                       type="text"
                       name="description"
+                      value={description}
                       required
                       placeholder="Enter product description"
-                    //   onChange={(e) => setPhoneno(e.target.value)}
+                      onChange={(e) => setDescription(e.target.value)}
                     />
                   </div>
                   
@@ -61,9 +107,9 @@ function AddService() {
                           <select
                             className="selectStyle"
                             id="domain"
-                            name="spec"
-                            // value={spec}
-                            // onChange={(e) => setSpec(e.target.value)}
+                            name="category"
+                            value={category}
+                            onChange={(e) => setCategory(e.target.value)}
                           >
                             <option value="select" selected="selected">
                               ----------- select product category ------------
@@ -81,13 +127,13 @@ function AddService() {
                           </select>
                         </div>
                   <div id="registerImage">
-                    {/* <img src={avatarPreview} alt="Avatar Preview" /> */}
+                    <img src={avatarPreview} alt="Avatar Preview" />
                     <label>Upload a photo of service</label>
                     <input
                       type="file"
                       name="avatar"
                       accept="image/*"
-                    //   onChange={imgDataChange}
+                      onChange={imgDataChange}
                     />
                   </div>
                  
