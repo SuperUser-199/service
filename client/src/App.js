@@ -20,6 +20,7 @@ import { Routes, BrowserRouter as Router, Route } from "react-router-dom";
 import ProtectedRoute from "./components/Route/ProtectedRoute";
 import ProfessionalRoute from "./components/Route/ProfessionalRoute";
 import ViewProfile from "./components/viewprofile";
+import AddService from "./admin/addservice";
 import store from "./store";
 import { loadUser } from "./actions/userActions";
 function App() {
@@ -29,7 +30,9 @@ function App() {
 
   return (
     <Router>
+       
       <Routes>
+        <Route exact path="/addservice" element={<ProtectedRoute component={AddService}/>}/>
         <Route
           exact
           path="/viewprofile/:id"
