@@ -23,6 +23,7 @@ import ViewProfile from "./components/viewprofile";
 import AddService from "./admin/addservice";
 import store from "./store";
 import { loadUser } from "./actions/userActions";
+import AddCategory from "./admin/addcategory";
 import AdminRoute from "./components/Route/AdminRoute";
 function App() {
   useEffect(() => {
@@ -33,6 +34,8 @@ function App() {
     <Router>
        
       <Routes>
+      <Route exact path="/addcategory" element={<AdminRoute component={AddCategory}/>}/>
+
         <Route exact path="/addservice" element={<AdminRoute component={AddService}/>}/>
         <Route
           exact

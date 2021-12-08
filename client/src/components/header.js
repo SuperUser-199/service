@@ -39,9 +39,15 @@ function Header() {
                   Profile
                 </a>
                 {user.role==="admin"?(
+                <div>
                 <a className="dropdown-item" href="/addservice">
                   Add Service
                 </a>
+                <a className="dropdown-item" href="/addcategory">
+                 Add Category
+               </a>
+                </div>
+                
                 ):(
                   <a></a>
                  )
