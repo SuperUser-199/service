@@ -1,14 +1,5 @@
 const mongoose = require("mongoose");
-
-const categorySchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: [true, 'Please enter category schema']
-  },
-  imageUrl: {
-    type: String,
-  }
-})
+const { categorySchema } = require("./categoryModel");
 
 const serviceSchema = new mongoose.Schema({
   name: {
@@ -37,4 +28,4 @@ const serviceSchema = new mongoose.Schema({
   },
 });
 
-module.exports = new mongoose.model("service", serviceSchema);
+module.exports = mongoose.model("service", serviceSchema);

@@ -1,5 +1,5 @@
-const Service = require('../models/serviceModel');
-const Category = require('../models/serviceModel');
+const Service = require('../models/service/serviceModel');
+const { Category }  = require('../models/service/categoryModel');
 const AsyncErrorHandler = require('../middlewares/asyncErrorHandler');
 const cloudinary = require('cloudinary');
 
