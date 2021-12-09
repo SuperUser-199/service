@@ -4,14 +4,19 @@ import "./addservice.css";
 import MetaData from "../components/layout/MetaData";
 import Loader from "../components/layout/Loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
-import { createService, clearErrors } from "../actions/serviceActions";
+import { createService, clearErrors, getAllCategories } from "../actions/serviceActions";
 import { useAlert } from "react-alert";
 import Profile from "../images/Profile.png";
+import { useNavigate } from 'react-router-dom';
+import { NEW_SERVICE_RESET } from "../constants/serviceConstants";
 
 function AddService() {
       const alert = useAlert();
       const dispatch = useDispatch();
+      const navigate = useNavigate();
+
       const {error, loading, success} = useSelector(state => state.newService);
+      const {error : CategoryError, loading : CategoryLoading, categories} = useSelector(state => state.newCategory);
       const [name, setName] = useState('');
       const [price, setPrice] = useState('');
       const [description, setDescription] = useState('');
@@ -25,7 +30,7 @@ function AddService() {
 
       const myForm = new FormData();
       myForm.set('name', name);
-      myForm.set('category', category);
+      myForm.set('categoryName', category);
       myForm.set('description', description);
       myForm.set('price', price);
       myForm.set('avatar', avatar);
@@ -46,19 +51,27 @@ function AddService() {
     };
 
     useEffect(() => {
+      dispatch(getAllCategories());
       if (error) {
         alert.error(error);
         dispatch(clearErrors());
       }
-
-      if (success) {
-        alert.success('Service created successfully');
+      
+      if (CategoryError) {
+        alert.error(CategoryError);
+        dispatch(clearErrors());
       }
-    }, [error, alert, dispatch, success]);
+      
+      if (success) {
+        dispatch({ type: NEW_SERVICE_RESET });
+        alert.success('Service created successfully');
+        navigate('/dashboard');
+      }
+    }, [error, alert, dispatch, success, CategoryError, navigate]);
 
   return (
     <>
-      {loading ? (
+      {loading || CategoryLoading ? (
         <Loader />
       ) : (
         <>
@@ -107,23 +120,20 @@ function AddService() {
                           <select
                             className="selectStyle"
                             id="domain"
-                            name="category"
+                            name="categoryName"
                             value={category}
                             onChange={(e) => setCategory(e.target.value)}
                           >
                             <option value="select" selected="selected">
                               ----------- select product category ------------
                             </option>
-                            <option value="ACservice">
-                              AC Service and Repair
-                            </option>
-                            <option value="painter">Painter</option>
-                            <option value="electrician">Electrician</option>
-                            <option value="plumber">Plumber</option>
-                            <option value="carpenter">Carpenter</option>
-                            <option value="pestcontrol">Pest Control</option>
-                            <option value="webdev">Web Developer</option>
-                            <option value="appdev">App Developer</option>
+                            {
+                              categories && categories.map((category, idx) => (
+                                <option value={category.name} key={idx}>
+                                  { category.name }
+                                </option>
+                              ))
+                            }
                           </select>
                         </div>
                   <div id="registerImage">

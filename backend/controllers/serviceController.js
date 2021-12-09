@@ -11,12 +11,15 @@ const createService = AsyncErrorHandler(async (req, res, next) => {
         crop: 'scale'
     });
 
-    const { name, category, description, price } = req.body;
+    const { name, categoryName, description, price } = req.body;
     const service = await Service.create({
-        name, category, price, description,
+        name, price, description,
         serviceImage: {
             public_id: myCloud.public_id,
             url: myCloud.secure_url
+        },
+        category: {
+            name: categoryName
         }
     });
 

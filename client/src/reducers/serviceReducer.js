@@ -25,7 +25,7 @@ export const newServiceReducer = (state = { service: {} }, action) => {
     case NEW_SERVICE_RESET:
       case NEW_CATEGORY_RESET:
       return {
-        ...state,
+        service: {},
         success: false,
       };
     case CLEAR_ERRORS:

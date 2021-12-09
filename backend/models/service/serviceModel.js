@@ -1,12 +1,17 @@
 const mongoose = require("mongoose");
-const { categorySchema } = require("./categoryModel");
 
 const serviceSchema = new mongoose.Schema({
   name: {
     type: String,
     required: [true, "Please enter the service name"],
   },
-  category: categorySchema,
+  category: {
+      name: {
+          type: String,
+          trim: true,
+          required: true
+      },
+  },
   description: {
     type: String,
     required: [true, "Please enter the service description"],
