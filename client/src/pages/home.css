@@ -1,20 +1,80 @@
-.App-logo{
-    width: 10%;
-    height: 10%;
+
+#column {
+    float: left;
+    width: 50%;
+    padding: 30px;
+    height: auto; 
 }
-.App-header{
-    text-align: center;
+#col-1{
+margin:15%;
+line-height: 1.6;
 }
-#user-button a{
-    text-align: center;
+
+#row:after {
+    content: "";
+    display: table;
+    clear: both;
 }
-#user-button{
-    width: auto;
-    padding: 8px;
-    border-radius: 6px;
-    margin-left: 45%;
+
+#service-img{
+margin-left: 15%;
+margin-top:15%;
+height: 400px;
+width: 600px;
 }
-#user-button:hover{
-    background-color: blueviolet;
+#signup-btn
+{
+    width: 20%;
+}
+
+#column3 {
+    float: left;
+    width: 25%;
+    padding: 10px;
+    height: auto;
+    text-align: center; /* Should be removed. Only for demonstration */
     
+}
+#column3:hover{
+    background-color: antiquewhite;
+}
+
+
+
+  /* Clear floats after the columns */
+  #row2:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  #center-it{
+      text-align: center;
+  }
+
+#service-cont{
+    display: flex;
+    text-align: center;
+    align-content: space-around;
+    flex-wrap: wrap;
+   
+}
+#service-icon{
+    height: 64px;
+    width: auto;
+}
+#service{
+    border: 2px solid white;
+    margin:45px;
+    padding:10px;
+    border-radius: 9px;
+}
+#service:hover{
+    background-color: wheat;
+}
+#service a{
+    font-size: 40px;
+    text-decoration: none;
+}
+#our-services{
+    margin-top:50px;
 }

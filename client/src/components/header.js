@@ -4,12 +4,21 @@ import { useSelector, useDispatch } from "react-redux";
 import "./header.css";
 import { useAlert } from "react-alert";
 import { logoutUser } from "../actions/userActions";
+import { getAllProfs } from "../actions/userActions";
+import { useNavigate } from "react-router";
+
 function Header() {
   const dispatch = useDispatch();
   const alert = useAlert();
+  const navigate = useNavigate();
 
   const { user, isAuthenticated } = useSelector((state) => state.user);
+  
 
+  const handleClick = (e) => {
+    dispatch(getAllProfs());
+    navigate('/allusers');
+  }
   const handleLogout = () => {
     dispatch(logoutUser());
     alert.success("Logged out successfully");
@@ -22,7 +31,7 @@ function Header() {
         <li className="nav-item dropdown">
               <Link
                 className="nav-link dropdown-toggle"
-                to="/"
+                to="#"
                 id="navbarDropdown"
                 role="button"
                 data-toggle="dropdown"
@@ -105,9 +114,9 @@ function Header() {
               </Link>
             </li>
             <li className="nav-item ">
-              <Link className="nav-link" to="/service-menu">
-                Services
-              </Link>
+            {
+          isAuthenticated   && <Link className="nav-link" to="/allusers" onClick={handleClick}>All Professional</Link>
+        }
             </li>
             {isAuthenticated ?(<li></li>):(
             <li className="nav-item dropdown" style={transForm}>

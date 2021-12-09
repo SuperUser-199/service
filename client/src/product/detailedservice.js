@@ -30,7 +30,7 @@ function Detailedservice() {
           <div className="service-main">
             <div className="service-menu">
               <div className="service-name">
-                <h2> AC Repair & Installation </h2>
+                <h2> Service </h2>
               </div>
               <hr />
               <div className="service-product">

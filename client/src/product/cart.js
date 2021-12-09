@@ -15,7 +15,7 @@ function Cart(){
                             <th scope="col">Service</th>
                             <th scope="col"></th>
                             <th scope="col">Price</th>
-                            <th scope="col">Quantity</th>
+                           
                             <th scope="col"></th>
                             <th scope="col">Total</th>
                             </tr>
@@ -32,9 +32,7 @@ function Cart(){
                                 <th>
                                 &#8377;   100
                                 </th>
-                                <th className="quant">
-                                <input id="quant-cart"type="number" className="form-control form-control-lg text-center" value="1" />
-                                </th>
+                               
                                 <th>
                                     <button className="btn btn-outline-dark">Remove</button>
                                 </th>
