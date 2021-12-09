@@ -1,4 +1,4 @@
-import { CLEAR_ERRORS, NEW_SERVICE_FAIL, NEW_SERVICE_REQUEST, NEW_SERVICE_RESET, NEW_SERVICE_SUCCESS,NEW_CATEGORY_FAIL,NEW_CATEGORY_REQUEST,NEW_CATEGORY_RESET,NEW_CATEGORY_SUCCESS } from '../constants/serviceConstants';
+import { CLEAR_ERRORS, NEW_SERVICE_FAIL, NEW_SERVICE_REQUEST, NEW_SERVICE_RESET, NEW_SERVICE_SUCCESS,NEW_CATEGORY_FAIL,NEW_CATEGORY_REQUEST,NEW_CATEGORY_RESET,NEW_CATEGORY_SUCCESS, GET_ALL_CATEGORIES_REQUEST, GET_ALL_CATEGORIES_SUCCESS, GET_ALL_CATEGORIES_FAIL } from '../constants/serviceConstants';
 
 export const newServiceReducer = (state = { service: {} }, action) => {
   switch (action.type) {
@@ -40,7 +40,7 @@ export const newServiceReducer = (state = { service: {} }, action) => {
 
 export const newCategoryReducer = (state = { category: {} }, action) => {
   switch (action.type) {
-    
+      case GET_ALL_CATEGORIES_REQUEST:
       case NEW_CATEGORY_REQUEST:
       return {
         ...state,
@@ -54,6 +54,13 @@ export const newCategoryReducer = (state = { category: {} }, action) => {
         category: action.payload.category,
       };
  
+      case GET_ALL_CATEGORIES_SUCCESS:
+      return {
+        loading: false,
+        categories: action.payload,
+      };
+
+      case GET_ALL_CATEGORIES_FAIL:
       case NEW_CATEGORY_FAIL:
       return {
         ...state,

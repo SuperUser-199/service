@@ -1,5 +1,16 @@
 import axios from "axios";
-import { NEW_SERVICE_FAIL, NEW_SERVICE_REQUEST, NEW_SERVICE_SUCCESS, CLEAR_ERRORS,NEW_CATEGORY_FAIL,NEW_CATEGORY_REQUEST,NEW_CATEGORY_SUCCESS } from "../constants/serviceConstants";
+import {
+  NEW_SERVICE_FAIL,
+  NEW_SERVICE_REQUEST,
+  NEW_SERVICE_SUCCESS,
+  CLEAR_ERRORS,
+  NEW_CATEGORY_FAIL,
+  NEW_CATEGORY_REQUEST,
+  NEW_CATEGORY_SUCCESS,
+  GET_ALL_CATEGORIES_REQUEST,
+  GET_ALL_CATEGORIES_SUCCESS,
+  GET_ALL_CATEGORIES_FAIL,
+} from "../constants/serviceConstants";
 
 // Create service
 export const createService = (serviceData) => async (dispatch) => {
@@ -27,7 +38,7 @@ export const createService = (serviceData) => async (dispatch) => {
   }
 };
 
-// Create service
+// Create category
 export const createCategory = (categoryData) => async (dispatch) => {
   try {
     dispatch({ type: NEW_CATEGORY_REQUEST });
@@ -48,6 +59,24 @@ export const createCategory = (categoryData) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: NEW_CATEGORY_FAIL,
+      payload: err.response.data.message,
+    });
+  }
+};
+
+// Get all category
+export const getAllCategories = () => async (dispatch) => {
+  try {
+    dispatch({ type: GET_ALL_CATEGORIES_REQUEST });
+
+    const { data } = await axios.get("/api/v1/service/category");
+    dispatch({
+      type: GET_ALL_CATEGORIES_SUCCESS,
+      payload: data.categories,
+    });
+  } catch (err) {
+    dispatch({
+      type: GET_ALL_CATEGORIES_FAIL,
       payload: err.response.data.message,
     });
   }

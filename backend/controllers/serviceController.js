@@ -41,7 +41,17 @@ const createCategory= AsyncErrorHandler(async (req, res, next) => {
     });
 })
 
+// get all categories
+const getCategories = AsyncErrorHandler(async (req, res, next) => {
+    const categories = await Category.find();
+    res.status(200).json({
+        success: true,
+        categories
+    })
+})
+
 module.exports = {
     createService,
     createCategory,
+    getCategories
 }

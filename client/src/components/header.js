@@ -20,9 +20,9 @@ function Header() {
       <ul id="tranform-ul">
         
         <li className="nav-item dropdown">
-              <a
+              <Link
                 className="nav-link dropdown-toggle"
-                href="/"
+                to="/"
                 id="navbarDropdown"
                 role="button"
                 data-toggle="dropdown"
@@ -30,32 +30,32 @@ function Header() {
                 aria-expanded="false"
               >
                <img className="user-avatar" src={user.avatar.url} alt="" />  {user.name}
-              </a>
+              </Link>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a className="dropdown-item" href="/dashboard">
+                <Link className="dropdown-item" to="/dashboard">
                   Dashboard
-                </a>
-                <a className="dropdown-item" href="/profile">
+                </Link>
+                <Link className="dropdown-item" to="/profile">
                   Profile
-                </a>
+                </Link>
                 {user.role==="admin"?(
                 <div>
-                <a className="dropdown-item" href="/addservice">
+                <Link className="dropdown-item" to="/addservice">
                   Add Service
-                </a>
-                <a className="dropdown-item" href="/addcategory">
+                </Link>
+                <Link className="dropdown-item" to="/addcategory">
                  Add Category
-               </a>
+               </Link>
                 </div>
                 
                 ):(
-                  <a></a>
+                  <></>
                  )
   }
                 
-                <a className="dropdown-item" href="/orders">
+                <Link className="dropdown-item" to="/orders">
                   Orders
-                </a>
+                </Link>
                
                 <Link to="/" onClick={handleLogout}>
               
@@ -81,10 +81,10 @@ function Header() {
   return (
     <header>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <a className="navbar-brand" href="/">
+        <Link className="navbar-brand" to="/">
           <img className="navbar-logo" src="https://img.icons8.com/bubbles/50/000000/react.png" alt="" />
           ServiceFare
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -100,20 +100,20 @@ function Header() {
         <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
           <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
             <li className="nav-item ">
-              <a className="nav-link" href="/">
+              <Link className="nav-link" to="/">
                 Home
-              </a>
+              </Link>
             </li>
             <li className="nav-item ">
-              <a className="nav-link" href="/service-menu">
+              <Link className="nav-link" to="/service-menu">
                 Services
-              </a>
+              </Link>
             </li>
             {isAuthenticated ?(<li></li>):(
             <li className="nav-item dropdown" style={transForm}>
-              <a
+              <Link
                 className="nav-link dropdown-toggle"
-                href="/"
+                to="/"
                 id="navbarDropdown"
                 role="button"
                 data-toggle="dropdown"
@@ -121,38 +121,38 @@ function Header() {
                 aria-expanded="false"
               >
                 Other Pages
-              </a>
+              </Link>
               
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                 
-                <a className="dropdown-item" href="/setupprofile">
+                <Link className="dropdown-item" to="/setupprofile">
                   Set Up Profile
-                </a>
-                <a className="dropdown-item" href="/forgotpassword">
+                </Link>
+                <Link className="dropdown-item" to="/forgotpassword">
                   Forgot Password
-                </a>
-                <a className="dropdown-item" href="/service-menu">
+                </Link>
+                <Link className="dropdown-item" to="/service-menu">
                   Detailed Service
-                </a>
-                <a className="dropdown-item" href="/proregister">
+                </Link>
+                <Link className="dropdown-item" to="/proregister">
                   Professional Registration
-                </a>
-                <a className="dropdown-item" href="/professionalprofile">
+                </Link>
+                <Link className="dropdown-item" to="/professionalprofile">
                   Professional Profile
-                </a>
+                </Link>
               </div>
               
             </li>
             )}
           </ul>
-            <a className="nav-link" href="/cart">
+            <Link className="nav-link" to="/cart">
             <img
               alt="..."
               className="cart"
               src="https://img.icons8.com/external-flatart-icons-solid-flatarticons/64/000000/external-cart-grocery-flatart-icons-solid-flatarticons.png"
             />
             Cart
-          </a>
+          </Link>
           <div id="ul-div">
             <ul id="tranform-ul" style={transForm}>
               {isAuthenticated ? (

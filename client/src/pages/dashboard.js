@@ -1,49 +1,56 @@
-import React from 'react'
-import './dashboard.css'
-import Header from "../components/header"
-function Dashboard() {
-    return (
-        <>
-        <Header/>
-        <div className="dashboard-main">
-            <div className="service-cont">
-                <div className="service">
-                    <a href="/service-menu">
-                        <img alt="..." className="service-icon" src="https://img.icons8.com/external-inipagistudio-mixed-inipagistudio/50/000000/external-ac-domotics-home-inipagistudio-mixed-inipagistudio.png"/>
-                        <h4> AC Service & Repair</h4>
-                    </a>
-                </div>
-                <div className="service">
-                    <a href="/">
-                    <img alt="..." className="service-icon" src="https://img.icons8.com/external-kiranshastry-lineal-color-kiranshastry/64/000000/external-paint-roller-creative-kiranshastry-lineal-color-kiranshastry.png"/>
-                    <h4>    Painters </h4>
-                    </a>
-                </div>
-                <div className="service"><a href="/">
-                <img  alt="..." className="service-icon" src="https://img.icons8.com/external-itim2101-lineal-color-itim2101/64/000000/external-electrician-male-occupation-avatar-itim2101-lineal-color-itim2101.png"/>
-                  <h4>  Electricians </h4>
-                    </a></div>
-                <div className="service"><a href="/">
-                <img alt="..." className="service-icon"  src="https://img.icons8.com/external-ddara-lineal-color-ddara/64/000000/external-plumber-professions-ddara-lineal-color-ddara.png"/>
-                    <h4>Plumber</h4></a></div>
-                
-                <div className="service"><a href="/">
-                <img alt="..." className="service-icon" src="https://img.icons8.com/external-wanicon-lineal-color-wanicon/64/000000/external-carpenter-labour-day-wanicon-lineal-color-wanicon.png"/>
-                    <h4>Carpenter</h4></a></div>
-                <div className="service"><a href="/">
-                <img alt="..." className="service-icon" src="https://img.icons8.com/external-inipagistudio-lineal-color-inipagistudio/64/000000/external-bug-spray-agricultural-pest-control-inipagistudio-lineal-color-inipagistudio.png"/>
-                    <h4>Pest Control</h4></a></div>
-                <div className="service"><a href="/">
-                <img alt="..." className="service-icon" src="https://img.icons8.com/material-outlined/24/000000/domain.png"/>
-                    <h4>Website Developer</h4></a></div>
-                <div className="service"><a href="/">
-                <img alt="..."  className="service-icon" src="https://img.icons8.com/ios-filled/50/000000/developer-mode.png"/>
-                    <h4>App Developer</h4></a></div>
+import React, { useEffect } from "react";
+import "./dashboard.css";
+import Header from "../components/header";
+import Loader from "../components/layout/Loader/Loader";
+import { useDispatch, useSelector } from "react-redux";
+import { useAlert } from "react-alert";
+import { clearErrors, getAllCategories } from "../actions/serviceActions";
+import { Link } from "react-router-dom";
 
+function Dashboard() {
+  const alert = useAlert();
+  const dispatch = useDispatch();
+
+  const { loading, error, categories } = useSelector(
+    (state) => state.newCategory
+  );
+
+  useEffect(() => {
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
+    }
+    dispatch(getAllCategories());
+  }, [alert, error, dispatch]);
+
+  return (
+    <>
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <Header />
+          <div className="dashboard-main">
+            <div className="service-cont">
+              {categories &&
+                categories.map((category, idx) => (
+                  <div className="service" key={idx}>
+                    <Link to="/service-menu">
+                      <img
+                        alt={category.name}
+                        className="service-icon"
+                        src={category.imageUrl}
+                      />
+                      <h4>{category.name}</h4>
+                    </Link>
+                  </div>
+                ))}
             </div>
-        </div>
+          </div>
         </>
-    )
+      )}
+    </>
+  );
 }
 
-export default Dashboard
+export default Dashboard;
