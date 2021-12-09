@@ -6,11 +6,9 @@ const serviceSchema = new mongoose.Schema({
     required: [true, "Please enter the service name"],
   },
   category: {
-      name: {
-          type: String,
-          trim: true,
-          required: true
-      },
+    type: String,
+    trim: true,
+    required: true
   },
   description: {
     type: String,

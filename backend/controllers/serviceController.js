@@ -18,9 +18,7 @@ const createService = AsyncErrorHandler(async (req, res, next) => {
             public_id: myCloud.public_id,
             url: myCloud.secure_url
         },
-        category: {
-            name: categoryName
-        }
+        category: categoryName
     });
 
     res.status(201).json({
@@ -53,8 +51,19 @@ const getCategories = AsyncErrorHandler(async (req, res, next) => {
     })
 })
 
+// get all services of a particular category
+const getAllServices = AsyncErrorHandler(async (req, res, next) => {
+    const { name } = req.params;
+    const services = await Service.find({ category: name });
+    res.status(200).json({
+        success: true,
+        services
+    });
+})
+
 module.exports = {
     createService,
     createCategory,
-    getCategories
+    getCategories,
+    getAllServices
 }

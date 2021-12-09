@@ -35,7 +35,7 @@ function Dashboard() {
               {categories &&
                 categories.map((category, idx) => (
                   <div className="service" key={idx}>
-                    <Link to="/service-menu">
+                    <Link to={`/service/${category.name}`}>
                       <img
                         alt={category.name}
                         className="service-icon"

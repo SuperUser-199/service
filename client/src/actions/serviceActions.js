@@ -10,6 +10,9 @@ import {
   GET_ALL_CATEGORIES_REQUEST,
   GET_ALL_CATEGORIES_SUCCESS,
   GET_ALL_CATEGORIES_FAIL,
+  GET_ALL_SERVICES_REQUEST,
+  GET_ALL_SERVICES_SUCCESS,
+  GET_ALL_SERVICES_FAIL,
 } from "../constants/serviceConstants";
 
 // Create service
@@ -77,6 +80,24 @@ export const getAllCategories = () => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: GET_ALL_CATEGORIES_FAIL,
+      payload: err.response.data.message,
+    });
+  }
+};
+
+// Get all services of a category
+export const getAllServices = (name) => async (dispatch) => {
+  try {
+    dispatch({ type: GET_ALL_SERVICES_REQUEST });
+    
+    const { data } = await axios.get(`/api/v1/service/${name}`);
+    dispatch({
+      type: GET_ALL_SERVICES_SUCCESS,
+      payload: data.services,
+    });
+  } catch (err) {
+    dispatch({
+      type: GET_ALL_SERVICES_FAIL,
       payload: err.response.data.message,
     });
   }

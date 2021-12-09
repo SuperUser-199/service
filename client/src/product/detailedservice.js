@@ -1,137 +1,72 @@
-import React from 'react'
-import './detailed.css'
-import Header from '../components/header'
-function Detailedservice(){
-    return(
+import React, { useEffect } from "react";
+import "./detailed.css";
+import Header from "../components/header";
+import { useSelector, useDispatch } from "react-redux";
+import { useAlert } from "react-alert";
+import { clearErrors, getAllServices } from "../actions/serviceActions";
+import { useParams } from "react-router-dom";
+import Loader from "../components/layout/Loader/Loader";
+
+function Detailedservice() {
+  const alert = useAlert();
+  const disptach = useDispatch();
+  const { name } = useParams();
+
+  const { error, loading, services } = useSelector((state) => state.newService);
+  useEffect(() => {
+    disptach(getAllServices(name));
+    if (error) {
+      alert.error(error);
+      disptach(clearErrors());
+    }
+  }, [error, alert, disptach, name]);
+  return (
+    <>
+      {loading ? (
+        <Loader />
+      ) : (
         <>
-        <Header/>
-        <div className="service-main">
+          <Header />
+          <div className="service-main">
             <div className="service-menu">
-                <div className="service-name">
-                  <h2>  AC Repair & Installation </h2>
-                </div>
-                <hr />
-                <div className="service-product">
-                    <div className="card" id="product-card">
-                        <img
-                            src="https://mdbootstrap.com/img/new/standard/city/062.jpg"
-                            className="card-img-top"
-                            alt="..."
-                        />
-                        <div className="card-body">
-                            <h5 className="card-title"><span id="text-left">AC Reparing</span><span id="text-right">&#8377;200</span>  </h5>
-                            <p className="card-text">
-                            Included services:                            
-                                Error Detection
-                                Manpower<br />
-                            Not included :
-                            
-                                Extra Material (extra charge may apply)
-                            
-                            </p>
-                        </div>
-                        <div className="card-body">
-                            <a href="/" className="card-link"><button type="button" className="btn btn-primary">Add to Cart</button></a> 
-                        </div>
+              <div className="service-name">
+                <h2> AC Repair & Installation </h2>
+              </div>
+              <hr />
+              <div className="service-product">
+                {services &&
+                  services.map((service, idx) => (
+                    <div className="card" id="product-card" key={idx}>
+                      <img
+                        src={service.serviceImage.url}
+                        className="card-img-top"
+                        alt="..."
+                      />
+                      <div className="card-body">
+                        <h5 className="card-title">
+                          <span id="text-left">{service.name}</span>
+                          <span id="text-right">
+                            &#8377;{service.price}
+                          </span>{" "}
+                        </h5>
+                        <p className="card-text">{service.description}</p>
+                      </div>
+                      <div className="card-body">
+                        <a href="/" className="card-link">
+                          <button type="button" className="btn btn-primary">
+                            Add to Cart
+                          </button>
+                        </a>
+                      </div>
                     </div>
-                    <div className="card" id="product-card">
-                        <img
-                            src="https://mdbootstrap.com/img/new/standard/city/062.jpg"
-                            className="card-img-top"
-                            alt="..."
-                        />
-                        <div className="card-body">
-                        <h5 className="card-title"><span id="text-left">AC Reparing</span><span id="text-right">&#8377;200</span>  </h5>
-
-                            <p className="card-text">
-                            Included services:                            
-                                Error Detection
-                                Manpower<br />
-                            Not included :
-                            
-                                Extra Material (extra charge may apply)
-                            
-                            </p>
-                        </div>
-                        <div className="card-body">
-                            <a href="/" className="card-link"><button type="button" className="btn btn-primary">Add to Cart</button></a> 
-                        </div>
-                    </div>
-                    <div className="card" id="product-card">
-                        <img
-                            src="https://mdbootstrap.com/img/new/standard/city/062.jpg"
-                            className="card-img-top"
-                            alt="..."
-                        />
-                        <div className="card-body">
-                        <h5 className="card-title"><span id="text-left">AC Reparing</span><span id="text-right">&#8377;200</span>  </h5>
-
-                            <p className="card-text">
-                            Included services:                            
-                                Error Detection
-                                Manpower<br />
-                            Not included :
-                            
-                                Extra Material (extra charge may apply)
-                            
-                            </p>
-                        </div>
-                        <div className="card-body">
-                            <a href="/" className="card-link"><button type="button" className="btn btn-primary">Add to Cart</button></a> 
-                        </div>
-                    </div>
-                    <div className="card" id="product-card">
-                        <img
-                            src="https://mdbootstrap.com/img/new/standard/city/062.jpg"
-                            className="card-img-top"
-                            alt="..."
-                        />
-                        <div className="card-body">
-                        <h5 className="card-title"><span id="text-left">AC Reparing</span><span id="text-right">&#8377;200</span>  </h5>
-
-                            <p className="card-text">
-                            Included services:                            
-                                Error Detection
-                                Manpower<br />
-                            Not included :
-                            
-                                Extra Material (extra charge may apply)
-                            
-                            </p>
-                        </div>
-                        <div className="card-body">
-                            <a href="/" className="card-link"><button type="button" className="btn btn-primary">Add to Cart</button></a> 
-                        </div>
-                    </div>
-                    <div className="card" id="product-card">
-                        <img
-                            src="https://mdbootstrap.com/img/new/standard/city/062.jpg"
-                            className="card-img-top"
-                            alt="..."
-                        />
-                        <div className="card-body">
-                        <h5 className="card-title"><span id="text-left">AC Reparing</span><span id="text-right">&#8377;200</span>  </h5>
-
-                            <p className="card-text">
-                            Included services:                            
-                                Error Detection
-                                Manpower<br />
-                            Not included :
-                            
-                                Extra Material (extra charge may apply)
-                            
-                            </p>
-                        </div>
-                        <div className="card-body">
-                            <a href="/" className="card-link"><button type="button" className="btn btn-primary">Add to Cart</button></a> 
-                        </div>
-                    </div>
-                </div>
+                  ))}
+              </div>
             </div>
-
-        </div>
+          </div>
         </>
-    )
+      )}
+    </>
+  );
 }
 
-export default Detailedservice
+export default Detailedservice;

@@ -91,7 +91,7 @@ function App() {
         />
         <Route
           exact
-          path="/service-menu"
+          path="/service/:name"
           element={<ProtectedRoute component={Detailedservice} />}
         />
         <Route exact path="/cart" element={<ProtectedRoute component={Cart} />} />
