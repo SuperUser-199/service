@@ -6,6 +6,7 @@ import { useAlert } from "react-alert";
 import { clearErrors, getAllServices } from "../actions/serviceActions";
 import { useParams } from "react-router-dom";
 import Loader from "../components/layout/Loader/Loader";
+import { addServiceToCart } from "../actions/cartActions";
 
 function Detailedservice() {
   const alert = useAlert();
@@ -13,6 +14,7 @@ function Detailedservice() {
   const { name } = useParams();
 
   const { error, loading, services } = useSelector((state) => state.newService);
+
   useEffect(() => {
     disptach(getAllServices(name));
     if (error) {
@@ -52,11 +54,9 @@ function Detailedservice() {
                         <p className="card-text">{service.description}</p>
                       </div>
                       <div className="card-body">
-                        <a href="/" className="card-link">
-                          <button type="button" className="btn btn-primary">
+                          <button type="button" className="btn btn-primary" onClick={() => {disptach(addServiceToCart(`${service._id}`))}}>
                             Add to Cart
                           </button>
-                        </a>
                       </div>
                     </div>
                   ))}

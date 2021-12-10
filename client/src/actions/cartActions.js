@@ -3,6 +3,7 @@ import {
   ADD_SERVICE_TO_CART_FAIL,
   ADD_SERVICE_TO_CART_REQUEST,
   ADD_SERVICE_TO_CART_SUCCESS,
+  CLEAR_ERRORS
 } from "../constants/cartConstants";
 
 // add service to cart

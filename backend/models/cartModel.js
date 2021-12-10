@@ -3,9 +3,10 @@ const mongoose = require('mongoose');
 const cartSchema = new mongoose.Schema({
     services: [
         {
-            type: mongoose.Schema.ObjectId,
-            ref: 'service',
-            required: [true, 'Please enter service details']
+            serviceId: {
+                type: String,
+                required: [true, 'Please enter service details']
+            }
         }
     ],
     user: {
