@@ -18,7 +18,7 @@ export default function Home() {
         <div id="row">
           <div id="column">
             <div id="col-1">
-          <h1 id="App-title">
+            <h1 id="App-title">
             <span id="main-logo">ServiceFare </span> <br />
             </h1>
             <br/>
@@ -33,9 +33,10 @@ export default function Home() {
             
           </div>
         </div>
-        <h3 id="center-it"> How to use </h3>
+        <h3 id="center-it" className="margin-dedo"> How to use </h3>
         <hr />
         <div id="row2">
+          <div id="row33">
             <div id="column3" >
               <h2>Step 1</h2>
               <p>Create an account by <a href="/signup">signup</a> and <br/><a href="/login">login</a> into your account.</p>
@@ -51,6 +52,7 @@ export default function Home() {
             <div id="column3" >
               <h2>Step 4</h2>
               <p>Select a professional from which you <br/>want service and click on submit.<br/>🎉Hurray order placed</p>
+            </div>
             </div>
         </div>
         <div id="about-us">

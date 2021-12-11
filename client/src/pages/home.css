@@ -1,38 +1,42 @@
+#row{
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+
+}
 
 #column {
-    float: left;
-    width: 50%;
-    padding: 30px;
-    height: auto; 
+    flex-grow: 1;
+  flex-basis: 50%;
 }
+
 #col-1{
-margin:15%;
-line-height: 1.6;
+    margin-left: 30px;
+    margin-top: 50px;
 }
-
-#row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
 #service-img{
-margin-left: 15%;
+
 margin-top:15%;
 height: 400px;
-width: 600px;
+width: auto;
 }
 #signup-btn
 {
-    width: 20%;
-}
-
-#column3 {
-    float: left;
     width: 25%;
-    padding: 10px;
-    height: auto;
-    text-align: center; /* Should be removed. Only for demonstration */
+}
+#row2{
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+}  
+#row33{
+    width: 100%;
+    display: flex;
+} 
+#column3 {
+   padding: 10px;
+   width: 25%; 
+   text-align: center; 
     
 }
 #column3:hover{
@@ -40,13 +44,17 @@ width: 600px;
 }
 
 
+@media screen and ( max-width: 500px ) { 
+    #row33 { flex-direction: column;  }  
+    #column3  { width: 100%; } 
+}
 
+
+.margin-dedo{
+    margin-top: 30px;
+}
   /* Clear floats after the columns */
-  #row2:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
+
   #center-it{
       text-align: center;
   }
