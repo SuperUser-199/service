@@ -5,61 +5,55 @@ function Cart(){
     return(
         <>
         <Header />
-        <div className="cart-main">
-            <div className="cart-container">
-                <h4>Your Cart</h4>
-                <div className="cart-items">
-                    <table className="table" id="cart-table">
+        <div>
+            <div className="for-cart"> 
+                                    <table className="table">
                         <thead className="thead-dark">
                             <tr>
-                            <th scope="col">Service</th>
-                            <th scope="col"></th>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Remove</th>
                             <th scope="col">Price</th>
-                           
-                            <th scope="col"></th>
-                            <th scope="col">Total</th>
                             </tr>
                         </thead>
-                            <tr>
-                                <th>
-                                    <img className="service-img" alt="service"/>
-                                    
-                                </th>
-                                <th>
-                                    <h4>Service Name</h4>
-                                    <p>Description</p>
-                                </th>
-                                <th>
-                                &#8377;   100
-                                </th>
-                               
-                                <th>
-                                    <button className="btn btn-outline-dark">Remove</button>
-                                </th>
-                                <th>&#8377;100</th>
-                            </tr>
-
                         <tbody>
-
+                            <tr>
+                            <th scope="row"><img alt="service-img" className="cart-img" /></th>
+                            <td>Name</td>
+                            <td><button id="cart-btn" class="btn btn-outline-danger">Remove</button></td>
+                            <td>@mdo</td>
+                            </tr>
+                            
                         </tbody>
                     </table>
-                    <div className="float-right text-right">
-                        <h4>Subtotal:</h4>
-                        <h1>&#8377;100</h1>
                     </div>
-                        
-                </div>
-                <br />
-                <div>
-                    <div className="checkout">
-                         <button className="btn btn-outline-primary">Checkout</button>
+
+                    <br />
+                    <div className="for-checkout">
+                    <table className="table">
+                            <thead class="thead-light">
+                                <tr>
+                                <th scope="col">Price</th>
+                                <th scope="col">Total Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                <th scope="row">total price(including tax)</th>
+                                <td>2000</td>
+
+                                </tr>
+                                <tr>
+                                    <th>
+
+                                    </th>
+                                    <th>
+                                        <button id="cart-btn" class="btn btn-outline-info">Checkout</button>
+                                    </th>
+                                </tr>
+                            </tbody>
+                    </table>
                     </div>
-                    <div className="continue">
-                        <button className="btn btn-outline-primary"> Continue Shopping </button>
-                    </div>
-                </div>
-                
-            </div>
         </div>
         </>
     )

@@ -1,18 +1,17 @@
-.cart-container{
-    text-align: center;
+.cart-img{
+    height: 80px;
+    width: auto;
 }
-.service-img{
-    height: 150px;
-    width: 150px;
+
+.for-cart{
+    margin: 2%;
 }
-.cart-items{
-    margin:5%;
+.for-checkout{
+    margin: 5%;
+    overflow: hidden;
 }
-.checkout{
-    margin-right: 5%;
-    float:right;
-}
-.continue{
-    margin-left: 6%;
-    float:left;
+
+#cart-btn{
+    width: auto;
+    padding: 8px;
 }
