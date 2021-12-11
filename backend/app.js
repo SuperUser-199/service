@@ -14,9 +14,11 @@ app.use(fileUpload());
 // setting up routes
 const user = require('./routes/userRoute');
 const service = require('./routes/serviceRoutes');
+const cart = require('./routes/cartRoutes');
 
 app.use('/api/v1/user', user);
 app.use('/api/v1/service', service);
+app.use('/api/v1/cart', cart);
 
 app.use(errorMiddlerware);
 
