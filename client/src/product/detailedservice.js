@@ -53,7 +53,7 @@ function Detailedservice() {
                       </div>
                       <div className="card-body">
                         <a href="/" className="card-link">
-                          <button type="button" className="btn btn-primary">
+                          <button type="button" className="btn btn-primary" >
                             Add to Cart
                           </button>
                         </a>
