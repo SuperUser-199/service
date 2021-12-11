@@ -3,14 +3,14 @@ import "./cart.css";
 import Header from "../components/header";
 import { useSelector, useDispatch } from "react-redux";
 import { useAlert } from "react-alert";
-import { clearErrors, getServicesFromCart } from "../actions/cartActions";
+import { clearErrors, deleteServicesFromCart, getServicesFromCart } from "../actions/cartActions";
 import Loader from "../components/layout/Loader/Loader";
 
 function Cart() {
   const alert = useAlert();
   const dispatch = useDispatch();
 
-  const { loading, error, services } = useSelector(
+  const { loading, error, services, success } = useSelector(
     (state) => state.servicesInCart
   );
 
@@ -27,7 +27,10 @@ function Cart() {
       alert.error(error);
       dispatch(clearErrors());
     }
-  }, [error, alert, dispatch]);
+    if (success) {
+      alert.success('Service removed successfully');
+    }
+  }, [error, alert, dispatch, success]);
   return (
     <>
       {loading ? (
@@ -59,7 +62,7 @@ function Cart() {
                         </th>
                         <td>{service.name}</td>
                         <td>
-                          <button id="cart-btn" class="btn btn-outline-danger">
+                          <button id="cart-btn" class="btn btn-outline-danger" onClick={() => dispatch(deleteServicesFromCart(service.id))}>
                             Remove
                           </button>
                         </td>

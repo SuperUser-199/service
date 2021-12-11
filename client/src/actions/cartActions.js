@@ -4,6 +4,9 @@ import {
   ADD_SERVICE_TO_CART_REQUEST,
   ADD_SERVICE_TO_CART_SUCCESS,
   CLEAR_ERRORS,
+  DELETE_SERVICES_IN_CART_FAIL,
+  DELETE_SERVICES_IN_CART_REQUEST,
+  DELETE_SERVICES_IN_CART_SUCCESS,
   GET_SERVICES_IN_CART_FAIL,
   GET_SERVICES_IN_CART_REQUEST,
   GET_SERVICES_IN_CART_SUCCESS
@@ -39,6 +42,20 @@ export const getServicesFromCart = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: GET_SERVICES_IN_CART_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+
+// delete a service from cart
+export const deleteServicesFromCart = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: DELETE_SERVICES_IN_CART_REQUEST });
+    const { data } = await axios.delete(`/api/v1/cart/addService/${id}`);
+    dispatch({ type: DELETE_SERVICES_IN_CART_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: DELETE_SERVICES_IN_CART_FAIL,
       payload: error.response.data.message,
     });
   }

@@ -5,7 +5,10 @@ import {
   GET_SERVICES_IN_CART_REQUEST,
   GET_SERVICES_IN_CART_SUCCESS,
   GET_SERVICES_IN_CART_FAIL,
-  CLEAR_ERRORS
+  CLEAR_ERRORS,
+  DELETE_SERVICES_IN_CART_REQUEST,
+  DELETE_SERVICES_IN_CART_SUCCESS,
+  DELETE_SERVICES_IN_CART_FAIL
 } from "../constants/cartConstants";
 
 export const addServiceToCartReducer = (state = { cart: {} }, action) => {
@@ -40,6 +43,7 @@ export const addServiceToCartReducer = (state = { cart: {} }, action) => {
 export const getServicesReducer = (state = {services: []}, action) => {
   switch (action.type) {
     case GET_SERVICES_IN_CART_REQUEST:
+    case DELETE_SERVICES_IN_CART_REQUEST:
       return {
         ...state,
         loading: true
@@ -47,10 +51,15 @@ export const getServicesReducer = (state = {services: []}, action) => {
     case GET_SERVICES_IN_CART_SUCCESS:
       return {
         loading: false,
-        success: action.payload.success,
         services: action.payload.result
       };
+    case DELETE_SERVICES_IN_CART_SUCCESS:
+      return {
+        loading: false,
+        success: action.payload.success,
+      };
     case GET_SERVICES_IN_CART_FAIL:
+    case DELETE_SERVICES_IN_CART_FAIL:
       return {
         loading: false,
         error: action.payload

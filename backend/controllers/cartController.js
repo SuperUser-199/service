@@ -14,7 +14,7 @@ const addServiceToCart = AsyncErrorHandler(async (req, res, next) => {
         });
     } else {
         cartInfo = await Cart.findOneAndUpdate({ user: req.user.id }, {
-            $push: {
+            $addToSet: {
                 services: {serviceId}
             }
         });
@@ -46,7 +46,21 @@ const getServices = AsyncErrorHandler(async (req, res, next) => {
     });
 })
 
+// delete a service from cart 
+const deleteServiceFromCart = AsyncErrorHandler(async (req, res, next) => {
+    const { id: serviceId } = req.params;
+    await Cart.findOneAndUpdate({ user: req.user.id }, {
+        $pull: {
+            services: {serviceId}
+        }
+    });
+    res.status(200).json({
+        success: true
+    });
+})
+
 module.exports = {
     addServiceToCart,
-    getServices
+    getServices,
+    deleteServiceFromCart
 }
