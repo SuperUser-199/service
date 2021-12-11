@@ -1,61 +1,104 @@
-import React from 'react'
-import './cart.css'
-import Header from '../components/header'
-function Cart(){
-    return(
+import React, { useEffect } from "react";
+import "./cart.css";
+import Header from "../components/header";
+import { useSelector, useDispatch } from "react-redux";
+import { useAlert } from "react-alert";
+import { clearErrors, getServicesFromCart } from "../actions/cartActions";
+import Loader from "../components/layout/Loader/Loader";
+
+function Cart() {
+  const alert = useAlert();
+  const dispatch = useDispatch();
+
+  const { loading, error, services } = useSelector(
+    (state) => state.servicesInCart
+  );
+
+  let totalPrice = 0;
+
+  services &&
+    services.forEach((service) => {
+      totalPrice += service.price;
+    });
+
+  useEffect(() => {
+    dispatch(getServicesFromCart());
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
+    }
+  }, [error, alert, dispatch]);
+  return (
+    <>
+      {loading ? (
+        <Loader />
+      ) : (
         <>
-        <Header />
-        <div>
-            <div className="for-cart"> 
-                                    <table className="table">
-                        <thead className="thead-dark">
-                            <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Remove</th>
-                            <th scope="col">Price</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                            <th scope="row"><img alt="service-img" className="cart-img" /></th>
-                            <td>Name</td>
-                            <td><button id="cart-btn" class="btn btn-outline-danger">Remove</button></td>
-                            <td>@mdo</td>
-                            </tr>
-                            
-                        </tbody>
-                    </table>
-                    </div>
+          <Header />
+          <div>
+            <div className="for-cart">
+              <table className="table">
+                <thead className="thead-dark">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Remove</th>
+                    <th scope="col">Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {services &&
+                    services.map((service, idx) => (
+                      <tr key={service.id}>
+                        <th scope="row">
+                          <img
+                            alt="service-img"
+                            className="cart-img"
+                            src={service.image.url}
+                          />
+                        </th>
+                        <td>{service.name}</td>
+                        <td>
+                          <button id="cart-btn" class="btn btn-outline-danger">
+                            Remove
+                          </button>
+                        </td>
+                        <td>&#8377;{service.price}</td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </div>
 
-                    <br />
-                    <div className="for-checkout">
-                    <table className="table">
-                            <thead class="thead-light">
-                                <tr>
-                                <th scope="col">Price</th>
-                                <th scope="col">Total Price</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                <th scope="row">total price(including tax)</th>
-                                <td>2000</td>
-
-                                </tr>
-                                <tr>
-                                    <th>
-
-                                    </th>
-                                    <th>
-                                        <button id="cart-btn" class="btn btn-outline-info">Checkout</button>
-                                    </th>
-                                </tr>
-                            </tbody>
-                    </table>
-                    </div>
-        </div>
+            <br />
+            <div className="for-checkout">
+              <table className="table">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Price</th>
+                    <th scope="col">Total Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">total price(including tax)</th>
+                    <td>&#8377;{totalPrice}</td>
+                  </tr>
+                  <tr>
+                    <th></th>
+                    <th>
+                      <button id="cart-btn" class="btn btn-outline-info">
+                        Checkout
+                      </button>
+                    </th>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </>
-    )
+      )}
+    </>
+  );
 }
-export default Cart
+export default Cart;

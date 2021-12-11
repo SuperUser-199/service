@@ -2,6 +2,9 @@ import {
   ADD_SERVICE_TO_CART_FAIL,
   ADD_SERVICE_TO_CART_REQUEST,
   ADD_SERVICE_TO_CART_SUCCESS,
+  GET_SERVICES_IN_CART_REQUEST,
+  GET_SERVICES_IN_CART_SUCCESS,
+  GET_SERVICES_IN_CART_FAIL,
   CLEAR_ERRORS
 } from "../constants/cartConstants";
 
@@ -33,3 +36,31 @@ export const addServiceToCartReducer = (state = { cart: {} }, action) => {
       return state;
   }
 };
+
+export const getServicesReducer = (state = {services: []}, action) => {
+  switch (action.type) {
+    case GET_SERVICES_IN_CART_REQUEST:
+      return {
+        ...state,
+        loading: true
+      };
+    case GET_SERVICES_IN_CART_SUCCESS:
+      return {
+        loading: false,
+        success: action.payload.success,
+        services: action.payload.result
+      };
+    case GET_SERVICES_IN_CART_FAIL:
+      return {
+        loading: false,
+        error: action.payload
+      };
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null
+      };
+    default:
+      return state;
+  }
+}
