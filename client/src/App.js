@@ -25,6 +25,8 @@ import store from "./store";
 import { loadUser } from "./actions/userActions";
 import AddCategory from "./admin/addcategory";
 import AdminRoute from "./components/Route/AdminRoute";
+import checout1  from "./product/checkout1";
+import OrderPlaced from "./product/orderplaced";
 function App() {
   useEffect(() => {
     store.dispatch(loadUser());
@@ -34,6 +36,10 @@ function App() {
     <Router>
        
       <Routes>
+      <Route exact path="/orderplaced" element={<ProtectedRoute component={OrderPlaced}/>}/>
+ 
+      <Route exact path="/selectprofessional" element={<ProtectedRoute component={checout1}/>}/>
+
       <Route exact path="/addcategory" element={<AdminRoute component={AddCategory}/>}/>
 
         <Route exact path="/addservice" element={<AdminRoute component={AddService}/>}/>

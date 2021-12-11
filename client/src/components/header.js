@@ -118,6 +118,16 @@ function Header() {
           isAuthenticated   && <Link className="nav-link" to="/allusers" onClick={handleClick}>All Professional</Link>
         }
             </li>
+            <li className="nav-item">
+            {
+          isAuthenticated   && <Link className="nav-link" to="/selectprofessional" onClick={handleClick}>Checkout 1</Link>
+        } 
+            </li>
+            <li className="nav-item">
+            {
+          isAuthenticated   && <Link className="nav-link" to="/orderplaced" onClick={handleClick}>Order Placed</Link>
+        } 
+            </li>
             {isAuthenticated ?(<li></li>):(
             <li className="nav-item dropdown" style={transForm}>
               <Link
