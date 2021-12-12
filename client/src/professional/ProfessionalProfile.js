@@ -36,6 +36,7 @@ function ProfessionalProfile() {
           ) : (
         <>
             <Header />
+            <div id="profile-all">
             <div className="container">
                 <div className="row align-items-center flex-row-reverse">
                     <div className="col-lg-6">
@@ -138,6 +139,7 @@ function ProfessionalProfile() {
                     </div>
                   
                 </div>
+            </div>
             </div>
         </>
          )}

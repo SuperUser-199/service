@@ -10,8 +10,8 @@ function OrderPlaced(){
         <div className="order-cont">
             <h1>Congratulations ! <br />Order Placed Successful</h1>
             <h3>Your Order id is "andlan"</h3>
-            <a href="#"><button id="order-btn" className="btn btn-outline-dark">Orders</button></a>
-            <a href="#"><button id="order-btn" className="btn btn-outline-dark">Dashboard</button></a>
+            <a href="/orders"><button id="order-btn" className="btn btn-outline-dark">Orders</button></a>
+            <a href="/dashboard"><button id="order-btn" className="btn btn-outline-dark">Dashboard</button></a>
             
         </div>
         </>

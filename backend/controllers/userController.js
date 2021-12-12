@@ -264,6 +264,16 @@ const getAllProfessionals = AsyncErrorHandler(async (req, res, next) => {
     });
 })
 
+const getProfessionalById = AsyncErrorHandler(async (req, res, next) => {
+    const { id } = req.params;
+    const professional = await User.findById(id);
+    
+    res.status(200).json({
+        success: true,
+        professional
+    });
+})
+
 const getAllProfessionalsByCategory = AsyncErrorHandler(async (req, res, next) => {
     const { category } = req.params;
     let users = await User.find({ role: "professional" });
@@ -286,5 +296,6 @@ module.exports = {
     updateProfile,
     setupProfile,
     getAllProfessionals,
-    getAllProfessionalsByCategory
+    getAllProfessionalsByCategory,
+    getProfessionalById
 }

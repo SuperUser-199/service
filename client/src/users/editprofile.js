@@ -262,7 +262,7 @@ function EditProfile() {
                             onChange={(e) => setSpec(e.target.value)}
                           >
                             <option value="select" selected="selected">
-                              -------------select your domain-------------
+                              --select your service--
                             </option>
                             <option value="ACservice">
                               AC Service and Repair

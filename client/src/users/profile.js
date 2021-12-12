@@ -39,7 +39,7 @@ function Profile() {
           ) : (
             <>
               <Header />
-              <div>
+              <div id="profile-all">
                 <div className="container">
                   <div className="row align-items-center flex-row-reverse">
                     <div className="col-lg-6">

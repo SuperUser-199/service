@@ -7,15 +7,20 @@ import { useSelector, useDispatch } from "react-redux";
 import Loader from "./layout/Loader/Loader";
 import { useAlert } from "react-alert";
 import { clearErrors } from "../actions/userActions";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { getAProf } from "../actions/profActions";
 
 function AllUsers() {
   const alert = useAlert();
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const { error, loading, profs} = useSelector((state) => state.allProfs);
 
+  const handlerView = (id) => {
+    dispatch(getAProf(id));
+    navigate(`/viewprofile/${id}`);
+  }
   useState(() => {
     if (error) {
       alert.error(error);
@@ -84,14 +89,9 @@ function AllUsers() {
                               />
                             </td>
                             <td id="user-td">
-                            <Link
-                                 to={`/viewprofile/${data._id}`}
-                                 style={{ textDecoration: "none" }}>
-
-                                <button id="viewprofilebtn">
+                                <button id="viewprofilebtn" onClick={() => handlerView(data._id)}>
                                   View Profile
                                 </button>
-                              </Link>
                             </td>
                           </tr>
                         ))}

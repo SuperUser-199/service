@@ -109,7 +109,7 @@
 .selectStyle {
     text-align: center;
     padding: 5px;
-    width: 360px;
+    width: 100%;
     height: 40px;
     margin: 10px 0;
     border: 2px solid black;

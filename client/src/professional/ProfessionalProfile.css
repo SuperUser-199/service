@@ -2,12 +2,6 @@
     align-items: center!important;
 }
 
-.about-section .counter {
-    padding: 22px 20px;
-    background: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 0 30px rgb(31 45 61 / 13%);
-}
 .edit-profile{
     width: 30%;
     border-radius: 9px;
