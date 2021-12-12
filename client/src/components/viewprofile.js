@@ -6,21 +6,18 @@ import { useAlert } from "react-alert";
 import { clearErrors } from "../actions/userActions";
 import MetaData from "../components/layout/MetaData";
 import Loader from "../components/layout/Loader/Loader";
-import { useParams } from "react-router";
-import { getAProf } from "../actions/profActions";
+
 function ViewProfile() {
   const dispatch = useDispatch();
   const alert = useAlert();
-  const { id } = useParams();
   const { error, loading, professional: user } = useSelector((state) => state.getAProfessional);
 
   useEffect(() => {
-      dispatch(getAProf(id));
     if (error) {
       alert.error(error);
       dispatch(clearErrors());
     }
-  }, [error, dispatch, alert, id]);
+  }, [error, dispatch, alert]);
 
   return (
     <>

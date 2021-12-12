@@ -16,7 +16,6 @@ export const getAProf = (id) => async (dispatch) => {
     try {
         dispatch({ type: GET_A_PROFESSIONAL_REQUEST });
         const { data } = await axios.get(`/api/v1/user/professional/single/${id}`);
-        console.log(data);
         dispatch({ type: GET_A_PROFESSIONAL_SUCCESS, payload: data.professional });
     } catch (error) {
         dispatch({ type: GET_A_PROFESSIONAL_FAIL });
