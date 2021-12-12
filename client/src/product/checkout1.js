@@ -40,75 +40,49 @@ function Checout1() {
           <div>
             <MetaData title="Select Professional " />
             <div>
-              <div>
-                <div>
-                  <div>
-                    <table id="table-alluser">
-                      <thead id="table-head">
-                        <tr>
-                          <th>Candidate Name</th>
-                          <th>Rating</th>
-                          <th>Action</th>
-                          <th>Select</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {profs &&
-                          profs.map((prof, idx) => (
-                            <tr>
-                              <td>
-                                <div>
-                                  <img
-                                    id="user-img"
-                                    src={prof.avatar.url}
-                                    alt=""
-                                  />
-                                </div>
-                                <div>
-                                  <div>
-                                    <div>
-                                      <h5>{prof.name}</h5>
-                                    </div>
-                                    <div>
-                                      <ul id="user-ul">
-                                        <li>
-                                          <i className="fas fa-filter pr-1"></i>
-                                          {prof.professional.specialization}
-                                        </li>
-                                        <li>
-                                          <i className="fas fa-map-marker-alt pr-1"></i>
-                                          {`${prof.address.city}, ${prof.address.district}, ${prof.address.state}`}
-                                        </li>
-                                      </ul>
-                                    </div>
-                                  </div>
-                                </div>
-                              </td>
-                              <td id="user-td">
-                                <span>{prof.professional.rating}</span>
-                                <img
+              <br />
+              <h6 id="center-it">Select a Professional for your service,<br/>
+                by clicking on <span id="select-me">Select Me </span>Button
+              </h6>
+                    <div className="service-product">
+                {profs &&
+                  profs.map((prof, idx) => (
+                    <div className="card" id="product-card" key={idx}>
+                      <img
+                        src={prof.avatar.url}
+                        className="card-img-top"
+                        alt="..."
+                      />
+                      <div className="card-body">
+                        <h5 className="card-title">
+                          <span id="text-left">{prof.name}</span>
+                          <span id="text-right">
+                            {prof.rating}  <img
                                   id="star-img"
                                   alt="star"
                                   src="https://img.icons8.com/fluency/48/000000/star.png"
                                 />
-                              </td>
-                              <td id="user-td">
-                                  <button id="viewprofilebtn" onClick={() => handlerViewProfile(`${prof._id}`)}>
-                                    View Profile
-                                  </button>
-                              </td>
-                              <td id="user-td">
-                                <button id="viewprofilebtn">Select Me</button>
-                              </td>
-                            </tr>
-                          ))}
-                      </tbody>
-                    </table>
+                          </span>
+                        </h5>
+                        <p className="card-text">{prof.professional.specialization}<br /> {`${prof.address.city}, ${prof.address.district}, ${prof.address.state}`}</p>
+                      </div>
+                      <div className="card-body">
+                           <div>
+                           <button className="btn btn-primary" onClick={() => handlerViewProfile(`${prof._id}`)} >View Profile</button>
+                           </div>
+                           <br />
+                           <div>
+                             <button className="btn btn-primary">Select Me</button>
+                             
+                           </div>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
+             
         </>
       )}
     </>

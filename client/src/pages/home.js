@@ -3,11 +3,12 @@ import skillsimg from "./skills.png";
 import Header from "../components/header"
 import './home.css';
 import userimg from './user-img.png';
+import { useSelector} from "react-redux";
 
 
 export default function Home() {
 
-  
+  const {  isAuthenticated } = useSelector((state) => state.user);
 
   return (
     <>
@@ -25,7 +26,9 @@ export default function Home() {
             <h5>
             Website for providing daily need services.<br/>We offer <span id="service-word">Development</span> <br/>SignUp now to get all service from your home</h5>
             <br/>
-            <a href="/signup"><button id="signup-btn"  className="btn btn-outline-success my-2 my-sm-0">Sign Up</button></a>
+            { isAuthenticated?            <a href="/dashboard"><button id="signup-btn"  className="btn btn-outline-success my-2 my-sm-0">Dashboard</button></a>
+:
+            <a href="/signup"><button id="signup-btn"  className="btn btn-outline-success my-2 my-sm-0">Sign Up</button></a>}
             </div>
           </div>
           <div id="column">
