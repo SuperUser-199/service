@@ -2,22 +2,27 @@ import "./checkout1.css";
 import React, { useEffect } from "react";
 import Header from "../components/header";
 import MetaData from "../components/layout/MetaData";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useAlert } from "react-alert";
 import { clearErrors } from "../actions/userActions";
 import Loader from "../components/layout/Loader/Loader";
-import { getAllProfsByCategory } from "../actions/profActions";
+import { getAllProfsByCategory, getAProf } from "../actions/profActions";
 import { useParams } from 'react-router-dom';
 
 function Checout1() {
   const alert = useAlert();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { category } = useParams();
   const { error, success, profs, loading } = useSelector(
     (state) => state.getProfsByCategory
   );
 
+  const handlerViewProfile = (id) => {
+    dispatch(getAProf(id));
+    navigate(`/viewprofile/${id}`);
+  }
   useEffect(() => {
     dispatch(getAllProfsByCategory(category));
     if (error) {
@@ -88,14 +93,9 @@ function Checout1() {
                                 />
                               </td>
                               <td id="user-td">
-                                <Link
-                                  to={`/viewprofile/`}
-                                  style={{ textDecoration: "none" }}
-                                >
-                                  <button id="viewprofilebtn">
+                                  <button id="viewprofilebtn" onClick={() => handlerViewProfile(`${prof._id}`)}>
                                     View Profile
                                   </button>
-                                </Link>
                               </td>
                               <td id="user-td">
                                 <button id="viewprofilebtn">Select Me</button>

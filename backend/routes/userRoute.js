@@ -1,5 +1,5 @@
 const express = require('express');
-const { registerUser, logInUser, logOutUser, forgotPassword, resetPassword, getUserDetails, updatePassword, updateProfile, setupProfile, getAllProfessionals, getAllProfessionalsByCategory } = require('../controllers/userController');
+const { registerUser, logInUser, logOutUser, forgotPassword, resetPassword, getUserDetails,getProfessionalById, updatePassword, updateProfile, setupProfile, getAllProfessionals, getAllProfessionalsByCategory } = require('../controllers/userController');
 const isAuthenticatedUser = require('../middlewares/auth');
 const router = express.Router();
 
@@ -14,5 +14,6 @@ router.route('/me/profile/update').put(isAuthenticatedUser, updateProfile);
 router.route('/me/profile/setup').put(isAuthenticatedUser, setupProfile);
 router.route('/professional/getAll').get(isAuthenticatedUser, getAllProfessionals);
 router.route('/professional/:category').get(isAuthenticatedUser, getAllProfessionalsByCategory);
+router.route('/professional/single/:id').get(isAuthenticatedUser, getProfessionalById);
 
 module.exports = router;
