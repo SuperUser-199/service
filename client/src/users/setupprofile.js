@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Country, State } from "country-state-city";
 import { useNavigate } from "react-router-dom";
 import { clearErrors, loadUser, setupProfile } from "../actions/userActions";
+import {  getAllCategories } from "../actions/serviceActions";
 import Loader from "../components/layout/Loader/Loader";
 
 function Setupprofile() {
@@ -20,9 +21,12 @@ function Setupprofile() {
     isAuthenticated,
   } = useSelector((state) => state.user);
 
-  const address = user.address;
-  const professional = user.professional;
-
+  const address = user.address ;
+  //  console.log(user.address);
+  const professional =  user.professional;
+  // console.log(user.professional);
+  const {error : CategoryError, loading : CategoryLoading, categories} = useSelector(state => state.newCategory);
+  // const [category, setCategory] = useState('');
   const [country, setCountry] = useState(address ? address.country : "");
   const [state, setState] = useState(address ? address.state : "");
   const [city, setCity] = useState(address ? address.city : "");
@@ -62,6 +66,13 @@ function Setupprofile() {
   };
 
   useEffect(() => {
+    dispatch(getAllCategories());
+    
+    if (CategoryError) {
+      alert.error(CategoryError);
+      dispatch(clearErrors());
+    }
+
     if (error) {
       alert.error(error);
       dispatch(clearErrors());
@@ -77,7 +88,7 @@ function Setupprofile() {
       dispatch(loadUser());
       navigate("/profile");
     }
-  }, [error, alert, dispatch, navigate, isSetup, LoadingError]);
+  }, [error, alert, dispatch, navigate, isSetup, LoadingError,CategoryError]);
 
   const transForm = {
     transform: isAuthenticated ? "translateY(-1px)" : 0,
@@ -88,7 +99,7 @@ function Setupprofile() {
 
   return (
     <>
-      {loading ? (
+      {loading || CategoryLoading? (
         <Loader />
       ) : (
         <>
@@ -130,7 +141,7 @@ function Setupprofile() {
                     <select
                       required
                       name="country"
-                      value={country}
+                      // value={country}
                       onChange={(e) => setCountry(e.target.value)}
                     >
                       <option value="">Country</option>
@@ -147,13 +158,13 @@ function Setupprofile() {
                       <select
                         required
                         name="state"
-                        value={state}
+                        // value={state}
                         onChange={(e) => setState(e.target.value)}
                       >
                         <option value="">State</option>
                         {State &&
                           State.getStatesOfCountry(country).map((state) => (
-                            <option key={state.isoCode} value={state.name}>
+                            <option key={state.isoCode} value={state.name} >
                               {state.name}
                             </option>
                           ))}
@@ -163,7 +174,7 @@ function Setupprofile() {
                   <div>
                     <input
                       type="text"
-                      value={district}
+                      // value={district}
                       name="district"
                       required
                       placeholder="Enter district name"
@@ -173,7 +184,7 @@ function Setupprofile() {
                   <div>
                     <input
                       type="text"
-                      value={city}
+                      // value={city}
                       name="city"
                       required
                       placeholder="Enter city name"
@@ -183,7 +194,7 @@ function Setupprofile() {
                   <div>
                     <input
                       type="number"
-                      value={pincode}
+                      // value={pincode}
                       name="pincode"
                       required
                       placeholder="Enter pincode"
@@ -206,7 +217,7 @@ function Setupprofile() {
                     />
                   </div>
                         <div>
-                          <select
+                        <select
                             className="selectStyle"
                             id="domain"
                             name="spec"
@@ -214,18 +225,15 @@ function Setupprofile() {
                             onChange={(e) => setSpec(e.target.value)}
                           >
                             <option value="select" selected="selected">
-                              -------------select your domain-------------
+                              ----------- select product category ------------
                             </option>
-                            <option value="ACservice">
-                              AC Service and Repair
-                            </option>
-                            <option value="painter">Painter</option>
-                            <option value="electrician">Electrician</option>
-                            <option value="plumber">Plumber</option>
-                            <option value="carpenter">Carpenter</option>
-                            <option value="pestcontrol">Pest Control</option>
-                            <option value="webdev">Web Developer</option>
-                            <option value="appdev">App Developer</option>
+                            {
+                              categories && categories.map((category, idx) => (
+                                <option value={category.name} key={idx}>
+                                  { category.name }
+                                </option>
+                              ))
+                            }
                           </select>
                         </div>
                         <div>

@@ -67,7 +67,7 @@ function App() {
         <Route
           exact
           path="/setupprofile"
-          element={<ProtectedRoute component={Setupprofile} />}
+          element={<Setupprofile />}
         />
         <Route
           exact

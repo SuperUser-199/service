@@ -46,6 +46,7 @@ function Cart() {
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
                     <th scope="col">Remove</th>
+                    <th scope="col">Select</th>
                     <th scope="col">Price</th>
                   </tr>
                 </thead>
@@ -65,6 +66,13 @@ function Cart() {
                           <button id="cart-btn" class="btn btn-outline-danger" onClick={() => dispatch(deleteServicesFromCart(service.id))}>
                             Remove
                           </button>
+                        </td>
+                        <td>
+                          <a href="/selectprofessional">
+                          <button id="cart-btn">
+                            Select
+                          </button>
+                          </a>
                         </td>
                         <td>&#8377;{service.price}</td>
                       </tr>
