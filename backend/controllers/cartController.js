@@ -43,7 +43,8 @@ const getServices = AsyncErrorHandler(async (req, res, next) => {
             id: service.id,
             name: service.name,
             image: service.serviceImage,
-            price: service.price
+            price: service.price,
+            category: service.category
         });
     }
 

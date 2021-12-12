@@ -42,6 +42,10 @@ const professionalSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please enter your experience"],
   },
+  rating: {
+    type: Number,
+    default: 0
+  },
   reviews: [
     {
       user: {
