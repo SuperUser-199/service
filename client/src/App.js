@@ -101,6 +101,7 @@ function App() {
           element={<ProtectedRoute component={Detailedservice} />}
         />
         <Route exact path="/cart" element={<ProtectedRoute component={Cart} />} />
+        {/* <Route exact path="/professional/:category" element={<ProtectedRoute}/> */}
       </Routes>
     </Router>
   );
