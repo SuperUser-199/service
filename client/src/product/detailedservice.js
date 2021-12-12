@@ -54,7 +54,7 @@ function Detailedservice() {
                         <p className="card-text">{service.description}</p>
                       </div>
                       <div className="card-body">
-                          <button type="button" className="btn btn-primary" onClick={() => {disptach(addServiceToCart(`${service._id}`))}}>
+                          <button type="button" className="btn btn-primary" onClick={() => {disptach(addServiceToCart(`${service._id}`)); alert.success('Service added to cart successfully')}}>
                             Add to Cart
                           </button>
                       </div>

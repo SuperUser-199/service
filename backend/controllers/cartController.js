@@ -13,13 +13,20 @@ const addServiceToCart = AsyncErrorHandler(async (req, res, next) => {
             services: [{serviceId}]
         });
     } else {
+        let flag = false;
+        for (const service of cartInfo.services) {
+            if (service.serviceId.toString() === serviceId) {
+                flag = true;
+                break;
+            }
+        }
+        if (!flag)
         cartInfo = await Cart.findOneAndUpdate({ user: req.user.id }, {
-            $addToSet: {
+            $push: {
                 services: {serviceId}
             }
         });
     }
-
     res.status(200).json({
         success: true,
         cartInfo
