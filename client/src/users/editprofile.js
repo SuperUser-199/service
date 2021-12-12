@@ -41,6 +41,7 @@ function EditProfile() {
   const [spec, setSpec] = useState(professional ? professional.specialization:"");
   const [bio, setBio] = useState(professional ? professional.about:"");
   const [exp, setExp] = useState(professional ? professional.experience:"");
+  const [rating, setRating] = useState(professional ? professional.rating : 0);
 
 
   const imgDataChange = (e) => {
@@ -73,6 +74,7 @@ function EditProfile() {
     myForm.set("exp", exp);
     myForm.set("bio", bio);
     myForm.set("spec", spec);
+    myForm.set("rating", rating);
     dispatch(updateProfile(myForm));
   };
 
@@ -289,7 +291,9 @@ function EditProfile() {
                           <select
                             className="selectStyle"
                             id="domain"
-                            name="domain"
+                            name="rating"
+                            value={rating}
+                            onChange={(e) => setRating(e.target.value)}
                           >
                             <option value="select" selected="selected">
                               Rate your work out of 5

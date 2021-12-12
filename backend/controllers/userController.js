@@ -178,11 +178,12 @@ const updateProfile = AsyncErrorHandler(async (req, res, next) => {
 
     
     if (req.user.role === 'professional') {
-        const { exp: experience, spec: specialization, bio: about } = req.body;
+        const { exp: experience, spec: specialization, bio: about, rating } = req.body;
         updatedUserData.professional = {
             experience,
             specialization,
-            about  
+            about,
+            rating  
         };
     }
 
@@ -210,7 +211,6 @@ const updateProfile = AsyncErrorHandler(async (req, res, next) => {
         runValidators: true,
         findAndModify: false
     });
-
     res.status(200).json({
         success: true
     });
@@ -233,12 +233,13 @@ const setupProfile = AsyncErrorHandler(async (req, res, next) => {
     }
     
     if (req.user.role === 'professional') {
-        const { exp: experience, spec: specialization, bio: about } = req.body;
+        const { exp: experience, spec: specialization, bio: about, rating } = req.body;
         
         data.professional = {
             experience,
             specialization,
-            about
+            about,
+            rating
         };
     }
 
@@ -265,12 +266,12 @@ const getAllProfessionals = AsyncErrorHandler(async (req, res, next) => {
 
 const getAllProfessionalsByCategory = AsyncErrorHandler(async (req, res, next) => {
     const { category } = req.params;
-    let professionals = await User.find({ role: "professional" });
-    professionals.filter((p) => p.specialization === category);
+    let users = await User.find({ role: "professional" });
+    users = users.filter((user) => user.professional.specialization === category);
     
     res.status(200).json({
         success: true,
-        professionals
+        professionals: users
     });
 })
 

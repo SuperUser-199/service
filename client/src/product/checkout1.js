@@ -8,16 +8,18 @@ import { useAlert } from "react-alert";
 import { clearErrors } from "../actions/userActions";
 import Loader from "../components/layout/Loader/Loader";
 import { getAllProfsByCategory } from "../actions/profActions";
+import { useParams } from 'react-router-dom';
 
 function Checout1() {
   const alert = useAlert();
   const dispatch = useDispatch();
+  const { category } = useParams();
   const { error, success, profs, loading } = useSelector(
     (state) => state.getProfsByCategory
   );
 
   useEffect(() => {
-    dispatch(getAllProfsByCategory("AC Service & Repair"));
+    dispatch(getAllProfsByCategory(category));
     if (error) {
       alert.error(error);
       dispatch(clearErrors());
@@ -54,7 +56,6 @@ function Checout1() {
                                   <img
                                     id="user-img"
                                     src={prof.avatar.url}
-                                    // src="#"
                                     alt=""
                                   />
                                 </div>
@@ -79,7 +80,7 @@ function Checout1() {
                                 </div>
                               </td>
                               <td id="user-td">
-                                <span>{5}</span>
+                                <span>{prof.professional.rating}</span>
                                 <img
                                   id="star-img"
                                   alt="star"
