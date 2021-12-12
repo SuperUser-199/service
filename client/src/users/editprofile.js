@@ -8,6 +8,8 @@ import { Country, State } from "country-state-city";
 import { useNavigate } from "react-router-dom";
 import { clearErrors, loadUser, updateProfile } from "../actions/userActions";
 import Loader from "../components/layout/Loader/Loader";
+import {  getAllCategories } from "../actions/serviceActions";
+
 
 function EditProfile() {
   const alert = useAlert();
@@ -22,6 +24,7 @@ function EditProfile() {
 
   const address = user.address;
   const professional = user.professional;
+  const {error : CategoryError, loading : CategoryLoading, categories} = useSelector(state => state.newCategory);
 
   const { error, isUpdated, loading } = useSelector(
     (state) => state.updateProfile
@@ -83,6 +86,13 @@ function EditProfile() {
   };
 
   useEffect(() => {
+    dispatch(getAllCategories());
+    
+    if (CategoryError) {
+      alert.error(CategoryError);
+      dispatch(clearErrors());
+    }
+
     if (error) {
       alert.error(error);
       dispatch(clearErrors());
@@ -98,7 +108,7 @@ function EditProfile() {
       dispatch(loadUser());
       navigate("/profile");
     }
-  }, [error, alert, dispatch, navigate, isUpdated, LoadingError]);
+  }, [error, alert, dispatch, navigate, isUpdated, LoadingError,CategoryError]);
   const transForm = {
     transform: isAuthenticated ? "translateY(-1px)" : 0,
   };
@@ -108,7 +118,7 @@ function EditProfile() {
 
   return (
     <>
-      {loading ? (
+      {loading|| CategoryLoading ? (
         <Loader />
       ) : (
         <>
@@ -253,8 +263,7 @@ function EditProfile() {
                       onChange={(e) => setBio(e.target.value)}
                     />
                   </div>
-                        <div>
-                          <select
+                  <select
                             className="selectStyle"
                             id="domain"
                             name="spec"
@@ -262,20 +271,16 @@ function EditProfile() {
                             onChange={(e) => setSpec(e.target.value)}
                           >
                             <option value="select" selected="selected">
-                              --select your service--
+                              ----------- select product category ------------
                             </option>
-                            <option value="ACservice">
-                              AC Service and Repair
-                            </option>
-                            <option value="painter">Painter</option>
-                            <option value="electrician">Electrician</option>
-                            <option value="plumber">Plumber</option>
-                            <option value="carpenter">Carpenter</option>
-                            <option value="pestcontrol">Pest Control</option>
-                            <option value="webdev">Web Developer</option>
-                            <option value="appdev">App Developer</option>
+                            {
+                              categories && categories.map((category, idx) => (
+                                <option value={category.name} key={idx}>
+                                  { category.name }
+                                </option>
+                              ))
+                            }
                           </select>
-                        </div>
                         <div>
                           <input
                             type="number"

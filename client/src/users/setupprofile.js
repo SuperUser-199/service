@@ -22,7 +22,7 @@ function Setupprofile() {
   } = useSelector((state) => state.user);
 
   const address = user.address ;
-   console.log(user.address);
+  //  console.log(user.address);
   const professional =  user.professional;
   // console.log(user.professional);
   const {error : CategoryError, loading : CategoryLoading, categories} = useSelector(state => state.newCategory);
