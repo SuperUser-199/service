@@ -18,11 +18,10 @@ const orderSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        required: [true, 'Please provide the service status']
     },
     paymentMode: {
         type: String,
-        required: [true, 'Please privide the payment mode']
+        required: [true, 'Please provide the payment mode']
     },
     tax: {
         type: Number,
@@ -33,8 +32,7 @@ const orderSchema = new mongoose.Schema({
             type: String
         },
         value: {
-            type: Number,
-            required: true
+            type: Number
         }
     },
     totalCost: {

@@ -15,10 +15,12 @@ app.use(fileUpload());
 const user = require('./routes/userRoute');
 const service = require('./routes/serviceRoutes');
 const cart = require('./routes/cartRoutes');
+const order = require('./routes/orderRoutes');
 
 app.use('/api/v1/user', user);
 app.use('/api/v1/service', service);
 app.use('/api/v1/cart', cart);
+app.use('/api/v1/order', order);
 
 app.use(errorMiddlerware);
 
