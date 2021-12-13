@@ -69,6 +69,15 @@ const professionalSchema = new mongoose.Schema({
       },
     },
   ],
+  orders: [
+    {
+      order: {
+        type: mongoose.Schema.ObjectId,
+        ref: "order",
+        required: true
+      }
+    }
+  ]
 });
 
 const userSchema = new mongoose.Schema({

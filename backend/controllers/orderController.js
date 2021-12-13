@@ -13,9 +13,14 @@ const placeNewOrder = AsyncErrorHandler(async (req, res, next) => {
         paymentMode
     });
 
+    const profUser = await User.findById(professional);
+    profUser.professional.orders.push({order: order._id.toString()});
+    await profUser.save({ validateBeforeSave: false });
+
     res.status(201).json({
         success: true,
         order,
+        profUser
     });
 });
 
