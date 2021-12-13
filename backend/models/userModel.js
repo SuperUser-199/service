@@ -53,11 +53,6 @@ const professionalSchema = new mongoose.Schema({
         ref: "user",
         required: true,
       },
-      name: {
-        type: String,
-        trim: true,
-        required: true,
-      },
       rating: {
         type: Number,
         required: true,

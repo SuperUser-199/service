@@ -285,6 +285,26 @@ const getAllProfessionalsByCategory = AsyncErrorHandler(async (req, res, next) =
     });
 })
 
+// add a review for professional
+const addReview = AsyncErrorHandler(async (req, res, next) => {
+    const { id: professionalId } = req.params;
+    const { rating, comment } = req.body;
+
+    const user = await User.findById(professionalId);
+    user.professional.reviews.push({
+        user: req.user.id,
+        rating,
+        comment
+    });
+
+    await user.save({ validateBeforeSave: false });
+
+    res.status(200).json({
+        status: true,
+        professional: user
+    });
+})
+
 module.exports = {
     registerUser,
     logInUser,
@@ -297,5 +317,6 @@ module.exports = {
     setupProfile,
     getAllProfessionals,
     getAllProfessionalsByCategory,
-    getProfessionalById
+    getProfessionalById,
+    addReview
 }
