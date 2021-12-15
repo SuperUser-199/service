@@ -40,7 +40,7 @@ function App() {
       <Routes>
       <Route exact path="/updateorder" element={<ProtectedRoute component={UpdateOrder}/>}/>
       
-      <Route exact path="/confirmorder" element={<ProtectedRoute component={ConfirmOrder}/>}/>
+      <Route exact path="/confirmorder" element={<ProfessionalRoute component={ConfirmOrder}/>}/>
 
       <Route exact path="/orderplaced" element={<ProtectedRoute component={OrderPlaced}/>}/>
  
@@ -98,7 +98,7 @@ function App() {
         />
         <Route
           exact
-          path="/orderdetails"
+          path="/orderdetails/:id"
           element={<ProtectedRoute component={Orderdetails} />}
         />
         <Route

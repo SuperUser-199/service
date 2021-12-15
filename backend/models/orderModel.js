@@ -24,10 +24,6 @@ const orderSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Please provide the payment mode']
     },
-    tax: {
-        type: Number,
-        default: 0
-    },
     addCost: {
         description: {
             type: String
