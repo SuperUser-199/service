@@ -1,6 +1,7 @@
 const Cart = require('../models/cartModel');
 const Service = require('../models/service/serviceModel');
 const AsyncErrorHandler = require('../middlewares/asyncErrorHandler');
+const ErrorHandler = require('../utils/errorHandler');
 
 // adding a service to cart
 const addServiceToCart = AsyncErrorHandler(async (req, res, next) => {
@@ -36,6 +37,9 @@ const addServiceToCart = AsyncErrorHandler(async (req, res, next) => {
 // get all the services in the cart of a user
 const getServices = AsyncErrorHandler(async (req, res, next) => {
     const cartInfo = await Cart.findOne({ user: req.user.id });
+    if (!cartInfo) {
+        return res.status(200).json({success: true, result: []});
+    }
     const result = [];
     for (const item of cartInfo.services) {
         const service = await Service.findById(item.serviceId);

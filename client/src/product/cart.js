@@ -84,7 +84,7 @@ function Cart() {
             <br />
             <div className="for-checkout">
               <table className="table">
-                <thead class="thead-light">
+                <thead className="thead-light">
                   <tr>
                     <th scope="col">Price</th>
                     <th scope="col">Total Price</th>
@@ -98,7 +98,7 @@ function Cart() {
                   <tr>
                     <th></th>
                     <th>
-                      <button id="cart-btn" class="btn btn-outline-info">
+                      <button id="cart-btn" className="btn btn-outline-info">
                         Checkout
                       </button>
                     </th>
