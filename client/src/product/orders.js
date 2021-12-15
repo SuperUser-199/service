@@ -32,7 +32,7 @@ function Orders() {
                     Track Order
                   </button>
                 </a>{" "}
-                <a href="/updateorder">
+                <a href={`/updateorder/${val.order._id}`}>
                   <button id="order-btn" className="btn btn-light">
                     Update Order
                   </button>

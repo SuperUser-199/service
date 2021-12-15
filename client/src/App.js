@@ -38,7 +38,7 @@ function App() {
     <Router>
        
       <Routes>
-      <Route exact path="/updateorder" element={<ProtectedRoute component={UpdateOrder}/>}/>
+      <Route exact path="/updateorder/:id" element={<ProtectedRoute component={UpdateOrder}/>}/>
       
       <Route exact path="/confirmorder" element={<ProfessionalRoute component={ConfirmOrder}/>}/>
 

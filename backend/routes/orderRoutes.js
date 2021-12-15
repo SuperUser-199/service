@@ -5,6 +5,6 @@ const { placeNewOrder, updateOrderStatus } = require('../controllers/orderContro
 
 
 router.route('/new').post(isAuthenticatedUser, placeNewOrder);
-router.route('/status/:id').post(isAuthenticatedUser, isAuthorizedRole("professional", "admin"), updateOrderStatus);
+router.route('/status/:id').put(isAuthenticatedUser, isAuthorizedRole("professional", "admin"), updateOrderStatus);
 
 module.exports = router;

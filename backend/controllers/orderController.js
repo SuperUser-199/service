@@ -32,7 +32,12 @@ const updateOrderStatus = AsyncErrorHandler(async (req, res, next) => {
     if (!order) {
         return next(new ErrorHandler('Error: Order doesn\'t exist', 404));
     }
-    order.status = req.body.status;
+    const { status, description, value } = req.body;
+    order.status = status;
+    order.addCost = {
+        description,
+        value
+    };
     await order.save({ new: true, validateBeforeSave: false });
 
     res.status(200).json({
