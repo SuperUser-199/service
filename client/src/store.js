@@ -5,7 +5,7 @@ import { allProfsReducer, forgotPasswordReducer, setupprofileReducer, updateProf
 import { newServiceReducer,newCategoryReducer } from './reducers/serviceReducer';
 import { addServiceToCartReducer, getServicesReducer } from './reducers/cartReducer';
 import { getAllProfsOfACategoryReducer, getAProfessionalReducer } from './reducers/profReducer';
-import { placeOrderReducer } from './reducers/orderReducer';
+import { getOrderDetailsReducer, placeOrderReducer } from './reducers/orderReducer';
 
 const reducer = combineReducers({
     user: userReducer,
@@ -19,7 +19,8 @@ const reducer = combineReducers({
     servicesInCart: getServicesReducer,
     getProfsByCategory: getAllProfsOfACategoryReducer,
     getAProfessional: getAProfessionalReducer,
-    newOrder: placeOrderReducer
+    newOrder: placeOrderReducer,
+    getOrders: getOrderDetailsReducer
 });
 
 let initialState = {};

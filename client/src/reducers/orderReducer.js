@@ -1,4 +1,4 @@
-const { PLACE_SERVICE_ORDER_REQUEST, PLACE_SERVICE_ORDER_SUCCESS, PLACE_SERVICE_ORDER_FAIL, CLEAR_ERRORS, UPDATE_ORDER_REQUEST, UPDATE_ORDER_SUCCESS, UPDATE_ORDER_FAIL } = require("../constants/orderConstants");
+const { PLACE_SERVICE_ORDER_REQUEST, PLACE_SERVICE_ORDER_SUCCESS, PLACE_SERVICE_ORDER_FAIL, CLEAR_ERRORS, UPDATE_ORDER_REQUEST, UPDATE_ORDER_SUCCESS, UPDATE_ORDER_FAIL, GET_ORDER_REQUEST, GET_ORDER_SUCCESS, GET_ORDER_FAIL } = require("../constants/orderConstants");
 
 export const placeOrderReducer = (state = {order: {}}, action) => {
     switch (action.type) {
@@ -19,6 +19,38 @@ export const placeOrderReducer = (state = {order: {}}, action) => {
         
         case PLACE_SERVICE_ORDER_FAIL:
         case UPDATE_ORDER_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload.error
+            }
+        
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
+            }
+        default:
+            return state;
+    }
+}
+
+export const getOrderDetailsReducer = (state = {orders: []}, action) => {
+    switch (action.type) {
+        case GET_ORDER_REQUEST:
+            return {
+                ...state,
+                loading: true
+            };
+        
+        case GET_ORDER_SUCCESS:
+            return {
+                loading: false,
+                success: action.payload.success,
+                orders: action.payload.orders
+            }
+        
+        case GET_ORDER_FAIL:
             return {
                 ...state,
                 loading: false,
