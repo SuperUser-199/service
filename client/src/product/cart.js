@@ -68,7 +68,7 @@ function Cart() {
                           </button>
                         </td>
                         <td>
-                          <a href={`/selectprofessional/${service.category}`}>
+                          <a href={`/selectprofessional?category=${service.category}&serviceId=${service.id.toString()}`}>
                           <button id="cart-btn">
                             Select
                           </button>

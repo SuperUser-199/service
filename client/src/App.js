@@ -41,7 +41,7 @@ function App() {
 
       <Route exact path="/orderplaced" element={<ProtectedRoute component={OrderPlaced}/>}/>
  
-      <Route exact path="/selectprofessional/:category" element={<ProtectedRoute component={checout1}/>}/>
+      <Route exact path="/selectprofessional" element={<ProtectedRoute component={checout1}/>}/>
 
       <Route exact path="/addcategory" element={<AdminRoute component={AddCategory}/>}/>
 
