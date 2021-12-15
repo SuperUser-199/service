@@ -1,165 +1,182 @@
+.card {
+    background: #ddd3;
+    height: auto;
+    vertical-align: middle;
+    font-family: Muli;
+    font-size: 18px;
+    overflow:hidden;
+}
 
-  
-  .clearfix:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-  
-  a {
-    color: #0087C3;
-    text-decoration: none;
-  }
-  
-  .main-orderdetail{
-    margin-left: 18%;
-    margin-right:18%;
-  }
-  
-  
-  
-  #logo {
-    float: left;
-    margin-top: 8px;
-  }
-  
-  #logo img {
-    height: 70px;
-  }
-  
-  #company {
-    float: right;
-    text-align: right;
-  }
-  
-  
-  #details {
-    margin-bottom: 50px;
-  }
-  
-  #client {
-    padding-left: 6px;
-    border-left: 6px solid #1e4455;
-    float: left;
-  }
-  
-  #client .to {
-    color: #777777;
-  }
-  
-  h2.name {
-    font-size: 1.4em;
-    font-weight: normal;
-    margin: 0;
-  }
-  
-  #invoice {
-    float: right;
-    text-align: right;
-  }
-  
-  #invoice h1 {
-    color: #0087C3;
-    font-size: 2.4em;
-    line-height: 1em;
-    font-weight: normal;
-    margin: 0  0 10px 0;
-  }
-  
-  #invoice .date {
-    font-size: 1.1em;
-    color: #777777;
-  }
-  
-  .detail-order {
+.card {
     width: 100%;
-    margin-left: 0;
-    border-collapse: collapse;
-    border-spacing: 0;
-    margin-bottom: 20px;
-  }
-  
-  table th,
-  table td {
-    padding: 20px;
-    background: #EEEEEE;
-    text-align: center;
-    border-bottom: 1px solid #FFFFFF;
-  }
-  
-  table th {
-    white-space: nowrap;        
-    font-weight: normal;
-  }
-  
-  table td {
-    text-align: right;
-  }
-  
-  table td h3{
-  
-    font-size: 1.2em;
-    font-weight: normal;
-    margin: 0 0 0.2em 0;
-  }
-  
-  table .no {
-    color: #FFFFFF;
-    font-size: 1.6em;
-    background: #767c72;
-  }
-  
-  table .desc {
-    text-align: left;
-  }
-  
-  table .unit {
-    background: #DDDDDD;
-  }
-  
-  
-  table .total {
-    background: #767c72;
-    color: #FFFFFF;
-  }
-  
-  table td.unit,
-  table td.qty,
-  table td.total {
-    font-size: 1.2em;
-  }
-  
-  table tbody tr:last-child td {
-    border: none;
-  }
-  
-  table tfoot td {
-    padding: 10px 20px;
-    background: #FFFFFF;
-    border-bottom: none;
-    font-size: 1.2em;
-    white-space: nowrap; 
-    border-top: 1px solid #AAAAAA; 
-  }
-  
-  table tfoot tr:first-child td {
-    border-top: none; 
-  }
-  
-  table tfoot tr:last-child td {
-    color: #57B223;
-    font-size: 1.4em;
-    border-top: 1px solid #57B223; 
-  
-  }
-  
-  table tfoot tr td:first-child {
-    border: none;
-  }
-  
-  #thanks{
-    font-size: 2em;
-    margin-bottom: 50px;
-  }
-  
-  
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-top: 3px solid #155724;
+    border-bottom: 3px solid #155724;
+    border-left: none;
+    border-right: none;
+    overflow:hidden;
+
+}
+
+@media(max-width:768px) {
+    .card {
+        width: 100%
+    }
+}
+
+.title {
+    color: #155724;
+    font-weight: 600;
+    margin-bottom: 2vh;
+    padding: 0 8%;
+    font-size: 18
+}
+
+#details {
+    font-weight: 400
+}
+
+.info {
+    padding: 5% 8%
+}
+
+.info .col-5 {
+    padding: 0
+}
+
+#heading {
+    color: grey;
+    line-height: 6vh
+}
+
+.pricing {
+    background-color: #ddd3;
+    padding: 2vh 8%;
+    font-weight: 400;
+    line-height: 2.5
+}
+
+.pricing .col-3 {
+    padding: 0
+}
+
+.total {
+    padding: 2vh 8%;
+    color: #155724;
+    font-weight: bold
+}
+
+.total .col-3 {
+    padding: 0
+}
+
+
+
+
+#progressbar {
+    margin-bottom: 3vh;
+    overflow: hidden;
+    color: #155724;
+    padding-left: 0px;
+    margin-top: 3vh
+}
+
+#progressbar li {
+    list-style-type: none;
+    font-size: x-small;
+    width: 25%;
+    float: left;
+    position: relative;
+    font-weight: 400;
+    color: rgb(160, 159, 159)
+}
+
+#progressbar #step1:before {
+    content: "";
+    color: #155724;
+    width: 5px;
+    height: 5px;
+    margin-left: 0px !important
+}
+
+#progressbar #step2:before {
+    content: "";
+    color: #fff;
+    width: 5px;
+    height: 5px;
+    margin-left: 32%
+}
+
+#progressbar #step3:before {
+    content: "";
+    color: #fff;
+    width: 5px;
+    height: 5px;
+    margin-right: 32%
+}
+
+#progressbar #step4:before {
+    content: "";
+    color: #fff;
+    width: 5px;
+    height: 5px;
+    margin-right: 0px !important
+}
+
+#progressbar li:before {
+    line-height: 29px;
+    display: block;
+    font-size: 12px;
+    background: #ddd;
+    border-radius: 50%;
+    margin: auto;
+    z-index: -1;
+    margin-bottom: 1vh
+}
+
+#progressbar li:after {
+    content: '';
+    height: 2px;
+    background: #ddd;
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    margin-bottom: 2vh;
+    top: 1px;
+    z-index: 1
+}
+
+.progress-track {
+    padding: 0 8%
+}
+
+#progressbar li:nth-child(2):after {
+    margin-right: auto
+}
+
+#progressbar li:nth-child(1):after {
+    margin: auto
+}
+
+#progressbar li:nth-child(3):after {
+    float: left;
+    width: 68%
+}
+
+#progressbar li:nth-child(4):after {
+    margin-left: auto;
+    width: 132%
+}
+
+#progressbar li.active {
+    color: black
+}
+
+#progressbar li.active:before,
+#progressbar li.active:after {
+    background: #155724
+}
+
+#margin-dedo{
+    margin: 5%;
+}

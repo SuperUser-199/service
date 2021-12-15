@@ -1,78 +1,49 @@
 import React from "react";
 import './orderdetail.css';
-import logo from "../logo.svg";
+import Header from "../components/header";
+import MetaData from "../components/layout/MetaData";
 
 function Orderdetails(){
     return(
         <>       
-          <div className="main-orderdetail">
-            <header className="clearfix">
-            <div id="logo">
-                <img src={logo}   alt="..."/> 
-            </div>
-            <div id="company">
-                <h1 className="name">Service Fare</h1>
-                <div>J.C. Bose University of Science & Technology , YMCA , Faridabad</div>
-                <div>8888888888</div>
-                <div><a href="mailto:company.email">servicefare@gmail.com</a></div>
-            </div>
-            
-            </header>
+         <MetaData title={"Detailed Order"} />
+         <Header />
+         <div id="margin-dedo">
+         <div class="card">
+    <div class="title">Service Reciept</div>
+    <div class="info">
+        <div class="row">
+            <div class="col-7"> <span id="heading">Date</span><br /> <span id="details">10 October 2018</span> </div>
+            <div class="col-5 pull-right"> <span id="heading">Order Id</span><br /> <span id="details">012j1gvs356c</span> </div>
+        </div>
+    </div>
+    <div class="pricing">
+        <div class="row">
+            <div class="col-9"> <span id="name">Service Name</span> </div>
+            <div class="col-3"> <span id="price">&#8377;299</span> </div>
+        </div>
+      
+    </div>
+    <div class="total">
+        <div class="row">
+            <div class="col-9"></div>
+            <div class="col-3"><big>&#8377;299</big></div>
+        </div>
+    </div>
+    <div class="tracking">
+        <div class="title">Tracking Order</div>
+    </div>
+    <div class="progress-track">
+        <ul id="progressbar">
+            <li class="step0 active " id="step1">Ordered</li>
+            <li class="step0 active text-center" id="step2">Shipped</li>
+            <li class="step0 active text-right" id="step3">On the way</li>
+            <li class="step0 text-right" id="step4">Delivered</li>
+        </ul>
+    </div>
     
-      <div id="details" className="clearfix">
-        <div id="client">
-          <div className="to">INVOICE TO:</div>
-          <h2 className="name">customer</h2>
-          <div className="address">billing_address</div>
-          <div className="email"><a href="mailto:customer_email">customer_email</a></div>
-        </div>
-        <div id="invoice">
-          <h1>#invoice_id</h1>
-          <div className="date">Date of Invoice: date</div>
-         
-        </div>
-      </div>
-      <table className="detail-order" border="0" cellspacing="0" cellpadding="0">
-        <thead>
-          <tr>
-            <th className="no">#</th>
-            <th className="desc"></th>
-            <th className="unit">RATE</th>
-            <th className="qty">QUANTITY</th>
-            <th className="total">TOTAL</th>
-          </tr>
-        </thead>
-        <tbody>
-			
-          <tr>
-            <td className="no">Sr No.</td>
-            <td className="desc"></td>
-            <td className="unit">item.rate</td>
-            <td className="qty">item.quantity</td>
-            <td className="total">item.amount</td>
-		      </tr>
-		  
-        </tbody>
-        <tfoot>
-          <tr>
-            <td colspan="2"></td>
-            <td colspan="2">SUBTOTAL</td>
-            <td>invoice_total</td>
-          </tr>
-          <tr>
-            <td colspan="2"></td>
-            <td colspan="2">TAX 0%</td>
-            <td>invoice_total</td>
-          </tr>
-          <tr>
-            <td colspan="2"></td>
-            <td colspan="2">GRAND TOTAL</td>
-            <td>invoice_total</td>
-          </tr>
-        </tfoot>
-      </table>
-      <div id="thanks">Thank you!</div>
-      </div>
+</div>
+         </div>
         </>
     )
 }

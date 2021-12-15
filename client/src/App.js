@@ -28,6 +28,7 @@ import AdminRoute from "./components/Route/AdminRoute";
 import checout1  from "./product/checkout1";
 import OrderPlaced from "./product/orderplaced";
 import ConfirmOrder from "./product/confirmorder";
+import UpdateOrder from "./product/updateorder";
 function App() {
   useEffect(() => {
     store.dispatch(loadUser());
@@ -37,6 +38,8 @@ function App() {
     <Router>
        
       <Routes>
+      <Route exact path="/updateorder" element={<ProtectedRoute component={UpdateOrder}/>}/>
+      
       <Route exact path="/confirmorder" element={<ProtectedRoute component={ConfirmOrder}/>}/>
 
       <Route exact path="/orderplaced" element={<ProtectedRoute component={OrderPlaced}/>}/>

@@ -1,32 +1,21 @@
 import React from 'react'
 import Header from "../components/header"
-import './order.css'
+import './order.css';
+import MetaData from "../components/layout/MetaData";
+
 function Orders() {
     return (
         <>
+        <MetaData title={"Orders"} />
         <Header />
-        <div className="order-main">
-            <table className="order-table">
-                <thead>
-                    <tr>
-                        <th className="order-th">Order ID</th>
-                        <th className="order-th">Service Name</th>
-                        <th className="order-th">Status</th>
-                        <th className="order-th">Total Amount</th>
-                        <th className="order-th">Time</th>
-                        <th className="order-th">Details</th>
-                        
-                    </tr>
-                </thead>
-                <tbody>
-                   <th className="order-th">1</th>
-                   <th className="order-th">AC Repairing</th>
-                   <th className="order-th">Delivered</th>
-                   <th className="order-th">400</th>
-                   <th className="order-th">07:00pm</th>
-                   <th className="order-th"><a href="/orderdetails"><button className="view-button">View</button></a></th>
-                </tbody>
-            </table>
+        <div >
+            <div class="alert alert-success" role="alert">
+                <h4 class="alert-heading"><span id="left-krdo">Order Id:</span> <span id="right-krdo">15-12-2021</span></h4><br/>
+                <p><span id="left-krdo">Service Name </span><span  id="right-krdo">Total Price</span></p><br/>
+                <hr />
+                <p class="mb-0"><a href="/orderdetails"><button  id="order-btn" class="btn btn-light">Track Order</button></a> <a href="/updateorder"><button  id="order-btn" class="btn btn-light">Update Order</button></a></p>
+            </div>
+        
         </div>
         </>
     )
