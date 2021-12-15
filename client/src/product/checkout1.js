@@ -9,6 +9,7 @@ import { clearErrors } from "../actions/userActions";
 import Loader from "../components/layout/Loader/Loader";
 import { getAllProfsByCategory, getAProf } from "../actions/profActions";
 import { useLocation } from "react-router-dom";
+import { getServiceDetails } from "../actions/serviceActions";
 
 function Checout1() {
   const alert = useAlert();
@@ -29,6 +30,10 @@ function Checout1() {
     dispatch(getAProf(id));
     navigate(`/viewprofile/${id}`);
   };
+  const handlerSelectMe = (profId) => {
+    dispatch(getServiceDetails(serviceId));
+    navigate(`/confirmorder?serviceId=${serviceId}&profId=${profId}`)
+  }
   useEffect(() => {
     dispatch(getAllProfsByCategory(category));
     if (error) {
@@ -90,7 +95,7 @@ function Checout1() {
                         </div>
                         <br />
                         <div>
-                          <button className="btn btn-primary">Select Me</button>
+                          <button className="btn btn-primary" onClick={() => handlerSelectMe(prof._id)}>Select Me</button>
                         </div>
                       </div>
                     </div>

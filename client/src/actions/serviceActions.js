@@ -13,6 +13,9 @@ import {
   GET_ALL_SERVICES_REQUEST,
   GET_ALL_SERVICES_SUCCESS,
   GET_ALL_SERVICES_FAIL,
+  GET_A_SERVICE_DETAIL_REQUEST,
+  GET_A_SERVICE_DETAIL_SUCCESS,
+  GET_A_SERVICE_DETAIL_FAIL,
 } from "../constants/serviceConstants";
 
 // Create service
@@ -98,6 +101,24 @@ export const getAllServices = (name) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: GET_ALL_SERVICES_FAIL,
+      payload: err.response.data.message,
+    });
+  }
+};
+
+// Get a services details
+export const getServiceDetails = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: GET_A_SERVICE_DETAIL_REQUEST });
+    
+    const { data } = await axios.get(`/api/v1/service/details/${id}`);
+    dispatch({
+      type: GET_A_SERVICE_DETAIL_SUCCESS,
+      payload: data,
+    });
+  } catch (err) {
+    dispatch({
+      type: GET_A_SERVICE_DETAIL_FAIL,
       payload: err.response.data.message,
     });
   }

@@ -59,11 +59,22 @@ const getAllServices = AsyncErrorHandler(async (req, res, next) => {
         success: true,
         services
     });
+});
+
+// get a service details
+const getServiceDetails = AsyncErrorHandler(async (req, res, next) => {
+    const { id } = req.params;
+    const service = await Service.findById(id);
+    res.status(200).json({
+        success: true,
+        service
+    });
 })
 
 module.exports = {
     createService,
     createCategory,
     getCategories,
-    getAllServices
+    getAllServices,
+    getServiceDetails
 }
