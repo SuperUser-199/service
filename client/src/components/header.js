@@ -124,6 +124,12 @@ function Header() {
           isAuthenticated   && <Link className="nav-link" to="/orderplaced" onClick={handleClick}>Order Placed</Link>
         } 
             </li>
+            <li className="nav-item">
+            {
+          isAuthenticated   && <Link className="nav-link" to="/confirmorder" onClick={handleClick}>Confirm Order</Link>
+        } 
+            </li>
+
             {isAuthenticated ?(<li></li>):(
             <li className="nav-item dropdown" style={transForm}>
               <Link
