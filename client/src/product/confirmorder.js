@@ -36,7 +36,7 @@ function ConfirmOrder() {
           paymentMode
       }
       dispatch(placeOrder(data));
-      navigate('/');
+      navigate('/orderplaced');
   }
 
   useEffect(() => {
@@ -100,7 +100,7 @@ function ConfirmOrder() {
                       Confirm Order
                     </button>
                   <a href="/">
-                    <button id="order-btn" class="btn btn-primary">
+                    <button id="order-btn" class="btn btn-primary" onClick={() => navigate('/cart')}>
                       {" "}
                       Cancel Order
                     </button>
