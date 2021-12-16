@@ -45,13 +45,13 @@ function ProfessionalOrders() {
                   <br />
                   
                   <p id="margintop-dedo">
-                    <span id="left-krdo">User Name</span>
-                    <span id="right-krdo">Order Status: </span>
+                    <span id="left-krdo">Username: {item.order.user.name}</span>
+                    <span id="right-krdo">Order Status: {item.order.status}</span>
                   </p>
                   <br />
                   <p id="margintop-dedo"> 
-                    <span id="left-krdo">Address</span>
-                    <span id="right-krdo">Mobile Number</span>
+                    <span id="left-krdo">{`${item.order.user.address.city}, ${item.order.user.address.district}, ${item.order.user.address.state}`}</span>
+                    <span id="right-krdo">Mobile: {item.order.user.phoneno}</span>
                   </p>
                   <br/>
                  

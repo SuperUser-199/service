@@ -38,6 +38,8 @@ const logInUser = AsyncErrorHandler(async (req, res, next) => {
     const user = await User.findOne({email}).select('+password');
     const extra = await user.populate({ path: 'professional.orders.order' });
     const info = await extra.populate({ path: 'professional.orders.order.service', select: 'name' })
+    const result = await info.populate({ path: 'professional.orders.order.user', select: 'name address phoneno' });
+
     if (!user) {
         return next(new ErrorHandler('Invalid email or password', 400));
     }
@@ -48,7 +50,7 @@ const logInUser = AsyncErrorHandler(async (req, res, next) => {
         return next(new ErrorHandler('Invalid email or password', 403));
     }
 
-    sendToken(info, 200, res);
+    sendToken(result, 200, res);
 })
 
 // logout user
@@ -133,9 +135,11 @@ const getUserDetails = AsyncErrorHandler(async (req, res, next) => {
     const user = await User.findById(req.user.id);
     const extra = await user.populate({ path: 'professional.orders.order' });
     const info = await extra.populate({ path: 'professional.orders.order.service', select: 'name' })
+    const result = await info.populate({ path: 'professional.orders.order.user', select: 'name address phoneno' });
+
     res.status(200).json({
         success: true,
-        user: info
+        user: result
     });
 })
 
