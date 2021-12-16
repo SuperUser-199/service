@@ -7,11 +7,13 @@ const ErrorHandler = require('../utils/errorHandler');
 // placing a new order
 const placeNewOrder = AsyncErrorHandler(async (req, res, next) => {
     const { professional, service, paymentMode } = req.body;
+    const serviceInfo = await Service.findById(service);
     const order = await Order.create({
         user: req.user.id,
         professional,
         service,
-        paymentMode
+        paymentMode,
+        totalCost: serviceInfo.price
     });
 
     const profUser = await User.findById(professional);
@@ -38,6 +40,7 @@ const updateOrderStatus = AsyncErrorHandler(async (req, res, next) => {
         description,
         value
     };
+    order.totalCost += value;
     await order.save({ new: true, validateBeforeSave: false });
 
     res.status(200).json({
