@@ -5,13 +5,20 @@ import MetaData from "../components/layout/MetaData";
 import { useSelector, useDispatch } from "react-redux";
 import { useAlert } from "react-alert";
 import { clearErrors } from "../actions/userActions";
-import { getMyOrders } from "../actions/orderActions";
+import { getMyOrders, getOrderDetails } from "../actions/orderActions";
 import Loader from "../components/layout/Loader/Loader";
+import { useNavigate } from "react-router-dom";
 
 function Orders() {
   const alert = useAlert();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { error, loading, orders } = useSelector((state) => state.getOrders);
+
+  const handleTrackOrder = (id) => {
+    dispatch(getOrderDetails(id));
+    navigate(`/orderdetails/${id}`);
+  }
 
   useEffect(() => {
     dispatch(getMyOrders());
@@ -52,16 +59,9 @@ function Orders() {
                   <br />
                   <hr />
                   <p className="mb-0">
-                    <a href={`/orderdetails/${order.service._id}`}>
-                      <button id="order-btn" className="btn btn-light">
+                      <button id="order-btn" className="btn btn-light" onClick={() => handleTrackOrder(order._id)}>
                         Track Order
                       </button>
-                    </a>{" "}
-                    <a href={`/updateorder/${order._id}`}>
-                      <button id="order-btn" className="btn btn-light">
-                        Update Order
-                      </button>
-                    </a>
                   </p>
                 </div>
               ))}

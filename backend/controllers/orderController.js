@@ -56,8 +56,21 @@ const getMyOrders = AsyncErrorHandler(async (req, res, next) => {
     });
 })
 
+// get user orders
+const getOrderDetails = AsyncErrorHandler(async (req, res, next) => {
+    const { id } = req.params;
+    const orders = await Order.findById(id).populate({ path: 'service' });
+
+    res.status(200).json({
+        success: true,
+        orders
+    });
+})
+
+
 module.exports = {
     placeNewOrder,
     updateOrderStatus,
-    getMyOrders
+    getMyOrders,
+    getOrderDetails
 }

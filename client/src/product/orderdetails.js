@@ -1,76 +1,98 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./orderdetail.css";
 import Header from "../components/header";
 import MetaData from "../components/layout/MetaData";
-import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useAlert } from "react-alert";
+import { clearErrors } from "../actions/userActions";
+import Loader from "../components/layout/Loader/Loader";
 
 function Orderdetails() {
-    const { id } = useParams();
-    const { user } = useSelector(state => state.user);
-    const details = user.professional.orders.find(info => info.order.service._id.toString() === id);
+  const alert = useAlert();
+  const dispatch = useDispatch();
+  const {
+    error,
+    loading,
+    order: Order,
+  } = useSelector((state) => state.getAnOrder);
+
+  useEffect(() => {
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
+    }
+  }, [alert, error, dispatch]);
   return (
     <>
-      <MetaData title={"Detailed Order"} />
-      <Header />
-      <div id="margin-dedo">
-        <div className="card">
-          <div className="title">Service Reciept</div>
-          <div className="info">
-            <div className="row">
-              <div className="col-7">
-                {" "}
-                <span id="heading">Date</span>
-                <br /> <span id="details">{details.order.placedAt.toString().substr(0, 10)}</span>{" "}
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <MetaData title={"Detailed Order"} />
+          <Header />
+          <div id="margin-dedo">
+            <div className="card">
+              <div className="title">Service Reciept</div>
+              <div className="info">
+                <div className="row">
+                  <div className="col-7">
+                    {" "}
+                    <span id="heading">Date</span>
+                    <br />{" "}
+                    <span id="details">
+                      {Order.placedAt.toString().substr(0, 10)}
+                    </span>{" "}
+                  </div>
+                  <div className="col-5 pull-right">
+                    {" "}
+                    <span id="heading">Order Id</span>
+                    <br /> <span id="details">{Order._id}</span>{" "}
+                  </div>
+                </div>
               </div>
-              <div className="col-5 pull-right">
-                {" "}
-                <span id="heading">Order Id</span>
-                <br /> <span id="details">{details.order._id}</span>{" "}
+              <div className="pricing">
+                <div className="row">
+                  <div className="col-9">
+                    {" "}
+                    <span id="name">{Order.service.name}</span>{" "}
+                  </div>
+                  <div className="col-3">
+                    {" "}
+                    <span id="price">&#8377;{Order.totalCost}</span>{" "}
+                  </div>
+                </div>
+              </div>
+              <div className="total">
+                <div className="row">
+                  <div className="col-9"></div>
+                  <div className="col-3">
+                    <big>&#8377;{Order.totalCost}</big>
+                  </div>
+                </div>
+              </div>
+              <div className="tracking">
+                <div className="title">Tracking Order</div>
+              </div>
+              <div className="progress-track">
+                <ul id="progressbar">
+                  <li className="step0 active " id="step1">
+                    Ordered
+                  </li>
+                  <li className="step0 active text-center" id="step2">
+                    Shipped
+                  </li>
+                  <li className="step0 active text-right" id="step3">
+                    On the way
+                  </li>
+                  <li className="step0 text-right" id="step4">
+                    Delivered
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
-          <div className="pricing">
-            <div className="row">
-              <div className="col-9">
-                {" "}
-                <span id="name">{details.order.service.name}</span>{" "}
-              </div>
-              <div className="col-3">
-                {" "}
-                <span id="price">&#8377;{details.order.totalCost}</span>{" "}
-              </div>
-            </div>
-          </div>
-          <div className="total">
-            <div className="row">
-              <div className="col-9"></div>
-              <div className="col-3">
-                <big>&#8377;{details.order.totalCost}</big>
-              </div>
-            </div>
-          </div>
-          <div className="tracking">
-            <div className="title">Tracking Order</div>
-          </div>
-          <div className="progress-track">
-            <ul id="progressbar">
-              <li className="step0 active " id="step1">
-                Ordered
-              </li>
-              <li className="step0 active text-center" id="step2">
-                Shipped
-              </li>
-              <li className="step0 active text-right" id="step3">
-                On the way
-              </li>
-              <li className="step0 text-right" id="step4">
-                Delivered
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
+        </>
+      )}
     </>
   );
 }
