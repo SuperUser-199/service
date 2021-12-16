@@ -51,8 +51,7 @@ const updateOrderStatus = AsyncErrorHandler(async (req, res, next) => {
 
 // get user orders
 const getMyOrders = AsyncErrorHandler(async (req, res, next) => {
-    const orders = await Order.find({ user: req.user.id }).populate({ path: 'service' });
-
+    const orders = await Order.find({ user: req.user.id }).populate({ path: 'service' }).populate({ path: 'professional' });
     res.status(200).json({
         success: true,
         orders
