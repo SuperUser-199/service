@@ -39,7 +39,7 @@ function AllUsers() {
           <div>
             <div>
               <div>
-                <div>
+                <div id="margin-dedo">
                   <table id="table-alluser">
                     <thead id="table-head">
                       <tr>
@@ -93,8 +93,11 @@ function AllUsers() {
                                   View Profile
                                 </button>
                             </td>
+                            
                           </tr>
+
                         ))}
+                    
                     </tbody>
                   </table>
                 </div>
