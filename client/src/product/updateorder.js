@@ -56,16 +56,16 @@ function UpdateOrder() {
           <MetaData title={"Update Order"} />
           <Header />
           <div>
-            <div>
-              <div className="setup">
+            <div id="margin-dedo">
+              <div className="alert alert-success">
                 <h2 className="setup-head2">Update Order</h2>
                 <form onSubmit={handleSubmit}>
                   <div className="select-style">
                     <select id="status" name="status" required value={status} onChange={(e) => setStatus(e.target.value)}>
                       <option value="">Update Status</option>
                       <option value="Order Placed">Order Placed</option>
-                      <option value="Arriving">Arriving</option>
-                      <option value="Delivered">Delivered</option>
+                      <option value="Arriving">On the Way</option>
+                      <option value="Delivered">Completed</option>
                     </select>
                   </div>
                   <div>
@@ -92,14 +92,14 @@ function UpdateOrder() {
                     <button
                       type="submit"
                       id="order-btn"
-                      style={{ marginRight: "3px" }}
+                      class="btn btn-light"
                     >
                       Submit
                     </button>
                     <button
                       type="submit"
                       id="order-btn"
-                      style={{ marginLeft: "3px" }}
+                      class="btn btn-light"
                       onClick={() => navigate('/orders')}
                     >
                       Cancel

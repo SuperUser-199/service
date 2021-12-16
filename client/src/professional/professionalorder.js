@@ -21,7 +21,7 @@ function ProfessionalOrders() {
         <>
           <MetaData title={`All Orders`} />
           <Header />
-          <div>
+          <div className="order-cont">
             {orders &&
               orders.map((item) => (
                 <div
@@ -29,12 +29,12 @@ function ProfessionalOrders() {
                   role="alert"
                   key={item.order._id}
                 >
-                  <h4 className="alert-heading">
+                  <h5 className="alert-heading">
                     <span id="left-krdo">Order Id:{item.order._id}</span>{" "}
                     <span id="right-krdo">
                       {item.order.placedAt.toString().substr(0, 10)}
                     </span>
-                  </h4>
+                  </h5>
                   <br />
                   <p>
                     <span id="left-krdo">{item.order.service.name}</span>
@@ -43,17 +43,46 @@ function ProfessionalOrders() {
                     </span>
                   </p>
                   <br />
+                  
+                  <p id="margintop-dedo">
+                    <span id="left-krdo">User Name</span>
+                    <span id="right-krdo">Order Status: </span>
+                  </p>
+                  <br />
+                  <p id="margintop-dedo"> 
+                    <span id="left-krdo">Address</span>
+                    <span id="right-krdo">Mobile Number</span>
+                  </p>
+                  <br/>
+                 
+
                   <hr />
+                  <div>
+                    <p className="mb-0">
+                        <button id="order-btn" className="btn btn-light" onClick={() => handleTrackOrder(item.order._id)}>
+                          Approve
+                        </button> 
+
+                      <a href={`/updateorder/${item.order._id}`}>
+                        <button id="order-btn" className="btn btn-light">
+                          Cancel
+                        </button>
+                      </a>
+                    </p>
+                  </div>
+                  <div>
                   <p className="mb-0">
                       <button id="order-btn" className="btn btn-light" onClick={() => handleTrackOrder(item.order._id)}>
                         Track Order
-                      </button>
+                      </button> 
+
                     <a href={`/updateorder/${item.order._id}`}>
                       <button id="order-btn" className="btn btn-light">
-                        Update Order
+                        Update Order Status
                       </button>
                     </a>
                   </p>
+                  </div>
                 </div>
               ))}
           </div>

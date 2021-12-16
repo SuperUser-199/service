@@ -82,30 +82,7 @@ function Cart() {
             </div>
 
             <br />
-            <div className="for-checkout">
-              <table className="table">
-                <thead className="thead-light">
-                  <tr>
-                    <th scope="col">Price</th>
-                    <th scope="col">Total Price</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">total price(including tax)</th>
-                    <td>&#8377;{totalPrice}</td>
-                  </tr>
-                  <tr>
-                    <th></th>
-                    <th>
-                      <button id="cart-btn" className="btn btn-outline-info">
-                        Checkout
-                      </button>
-                    </th>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+            
           </div>
         </>
       )}

@@ -22,9 +22,9 @@ function Profile() {
       alert.error(error);
       dispatch(clearErrors());
     }
-    // if(user.role==="professional"){
-    //   navigate("/professionalprofile")
-    // }
+    if(user.role==="professional"){
+      navigate("/professionalprofile")
+    }
     if (!address) {
       navigate("/setupprofile");
     }

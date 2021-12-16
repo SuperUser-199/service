@@ -3,8 +3,9 @@ import skillsimg from "./skills.png";
 import Header from "../components/header"
 import './home.css';
 import userimg from './user-img.png';
+import chetan from './chetan.jpeg';
 import { useSelector} from "react-redux";
-
+import avinash from './avinash-1.png';
 
 export default function Home() {
 
@@ -111,7 +112,7 @@ export default function Home() {
           <div className="service-product">
           <div className="card" id="product-card" >
             <img
-              src={userimg}
+              src={avinash}
               className="card-img-top"
               alt="..."
             />
@@ -126,7 +127,7 @@ export default function Home() {
           </div>
           <div className="card" id="product-card" >
             <img
-              src={userimg}
+              src={chetan}
               className="card-img-top"
               alt="..."
             />

@@ -35,7 +35,7 @@ function Orders() {
         <>
           <MetaData title={`All Orders`} />
           <Header />
-          <div>
+          <div className="order-cont">
             {orders &&
               orders.map((order) => (
                 <div
@@ -43,20 +43,31 @@ function Orders() {
                   role="alert"
                   key={order._id}
                 >
-                  <h4 className="alert-heading">
+                  <h5 className="alert-heading">
                     <span id="left-krdo">Order Id:{order._id}</span>{" "}
                     <span id="right-krdo">
                       {order.placedAt.toString().substr(0, 10)}
                     </span>
-                  </h4>
+                  </h5>
                   <br />
-                  <p>
+                  <p id="margintop-dedo">
                     <span id="left-krdo">{order.service.name}</span>
                     <span id="right-krdo">
                       Total Price: &#8377; {order.totalCost}
                     </span>
                   </p>
                   <br />
+                  
+                  <p id="margintop-dedo">
+                    <span id="left-krdo">Professional Name</span>
+                    <span id="right-krdo">Order Status: </span>
+                  </p>
+                  <br />
+                  <p id="margintop-dedo"> 
+                    <span id="left-krdo">Address</span>
+                    <span id="right-krdo">Mobile Number</span>
+                  </p>
+                  <br/>
                   <hr />
                   <p className="mb-0">
                       <button id="order-btn" className="btn btn-light" onClick={() => handleTrackOrder(order._id)}>

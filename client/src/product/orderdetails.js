@@ -61,6 +61,16 @@ function Orderdetails() {
                     <span id="price">&#8377;{Order.totalCost}</span>{" "}
                   </div>
                 </div>
+                <div className="row">
+                  <div className="col-9">
+                    {" "}
+                    <span id="name">Additional Cost : Description</span>{" "}
+                  </div>
+                  <div className="col-3">
+                    {" "}
+                    <span id="price">&#8377;Price of Additional Cost</span>{" "}
+                  </div>
+                </div>
               </div>
               <div className="total">
                 <div className="row">
@@ -76,16 +86,16 @@ function Orderdetails() {
               <div className="progress-track">
                 <ul id="progressbar">
                   <li className="step0 active " id="step1">
-                    Ordered
+                    processing
                   </li>
                   <li className="step0 active text-center" id="step2">
-                    Shipped
+                    Order Placed
                   </li>
                   <li className="step0 active text-right" id="step3">
                     On the way
                   </li>
                   <li className="step0 text-right" id="step4">
-                    Delivered
+                    Completed
                   </li>
                 </ul>
               </div>

@@ -31,6 +31,7 @@ function Dashboard() {
         <>
           <Header />
           <div className="dashboard-main">
+            <h3 id="center-it" style={{"marginTop": "15px"}}>Select Category related to your Service</h3>
             <div className="service-cont">
               {categories &&
                 categories.map((category, idx) => (

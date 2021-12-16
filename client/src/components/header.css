@@ -45,3 +45,6 @@ margin-left: 15px;
 .tranform-ul a{
     text-decoration: none;
 }
+#navbarDropdown{
+    cursor: pointer;
+}

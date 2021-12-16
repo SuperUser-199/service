@@ -77,7 +77,7 @@ function AddService() {
         <>
           <MetaData title="Add Service" />
           <Header />
-          <div className="reg-body">
+          <div className="reg-body" id="cont-addservice"> 
             <div className="container-setup">
               <div className="logo">
                 <h3>Service Fare</h3>
@@ -124,8 +124,8 @@ function AddService() {
                             value={category}
                             onChange={(e) => setCategory(e.target.value)}
                           >
-                            <option value="select" selected="selected">
-                              ----------- select product category ------------
+                            <option value="select" >
+                              - select product category -
                             </option>
                             {
                               categories && categories.map((category, idx) => (

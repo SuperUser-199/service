@@ -112,12 +112,7 @@ function ProfessionalProfile() {
                 </div>
                 <div className="counter">
                     <div className="row">
-                        <div className="col-6 col-lg-3">
-                            <div className="count-data text-center">
-                                <h6 className="count h2" data-to="500" data-speed="500">500</h6>
-                                <p className="m-0px font-w-600">Happy Clients</p>
-                            </div>
-                        </div>
+                        
                         <div className="col-6 col-lg-3">
                             <div className="count-data text-center">
                                 <h6 className="count h2" data-to="150" data-speed="150">150</h6>
@@ -130,12 +125,7 @@ function ProfessionalProfile() {
                                 <p className="m-0px font-w-600">Rating</p>
                             </div>
                         </div>
-                        <div className="col-6 col-lg-3">
-                            <div className="count-data text-center">
-                                <h6 className="count h2" data-to="190" data-speed="190">190</h6>
-                                <p className="m-0px font-w-600">Telephonic Talk</p>
-                            </div>
-                        </div>
+                       
                     </div>
                   
                 </div>

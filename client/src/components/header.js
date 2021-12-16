@@ -6,19 +6,18 @@ import { useAlert } from "react-alert";
 import { logoutUser } from "../actions/userActions";
 import { getAllProfs } from "../actions/userActions";
 import { useNavigate } from "react-router";
-
 function Header() {
   const dispatch = useDispatch();
   const alert = useAlert();
   const navigate = useNavigate();
-
-  const { user, isAuthenticated } = useSelector((state) => state.user);
-  
-
   const handleClick = (e) => {
     dispatch(getAllProfs());
     navigate('/allusers');
   }
+  const { user, isAuthenticated } = useSelector((state) => state.user);
+  
+
+ 
   const handleLogout = () => {
     dispatch(logoutUser());
     alert.success("Logged out successfully");
@@ -29,17 +28,16 @@ function Header() {
       <ul id="tranform-ul">
         
         <li className="nav-item dropdown">
-              <Link
+              <span
                 className="nav-link dropdown-toggle"
-                to="#"
                 id="navbarDropdown"
-                role="button"
+               
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
               >
                <img className="user-avatar" src={user.avatar.url} alt="" />  {user.name}
-              </Link>
+              </span>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <Link className="dropdown-item" to="/dashboard">
                   Dashboard
@@ -55,6 +53,7 @@ function Header() {
                 <Link className="dropdown-item" to="/addcategory">
                  Add Category
                </Link>
+               <Link className="dropdown-item" to="/allusers" onClick={handleClick}>All Professional</Link>
                 </div>
                 
                 ):(
@@ -63,9 +62,11 @@ function Header() {
   }
                 
                 <Link className="dropdown-item" to="/orders">
-                  Orders
+                  My Orders
                 </Link>
-               
+                {
+                  user.role==="professional" &&<Link className="dropdown-item" to="/professionalorder">Professional Orders</Link>
+                }
                 <Link to="/" onClick={handleLogout}>
               
               <img
@@ -113,74 +114,31 @@ function Header() {
                 Home
               </Link>
             </li>
-            <li className="nav-item ">
-            {
-          isAuthenticated   && <Link className="nav-link" to="/allusers" onClick={handleClick}>All Professional</Link>
-        }
-            </li>
             
-            <li className="nav-item">
-            {
-          isAuthenticated   && <Link className="nav-link" to="/orderplaced" onClick={handleClick}>Order Placed</Link>
-        } 
-            </li>
-            <li className="nav-item">
-            {
-          isAuthenticated   && <Link className="nav-link" to="/confirmorder" onClick={handleClick}>Confirm Order</Link>
-        } 
-            </li>
-
-            {isAuthenticated ?(<li></li>):(
-            <li className="nav-item dropdown" style={transForm}>
-              <Link
-                className="nav-link dropdown-toggle"
-                to="/"
-                id="navbarDropdown"
-                role="button"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                Other Pages
-              </Link>
-              
-              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                
-                <Link className="dropdown-item" to="/setupprofile">
-                  Set Up Profile
-                </Link>
-                <Link className="dropdown-item" to="/forgotpassword">
-                  Forgot Password
-                </Link>
-                <Link className="dropdown-item" to="/service-menu">
-                  Detailed Service
-                </Link>
-                <Link className="dropdown-item" to="/proregister">
-                  Professional Registration
-                </Link>
-                <Link className="dropdown-item" to="/professionalprofile">
-                  Professional Profile
-                </Link>
-              </div>
-              
-            </li>
-            )}
+           
           </ul>
-            <Link className="nav-link" to="/cart">
+            {isAuthenticated &&
+              <Link className="nav-link" to="/cart">
             <img
               alt="..."
               className="cart"
               src="https://img.icons8.com/external-flatart-icons-solid-flatarticons/64/000000/external-cart-grocery-flatart-icons-solid-flatarticons.png"
             />
             Cart
-          </Link>
+          </Link>}
           <div id="ul-div">
             <ul id="tranform-ul" style={transForm}>
               {isAuthenticated ? (
                 userLink()
               ) : (
                 <li>
-                  <button
+                <button  id="order-btn" className="btn btn-outline-success my-2 my-sm-0"
+                >
+                <Link className="dropdown-item" to="/proregister">
+                  Register as Professional
+                </Link>
+                </button>
+                  <button id="order-btn" 
                     className="btn btn-outline-success my-2 my-sm-0"
                     type="submit"
                   >
