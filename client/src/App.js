@@ -39,9 +39,9 @@ function App() {
     <Router>
        
       <Routes>
-      <Route exact path="/professionalorder" element={<ProtectedRoute component={ProfessionalOrders}/>}/>
+      <Route exact path="/professionalorder" element={<ProfessionalRoute component={ProfessionalOrders}/>}/>
       
-      <Route exact path="/updateorder/:id" element={<ProtectedRoute component={UpdateOrder}/>}/>
+      <Route exact path="/updateorder/:id" element={<ProfessionalRoute component={UpdateOrder}/>}/>
       
       <Route exact path="/confirmorder" element={<ProtectedRoute component={ConfirmOrder}/>}/>
 
@@ -61,7 +61,7 @@ function App() {
         <Route
           exact
           path="/allusers"
-          element={<ProtectedRoute component={AllUsers} />}
+          element={<AdminRoute component={AllUsers} />}
         />
         <Route exact path="/signup" element={<Signup />} />
         <Route exact path="/proregister" element={<ProfRegister />} />
