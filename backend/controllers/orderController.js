@@ -40,7 +40,7 @@ const updateOrderStatus = AsyncErrorHandler(async (req, res, next) => {
         description,
         value
     };
-    order.totalCost += value;
+    order.totalCost = Number(order.totalCost) + Number(value);
     await order.save({ new: true, validateBeforeSave: false });
 
     res.status(200).json({
