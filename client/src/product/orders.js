@@ -59,13 +59,13 @@ function Orders() {
                   <br />
                   
                   <p id="margintop-dedo">
-                    <span id="left-krdo">Professional Name</span>
-                    <span id="right-krdo">Order Status: </span>
+                    <span id="left-krdo">Professional: {order.professional.name}</span>
+                    <span id="right-krdo">Order Status: {order.status}</span>
                   </p>
                   <br />
                   <p id="margintop-dedo"> 
-                    <span id="left-krdo">Address</span>
-                    <span id="right-krdo">Mobile Number</span>
+                    <span id="left-krdo">{`${order.professional.address.city}, ${order.professional.address.district}, ${order.professional.address.state}`}</span>
+                    <span id="right-krdo">Mobile No: {order.professional.phoneno}</span>
                   </p>
                   <br/>
                   <hr />
