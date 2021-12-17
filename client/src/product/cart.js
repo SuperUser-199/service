@@ -3,7 +3,7 @@ import "./cart.css";
 import Header from "../components/header";
 import { useSelector, useDispatch } from "react-redux";
 import { useAlert } from "react-alert";
-import { clearErrors, getServicesFromCart } from "../actions/cartActions";
+import { cancelOrder, clearErrors, getServicesFromCart } from "../actions/cartActions";
 import Loader from "../components/layout/Loader/Loader";
 
 function Cart() {
@@ -20,6 +20,11 @@ function Cart() {
   //   services.forEach((service) => {
   //     totalPrice += service.price;
   //   });
+  
+  const handleCancelOrder = (id) => {
+    dispatch(cancelOrder(id));
+    window.location.reload();
+  }
 
   useEffect(() => {
     dispatch(getServicesFromCart());
@@ -28,7 +33,7 @@ function Cart() {
       dispatch(clearErrors());
     }
     if (success) {
-      alert.success('Service removed successfully');
+      alert.success("Service removed successfully");
     }
   }, [error, alert, dispatch, success]);
   return (
@@ -51,8 +56,7 @@ function Cart() {
                   </tr>
                 </thead>
                 <tbody>
-                  
-                  {services && services.length>0?
+                  {services && services.length > 0 ? (
                     services.map((service, idx) => (
                       <tr key={service.id}>
                         <th scope="row">
@@ -69,31 +73,40 @@ function Cart() {
                           </button>
                         </td> */}
                         <td>
-                          <a href={`/selectprofessional?category=${service.category}&serviceId=${service.id.toString()}`}>
-                          <button id="order-btn" disabled={service.isOrderAccepted !== undefined}>
-                            {
-                              service.isOrderAccepted === true ? "Accepted" : service.isOrderAccepted === false ? "Request sent" : "Select Professional" 
-                            }
-                          </button>
-                          <br/>
-                          {
-                            service.isOrderAccepted === false && (<button className="btn btn-danger" id="order-btn">
-                            Cancel
-                          </button>)
-                          }
-                          </a>
+                          <a
+                            href={`/selectprofessional?category=${
+                              service.category
+                            }&serviceId=${service.id.toString()}`}
+                          >
+                            <button
+                              id="order-btn"
+                              disabled={service.isOrderAccepted !== undefined}
+                            >
+                              {service.isOrderAccepted === true
+                                ? "Accepted"
+                                : service.isOrderAccepted === false
+                                ? "Request sent"
+                                : "Select Professional"}
+                            </button>
+                            </a>
+                            <br />
+                            {service.isOrderAccepted === false && (
+                              <button className="btn btn-danger" id="order-btn" onClick={() => handleCancelOrder(service.id.toString())}>
+                                Cancel
+                              </button>
+                            )}
                         </td>
                         <td>&#8377;{service.price}</td>
                       </tr>
-                    )):<h3 id="center-it">
-                      Cart is Empty
-                      </h3>}
+                    ))
+                  ) : (
+                    <h3 id="center-it">Cart is Empty</h3>
+                  )}
                 </tbody>
               </table>
             </div>
 
             <br />
-            
           </div>
         </>
       )}

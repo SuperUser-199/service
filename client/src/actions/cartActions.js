@@ -11,6 +11,10 @@ import {
   GET_SERVICES_IN_CART_REQUEST,
   GET_SERVICES_IN_CART_SUCCESS
 } from "../constants/cartConstants";
+import {
+  ACCEPT_OR_REJECT_ORDER_FAIL,
+  ACCEPT_OR_REJECT_ORDER_REQUEST, ACCEPT_OR_REJECT_ORDER_SUCCESS
+} from "../constants/orderConstants";
 
 // add service to cart
 export const addServiceToCart = (id) => async (dispatch) => {
@@ -60,6 +64,16 @@ export const deleteServicesFromCart = (id) => async (dispatch) => {
     });
   }
 };
+
+export const cancelOrder = (id) => async (dispatch) => {
+  try {
+      dispatch({ type: ACCEPT_OR_REJECT_ORDER_REQUEST });
+      const { data: result } = await axios.put(`/api/v1/cart/cancel/${id}`);
+      dispatch({ type: ACCEPT_OR_REJECT_ORDER_SUCCESS, payload: result });
+  } catch (error) {
+      dispatch({ type: ACCEPT_OR_REJECT_ORDER_FAIL, payload: error.response.result.message });
+  }
+}
 
 // Clearing all errors
 export const clearErrors = () => async (dispatch) => {

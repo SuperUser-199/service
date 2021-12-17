@@ -1,6 +1,7 @@
 const Cart = require('../models/cartModel');
 const Service = require('../models/service/serviceModel');
 const Order = require('../models/orderModel');
+const User = require('../models/userModel');
 const AsyncErrorHandler = require('../middlewares/asyncErrorHandler');
 const ErrorHandler = require('../utils/errorHandler');
 
@@ -74,8 +75,33 @@ const deleteServiceFromCart = AsyncErrorHandler(async (req, res, next) => {
     });
 })
 
+// cancel a request sent to professional
+const cancelRequest = AsyncErrorHandler(async (req, res, next) => {
+    const { id: serviceId } = req.params;
+    console.log('Inside cancel order', serviceId, req.user.id);
+    const order = await Order.findOne({ service: serviceId, user: req.user.id });
+
+    await Order.findOneAndDelete({ service: serviceId, user: req.user.id });
+    
+    const profUser = await User.findById(order.professional);
+
+    let profOrders = profUser.professional.orders;
+    profOrders = profOrders.filter(item => {
+        console.log(item.order, order._id);
+        return item.order.toString() !== order._id.toString()
+    });
+
+    profUser.professional.orders = profOrders;
+    await profUser.save({ validateBeforeSave: false });
+
+    res.status(200).json({
+        success: true
+    })
+})
+
 module.exports = {
     addServiceToCart,
     getServices,
-    deleteServiceFromCart
+    deleteServiceFromCart,
+    cancelRequest
 }
