@@ -78,7 +78,6 @@ const deleteServiceFromCart = AsyncErrorHandler(async (req, res, next) => {
 // cancel a request sent to professional
 const cancelRequest = AsyncErrorHandler(async (req, res, next) => {
     const { id: serviceId } = req.params;
-    console.log('Inside cancel order', serviceId, req.user.id);
     const order = await Order.findOne({ service: serviceId, user: req.user.id });
 
     await Order.findOneAndDelete({ service: serviceId, user: req.user.id });
@@ -87,7 +86,6 @@ const cancelRequest = AsyncErrorHandler(async (req, res, next) => {
 
     let profOrders = profUser.professional.orders;
     profOrders = profOrders.filter(item => {
-        console.log(item.order, order._id);
         return item.order.toString() !== order._id.toString()
     });
 

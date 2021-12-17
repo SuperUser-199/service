@@ -23,6 +23,8 @@ const placeNewOrder = AsyncErrorHandler(async (req, res, next) => {
     const profUser = await User.findById(professional);
     profUser.professional.orders.push({order: order._id.toString()});
     await profUser.save({ validateBeforeSave: false });
+    
+    // `Hello ${profUser.name}👋,\nA new service has been requested for you. Please check your orders!\n@servicefair.official`,
 
     res.status(201).json({
         success: true,
