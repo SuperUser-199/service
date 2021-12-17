@@ -4,7 +4,7 @@ import "./professionalorder.css";
 import MetaData from "../components/layout/MetaData";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { acceptOrder, getOrderDetails } from "../actions/orderActions";
+import { acceptOrder, rejectOrder, getOrderDetails } from "../actions/orderActions";
 
 function ProfessionalOrders() {
   const dispatch = useDispatch();
@@ -20,6 +20,11 @@ function ProfessionalOrders() {
   const handleAcceptOrder = (id) => {
     const data = { accept: "true" };
     dispatch(acceptOrder(data, id));
+    window.location.reload();
+  };
+
+  const handleRejectOrder = (id) => {
+    dispatch(rejectOrder(id));
     window.location.reload();
   };
 
@@ -72,12 +77,13 @@ function ProfessionalOrders() {
                     >
                       Accept
                     </button>
-
-                    <a href={`/updateorder/${item.order._id}`}>
-                      <button id="order-btn" className="btn btn-light">
-                        Cancel
-                      </button>
-                    </a>
+                    <button
+                      id="order-btn"
+                      className="btn btn-light"
+                      onClick={() => handleRejectOrder(item.order._id)}
+                    >
+                      Reject
+                    </button>
                   </p>
                 </div>
               )}

@@ -59,7 +59,17 @@ export const acceptOrder = (data, id) => async (dispatch) => {
                 "Content-Type": "application/json"
             }
         };
-        const { data: result } = await axios.put(`/api/v1/order/accept-reject/${id}`, data, config);
+        const { data: result } = await axios.put(`/api/v1/order/accept/${id}`, data, config);
+        dispatch({ type: ACCEPT_OR_REJECT_ORDER_SUCCESS, payload: result });
+    } catch (error) {
+        dispatch({ type: ACCEPT_OR_REJECT_ORDER_FAIL, payload: error.response.result.message });
+    }
+}
+
+export const rejectOrder = (id) => async (dispatch) => {
+    try {
+        dispatch({ type: ACCEPT_OR_REJECT_ORDER_REQUEST });
+        const { data: result } = await axios.delete(`/api/v1/order/status/${id}`);
         dispatch({ type: ACCEPT_OR_REJECT_ORDER_SUCCESS, payload: result });
     } catch (error) {
         dispatch({ type: ACCEPT_OR_REJECT_ORDER_FAIL, payload: error.response.result.message });

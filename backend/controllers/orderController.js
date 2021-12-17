@@ -1,6 +1,7 @@
 const Order = require('../models/orderModel');
 const Service = require('../models/service/serviceModel');
 const User = require('../models/userModel');
+const Cart = require('../models/cartModel');
 const AsyncErrorHandler = require('../middlewares/asyncErrorHandler');
 const ErrorHandler = require('../utils/errorHandler');
 
@@ -50,7 +51,7 @@ const updateOrderStatus = AsyncErrorHandler(async (req, res, next) => {
 })
 
 // accept order
-const accOrRejOrder = AsyncErrorHandler(async (req, res, next) => {
+const acceptOrder = AsyncErrorHandler(async (req, res, next) => {
     const { id } = req.params;
     const { accept } = req.body;
     const order = await Order.findById(id);
@@ -94,11 +95,22 @@ const deleteOrder = AsyncErrorHandler(async (req, res, next) => {
     const profUser = await User.findById(order.professional);
 
     let profOrders = profUser.professional.orders;
-    profOrders = profOrders.filter(item => item._id.toString() !== id);
-    
-    profUser.professional.orders = profOrders;
+    profOrders = profOrders.filter(item => {
+        return item.order.toString() !== id
+    });
 
+    profUser.professional.orders = profOrders;
     await profUser.save({ validateBeforeSave: false });
+
+    const cartInfo = await Cart.findOne({ user: order.user });
+
+    let services = cartInfo.services;
+    services = services.filter(service => {
+        return service.serviceId.toString() !== order.service.toString();
+    });
+
+    cartInfo.services = services;
+    await cartInfo.save({ validateBeforeSave: false });
 
     res.status(200).json({
         success: true
@@ -110,6 +122,6 @@ module.exports = {
     updateOrderStatus,
     getMyOrders,
     getOrderDetails,
-    accOrRejOrder,
+    acceptOrder,
     deleteOrder
 }
