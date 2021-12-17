@@ -57,6 +57,7 @@ const acceptOrder = AsyncErrorHandler(async (req, res, next) => {
     const order = await Order.findById(id);
     if (accept) {
         order.isAccepted = true;
+        order.status = "Order Placed"
     }
     await order.save({ new: true, validateBeforeSave: false });
     res.status(200).json({
@@ -102,15 +103,15 @@ const deleteOrder = AsyncErrorHandler(async (req, res, next) => {
     profUser.professional.orders = profOrders;
     await profUser.save({ validateBeforeSave: false });
 
-    const cartInfo = await Cart.findOne({ user: order.user });
+    // const cartInfo = await Cart.findOne({ user: order.user });
 
-    let services = cartInfo.services;
-    services = services.filter(service => {
-        return service.serviceId.toString() !== order.service.toString();
-    });
+    // let services = cartInfo.services;
+    // services = services.filter(service => {
+    //     return service.serviceId.toString() !== order.service.toString();
+    // });
 
-    cartInfo.services = services;
-    await cartInfo.save({ validateBeforeSave: false });
+    // cartInfo.services = services;
+    // await cartInfo.save({ validateBeforeSave: false });
 
     res.status(200).json({
         success: true
