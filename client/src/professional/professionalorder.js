@@ -35,8 +35,9 @@ function ProfessionalOrders() {
       <div className="order-cont">
         {orders && orders.length>0?
           orders.map((item) => (
+
             <div
-              className="alert alert-success"
+              className={item.order.isAccepted===false?"alert alert-dark":"alert alert-success"}
               role="alert"
               key={item.order._id}
             >
