@@ -4,7 +4,7 @@ import "./professionalorder.css";
 import MetaData from "../components/layout/MetaData";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getOrderDetails } from "../actions/orderActions";
+import { acceptOrder, getOrderDetails } from "../actions/orderActions";
 
 function ProfessionalOrders() {
   const dispatch = useDispatch();
@@ -15,66 +15,82 @@ function ProfessionalOrders() {
   const handleTrackOrder = (id) => {
     dispatch(getOrderDetails(id));
     navigate(`/orderdetails/${id}`);
-  }
+  };
+
+  const handleAcceptOrder = (id) => {
+    const data = { accept: "true" };
+    dispatch(acceptOrder(data, id));
+    window.location.reload();
+  };
 
   return (
-        <>
-          <MetaData title={`All Orders`} />
-          <Header />
-          <div className="order-cont">
-            {orders &&
-              orders.map((item) => (
-                <div
-                  className="alert alert-success"
-                  role="alert"
-                  key={item.order._id}
-                >
-                  <h5 className="alert-heading">
-                    <span id="left-krdo">Order Id:{item.order._id}</span>{" "}
-                    <span id="right-krdo">
-                      {item.order.placedAt.toString().substr(0, 10)}
-                    </span>
-                  </h5>
-                  <br />
-                  <p>
-                    <span id="left-krdo">{item.order.service.name}</span>
-                    <span id="right-krdo">
-                      Total Price: &#8377; {item.order.totalCost}
-                    </span>
-                  </p>
-                  <br />
-                  
-                  <p id="margintop-dedo">
-                    <span id="left-krdo">Username: {item.order.user.name}</span>
-                    <span id="right-krdo">Order Status: {item.order.status}</span>
-                  </p>
-                  <br />
-                  <p id="margintop-dedo"> 
-                    <span id="left-krdo">{`${item.order.user.address.city}, ${item.order.user.address.district}, ${item.order.user.address.state}`}</span>
-                    <span id="right-krdo">Mobile: {item.order.user.phoneno}</span>
-                  </p>
-                  <br/>
-                 
+    <>
+      <MetaData title={`All Orders`} />
+      <Header />
+      <div className="order-cont">
+        {orders &&
+          orders.map((item) => (
+            <div
+              className="alert alert-success"
+              role="alert"
+              key={item.order._id}
+            >
+              <h5 className="alert-heading">
+                <span id="left-krdo">Order Id:{item.order._id}</span>{" "}
+                <span id="right-krdo">
+                  {item.order.placedAt.toString().substr(0, 10)}
+                </span>
+              </h5>
+              <br />
+              <p>
+                <span id="left-krdo">{item.order.service.name}</span>
+                <span id="right-krdo">
+                  Total Price: &#8377; {item.order.totalCost}
+                </span>
+              </p>
+              <br />
 
-                  <hr />
-                  <div>
-                    <p className="mb-0">
-                        <button id="order-btn" className="btn btn-light" onClick={() => handleTrackOrder(item.order._id)}>
-                          Approve
-                        </button> 
+              <p id="margintop-dedo">
+                <span id="left-krdo">Username: {item.order.user.name}</span>
+                <span id="right-krdo">Order Status: {item.order.status}</span>
+              </p>
+              <br />
+              <p id="margintop-dedo">
+                <span id="left-krdo">{`${item.order.user.address.city}, ${item.order.user.address.district}, ${item.order.user.address.state}`}</span>
+                <span id="right-krdo">Mobile: {item.order.user.phoneno}</span>
+              </p>
+              <br />
 
-                      <a href={`/updateorder/${item.order._id}`}>
-                        <button id="order-btn" className="btn btn-light">
-                          Cancel
-                        </button>
-                      </a>
-                    </p>
-                  </div>
-                  <div>
+              <hr />
+              {item.order.isAccepted === false && (
+                <div>
                   <p className="mb-0">
-                      <button id="order-btn" className="btn btn-light" onClick={() => handleTrackOrder(item.order._id)}>
-                        Track Order
-                      </button> 
+                    <button
+                      id="order-btn"
+                      className="btn btn-light"
+                      onClick={() => handleAcceptOrder(item.order._id)}
+                    >
+                      Accept
+                    </button>
+
+                    <a href={`/updateorder/${item.order._id}`}>
+                      <button id="order-btn" className="btn btn-light">
+                        Cancel
+                      </button>
+                    </a>
+                  </p>
+                </div>
+              )}
+              {item.order.isAccepted === true && (
+                <div>
+                  <p className="mb-0">
+                    <button
+                      id="order-btn"
+                      className="btn btn-light"
+                      onClick={() => handleTrackOrder(item.order._id)}
+                    >
+                      Track Order
+                    </button>
 
                     <a href={`/updateorder/${item.order._id}`}>
                       <button id="order-btn" className="btn btn-light">
@@ -82,11 +98,12 @@ function ProfessionalOrders() {
                       </button>
                     </a>
                   </p>
-                  </div>
                 </div>
-              ))}
-          </div>
-        </>
+              )}
+            </div>
+          ))}
+      </div>
+    </>
   );
 }
 

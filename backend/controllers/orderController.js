@@ -51,14 +51,13 @@ const updateOrderStatus = AsyncErrorHandler(async (req, res, next) => {
 
 // accept order
 const accOrRejOrder = AsyncErrorHandler(async (req, res, next) => {
-    const { id: orderId } = req.params;
+    const { id } = req.params;
     const { accept } = req.body;
     const order = await Order.findById(id);
     if (accept) {
         order.isAccepted = true;
     }
     await order.save({ new: true, validateBeforeSave: false });
-
     res.status(200).json({
         success: true,
         order
