@@ -14,12 +14,12 @@ function Cart() {
     (state) => state.servicesInCart
   );
 
-  let totalPrice = 0;
+  // let totalPrice = 0;
 
-  services &&
-    services.forEach((service) => {
-      totalPrice += service.price;
-    });
+  // services &&
+  //   services.forEach((service) => {
+  //     totalPrice += service.price;
+  //   });
 
   useEffect(() => {
     dispatch(getServicesFromCart());

@@ -58,7 +58,7 @@ function Orderdetails() {
                   </div>
                   <div className="col-3">
                     {" "}
-                    <span id="price">&#8377;{Order.totalCost}</span>{" "}
+                    <span id="price">&#8377;{Order.service.price}</span>{" "}
                   </div>
                 </div>
                 <div className="row">
@@ -76,6 +76,11 @@ function Orderdetails() {
                   <div className="col-3">
                     {" "}
                     <span id="price">{Order.addCost ? Order.addCost.description : "N/A"}</span>{" "}
+                    {/* <span id="name">Additional Cost : { Order.addCost.description?Order.addCost.description:" "  }</span>{" "} */}
+                  </div>
+                  <div className="col-3">
+                    {" "}
+                    {/* <span id="price">&#8377;{Order.addCost.value?Order.addCost.value:" "}</span>{" "} */}
                   </div>
                 </div>
               </div>
@@ -91,11 +96,44 @@ function Orderdetails() {
                 <div className="title">Tracking Order</div>
               </div>
               <div className="progress-track">
+              { Order.status === "Processing" &&
                 <ul id="progressbar">
                   <li className="step0 active " id="step1">
                     Processing
                   </li>
-                  <li className="step0 active text-center" id="step2">
+                  <li className="step0  text-center" id="step2">
+                    Order Placed
+                  </li>
+                  <li className="step0  text-right" id="step3">
+                    On the way
+                  </li>
+                  <li className="step0 text-right" id="step4">
+                    Completed
+                  </li>
+                </ul>
+              }
+              { Order.status === "Order Placed" &&
+                <ul id="progressbar">
+                  <li className="step0 active " id="step1">
+                    Processing
+                  </li>
+                  <li className="step0  active text-center" id="step2">
+                    Order Placed
+                  </li>
+                  <li className="step0  text-right" id="step3">
+                    On the way
+                  </li>
+                  <li className="step0 text-right" id="step4">
+                    Completed
+                  </li>
+                </ul>
+              }
+              { Order.status === "On the Way" &&
+                <ul id="progressbar">
+                  <li className="step0 active " id="step1">
+                    Processing
+                  </li>
+                  <li className="step0  active text-center" id="step2">
                     Order Placed
                   </li>
                   <li className="step0 active text-right" id="step3">
@@ -105,6 +143,23 @@ function Orderdetails() {
                     Completed
                   </li>
                 </ul>
+              }
+                { Order.status === "Completed" &&
+                <ul id="progressbar">
+                  <li className="step0 active " id="step1">
+                    Processing
+                  </li>
+                  <li className="step0  active text-center" id="step2">
+                    Order Placed
+                  </li>
+                  <li className="step0  active text-right" id="step3">
+                    On the way
+                  </li>
+                  <li className="step0 active text-right" id="step4">
+                    Completed
+                  </li>
+                </ul>
+              }
               </div>
             </div>
           </div>
