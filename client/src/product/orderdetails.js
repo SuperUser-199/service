@@ -64,17 +64,24 @@ function Orderdetails() {
                 <div className="row">
                   <div className="col-9">
                     {" "}
-                    <span id="name">Additional Cost : Description</span>{" "}
+                    <span id="name">Additional Cost : </span>{" "}
                   </div>
                   <div className="col-3">
                     {" "}
-                    <span id="price">&#8377;Price of Additional Cost</span>{" "}
+                    <span id="price">&#8377;{Order.addCost ? Order.addCost.value : 0}</span>{" "}
+                  </div>
+                  <div className="col-9">
+                    <span id="name">Description : </span>{" "}
+                  </div>
+                  <div className="col-3">
+                    {" "}
+                    <span id="price">{Order.addCost ? Order.addCost.description : "N/A"}</span>{" "}
                   </div>
                 </div>
               </div>
               <div className="total">
                 <div className="row">
-                  <div className="col-9"></div>
+                  <div className="col-9">Total cost:</div>
                   <div className="col-3">
                     <big>&#8377;{Order.totalCost}</big>
                   </div>
@@ -86,7 +93,7 @@ function Orderdetails() {
               <div className="progress-track">
                 <ul id="progressbar">
                   <li className="step0 active " id="step1">
-                    processing
+                    Processing
                   </li>
                   <li className="step0 active text-center" id="step2">
                     Order Placed

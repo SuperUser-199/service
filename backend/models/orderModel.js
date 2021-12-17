@@ -36,6 +36,10 @@ const orderSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
+    isAccepted: {
+        type: Boolean,
+        default: false
+    },
     placedAt: {
         type: Date,
         default: Date.now

@@ -45,7 +45,7 @@ function Cart() {
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Remove</th>
+                    {/* <th scope="col">Remove</th> */}
                     <th scope="col">Select</th>
                     <th scope="col">Price</th>
                   </tr>
@@ -62,15 +62,17 @@ function Cart() {
                           />
                         </th>
                         <td>{service.name}</td>
-                        <td>
-                          <button id="cart-btn" class="btn btn-outline-danger" onClick={() => dispatch(deleteServicesFromCart(service.id))}>
+                        {/* <td>
+                          <button id="cart-btn" class="btn btn-outline-danger" disabled={service.isOrderAccepted !== undefined} onClick={() => dispatch(deleteServicesFromCart(service.id))}>
                             Remove
                           </button>
-                        </td>
+                        </td> */}
                         <td>
                           <a href={`/selectprofessional?category=${service.category}&serviceId=${service.id.toString()}`}>
-                          <button id="cart-btn">
-                            Select
+                          <button id="cart-btn" disabled={service.isOrderAccepted !== undefined}>
+                            {
+                              service.isOrderAccepted === true ? "Accepted" : service.isOrderAccepted === false ? "Request sent" : "Select Professional" 
+                            }
                           </button>
                           </a>
                         </td>

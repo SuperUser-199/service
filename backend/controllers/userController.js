@@ -36,13 +36,13 @@ const logInUser = AsyncErrorHandler(async (req, res, next) => {
     }
 
     const user = await User.findOne({email}).select('+password');
+    if (!user) {
+        return next(new ErrorHandler('Invalid email or password', 400));
+    }
     const extra = await user.populate({ path: 'professional.orders.order' });
     const info = await extra.populate({ path: 'professional.orders.order.service', select: 'name' })
     const result = await info.populate({ path: 'professional.orders.order.user', select: 'name address phoneno' });
 
-    if (!user) {
-        return next(new ErrorHandler('Invalid email or password', 400));
-    }
 
     const isPasswordMatched = await user.comparePassword(password);
 

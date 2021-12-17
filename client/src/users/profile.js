@@ -51,7 +51,7 @@ function Profile() {
                           <div className="col-md-6">
                             <div className="media">
                               <label>Joining Date</label>
-                              <p>{String(user.createdAt).substr(0, 10)}</p>
+                              <p>{String(user.createdAt).substring(0, 10)}</p>
                             </div>
 
                             <div className="media">

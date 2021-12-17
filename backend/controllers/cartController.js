@@ -1,5 +1,6 @@
 const Cart = require('../models/cartModel');
 const Service = require('../models/service/serviceModel');
+const Order = require('../models/orderModel');
 const AsyncErrorHandler = require('../middlewares/asyncErrorHandler');
 const ErrorHandler = require('../utils/errorHandler');
 
@@ -43,12 +44,14 @@ const getServices = AsyncErrorHandler(async (req, res, next) => {
     const result = [];
     for (const item of cartInfo.services) {
         const service = await Service.findById(item.serviceId);
+        const order = await Order.findOne({service : item.serviceId});
         result.push({
             id: service.id,
             name: service.name,
             image: service.serviceImage,
             price: service.price,
-            category: service.category
+            category: service.category,
+            isOrderAccepted: order ? order.isAccepted : undefined
         });
     }
 

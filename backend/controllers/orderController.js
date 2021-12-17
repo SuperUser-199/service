@@ -49,6 +49,22 @@ const updateOrderStatus = AsyncErrorHandler(async (req, res, next) => {
     });
 })
 
+// accept order
+const accOrRejOrder = AsyncErrorHandler(async (req, res, next) => {
+    const { id: orderId } = req.params;
+    const { accept } = req.body;
+    const order = await Order.findById(id);
+    if (accept) {
+        order.isAccepted = true;
+    }
+    await order.save({ new: true, validateBeforeSave: false });
+
+    res.status(200).json({
+        success: true,
+        order
+    });
+})
+
 // get user orders
 const getMyOrders = AsyncErrorHandler(async (req, res, next) => {
     const orders = await Order.find({ user: req.user.id }).populate({ path: 'service' }).populate({ path: 'professional' });
@@ -69,10 +85,32 @@ const getOrderDetails = AsyncErrorHandler(async (req, res, next) => {
     });
 })
 
+// delete an order
+const deleteOrder = AsyncErrorHandler(async (req, res, next) => {
+    const { id } = req.params;
+    const order = await Order.findById(id);
+
+    await Order.findByIdAndDelete(id);
+    
+    const profUser = await User.findById(order.professional);
+
+    let profOrders = profUser.professional.orders;
+    profOrders = profOrders.filter(item => item._id.toString() !== id);
+    
+    profUser.professional.orders = profOrders;
+
+    await profUser.save({ validateBeforeSave: false });
+
+    res.status(200).json({
+        success: true
+    })
+})
 
 module.exports = {
     placeNewOrder,
     updateOrderStatus,
     getMyOrders,
-    getOrderDetails
+    getOrderDetails,
+    accOrRejOrder,
+    deleteOrder
 }
