@@ -58,28 +58,28 @@ function ConfirmOrder() {
             <div>
               <h3 id="center-it">Confirm Your Details</h3>
             </div>
-            <div id="service-card">
-              <div class="card">
-                <img class="card-img-top" src={service.serviceImage.url} alt={service.name} />
-                <div class="card-body">
-                  <h5 class="card-title">{service.name}</h5>
+            <div className="service-product">
+              <div className="card" id="product-card">
+                <img className="card-img-top" src={service.serviceImage.url} alt={service.name} />
+                <div className="card-body">
+                  <h5 className="card-title">{service.name}</h5>
                 </div>
 
-                <div class="card-body">
+                <div className="card-body">
                   <p>{service.price}</p>
                 </div>
               </div>
             </div>
             <br />
             <div>
-              <div id="service-card">
-                <div class="card">
-                  <img class="card-img-top" src={prof.avatar.url} alt={prof.name} />
-                  <div class="card-body">
-                    <h5 class="card-title">{prof.name}</h5>
+              <div className="service-product">
+                <div className="card" id="product-card">
+                  <img className="card-img-top" src={prof.avatar.url} alt={prof.name} />
+                  <div className="card-body">
+                    <h5 className="card-title">{prof.name}</h5>
                   </div>
 
-                  <div class="card-body">
+                  <div className="card-body">
                     <p>{`${prof.address.city}, ${prof.address.district}, ${prof.address.state}`}</p>
                   </div>
                 </div>

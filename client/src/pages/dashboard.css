@@ -12,7 +12,8 @@
 .service{
     
     border: 2px solid white;
-    margin:30px;
+    margin:30px 80px;
+    width: 180px;
     padding:8px;
     border-radius: 9px;
 }

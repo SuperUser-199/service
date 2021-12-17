@@ -44,7 +44,9 @@ function Cart() {
         <>
           <Header />
           <div>
+          {services.length > 0 ? (
             <div className="for-cart">
+            
               <table className="table">
                 <thead className="thead-dark">
                   <tr>
@@ -56,7 +58,7 @@ function Cart() {
                   </tr>
                 </thead>
                 <tbody>
-                  {services && services.length > 0 ? (
+                  {services &&  (
                     services.map((service, idx) => (
                       <tr key={service.id}>
                         <th scope="row">
@@ -99,13 +101,17 @@ function Cart() {
                         <td>&#8377;{service.price}</td>
                       </tr>
                     ))
-                  ) : (
-                    <h3 id="center-it">Cart is Empty</h3>
-                  )}
+                  ) }
                 </tbody>
               </table>
-            </div>
 
+              </div>
+)
+            
+: (
+    <h1  style={{"margin":"50px","textAlign":"center" }}>Cart is Empty!</h1>
+    
+  ) }
             <br />
           </div>
         </>
