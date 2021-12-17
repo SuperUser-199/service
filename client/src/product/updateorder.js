@@ -3,7 +3,7 @@ import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { updateOrderStatus } from "../actions/orderActions";
-import { clearErrors } from "../actions/userActions";
+import { clearErrors, loadUser } from "../actions/userActions";
 import Header from "../components/header";
 import Loader from "../components/layout/Loader/Loader";
 import MetaData from "../components/layout/MetaData";
@@ -42,9 +42,9 @@ function UpdateOrder() {
     }
 
     if (success) {
-      console.log(order);
       alert.success("Order updated successfully");
-      navigate("/orders");
+      dispatch(loadUser());
+      navigate("/professionalorder");
     }
   }, [error, success, alert, dispatch, order, navigate]);
   return (
@@ -73,8 +73,8 @@ function UpdateOrder() {
                       type="number"
                       name="value"
                       value={value}
+                      required={value > 0}
                       onChange={(e) => setValue(e.target.value)}
-                      required
                       placeholder="Enter Updated Price"
                     />
                   </div>
@@ -83,8 +83,8 @@ function UpdateOrder() {
                       type="text"
                       name="description"
                       value={description}
+                      required={value > 0}
                       onChange={(e) => setDescription(e.target.value)}
-                      required
                       placeholder="Description for price updation"
                     />
                   </div>

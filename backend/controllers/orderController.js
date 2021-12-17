@@ -37,10 +37,12 @@ const updateOrderStatus = AsyncErrorHandler(async (req, res, next) => {
     }
     const { status, description, value } = req.body;
     order.status = status;
-    order.addCost = {
-        description,
-        value
-    };
+    if (description.length > 0) {
+        order.addCost = {
+            description,
+            value
+        };
+    }
     order.totalCost = Number(order.totalCost) + Number(value);
     await order.save({ new: true, validateBeforeSave: false });
 

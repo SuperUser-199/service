@@ -3,7 +3,7 @@ import "./cart.css";
 import Header from "../components/header";
 import { useSelector, useDispatch } from "react-redux";
 import { useAlert } from "react-alert";
-import { clearErrors, deleteServicesFromCart, getServicesFromCart } from "../actions/cartActions";
+import { clearErrors, getServicesFromCart } from "../actions/cartActions";
 import Loader from "../components/layout/Loader/Loader";
 
 function Cart() {
