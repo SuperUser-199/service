@@ -36,7 +36,7 @@ function Orders() {
           <MetaData title={`All Orders`} />
           <Header />
           <div className="order-cont">
-            {orders &&
+            {orders && orders.length>0?
               orders.map((order) => (
                 <div
                   className="alert alert-success"
@@ -75,7 +75,7 @@ function Orders() {
                       </button>
                   </p>
                 </div>
-              ))}
+              )):<h3 id="center-it">You have no orders!</h3>}
           </div>
         </>
       )}

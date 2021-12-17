@@ -51,7 +51,8 @@ function Cart() {
                   </tr>
                 </thead>
                 <tbody>
-                  {services &&
+                  
+                  {services && services.length>0?
                     services.map((service, idx) => (
                       <tr key={service.id}>
                         <th scope="row">
@@ -69,16 +70,24 @@ function Cart() {
                         </td> */}
                         <td>
                           <a href={`/selectprofessional?category=${service.category}&serviceId=${service.id.toString()}`}>
-                          <button id="cart-btn" disabled={service.isOrderAccepted !== undefined}>
+                          <button id="order-btn" disabled={service.isOrderAccepted !== undefined}>
                             {
                               service.isOrderAccepted === true ? "Accepted" : service.isOrderAccepted === false ? "Request sent" : "Select Professional" 
                             }
                           </button>
+                          <br/>
+                          {
+                            service.isOrderAccepted === false && (<button className="btn btn-danger" id="order-btn">
+                            Cancel
+                          </button>)
+                          }
                           </a>
                         </td>
                         <td>&#8377;{service.price}</td>
                       </tr>
-                    ))}
+                    )):<h3 id="center-it">
+                      Cart is Empty
+                      </h3>}
                 </tbody>
               </table>
             </div>

@@ -64,8 +64,8 @@ function UpdateOrder() {
                     <select id="status" name="status" required value={status} onChange={(e) => setStatus(e.target.value)}>
                       <option value="">Update Status</option>
                       <option value="Order Placed">Order Placed</option>
-                      <option value="Arriving">On the Way</option>
-                      <option value="Delivered">Completed</option>
+                      <option value="On the Way">On the Way</option>
+                      <option value="Completed">Completed</option>
                     </select>
                   </div>
                   <div>
