@@ -8,6 +8,9 @@ const ErrorHandler = require('../utils/errorHandler');
 // placing a new order
 const placeNewOrder = AsyncErrorHandler(async (req, res, next) => {
     const { professional, service, paymentMode } = req.body;
+    if (req.user.id == professional) {
+        return next(new ErrorHandler('You can\'t place an order to yourself.'));
+    }
     const serviceInfo = await Service.findById(service);
     const order = await Order.create({
         user: req.user.id,

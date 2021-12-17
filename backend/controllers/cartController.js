@@ -44,7 +44,7 @@ const getServices = AsyncErrorHandler(async (req, res, next) => {
     const result = [];
     for (const item of cartInfo.services) {
         const service = await Service.findById(item.serviceId);
-        const order = await Order.findOne({service : item.serviceId});
+        const order = await Order.findOne({user: req.user.id, service : item.serviceId});
         result.push({
             id: service.id,
             name: service.name,
