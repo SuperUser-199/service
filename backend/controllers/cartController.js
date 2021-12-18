@@ -79,7 +79,9 @@ const deleteServiceFromCart = AsyncErrorHandler(async (req, res, next) => {
 const cancelRequest = AsyncErrorHandler(async (req, res, next) => {
     const { id: serviceId } = req.params;
     const order = await Order.findOne({ service: serviceId, user: req.user.id });
-
+    if (order.isAccepted) {
+        return next(new ErrorHandler('Order has been accepted by the professional', 400));
+    }
     await Order.findOneAndDelete({ service: serviceId, user: req.user.id });
     
     const profUser = await User.findById(order.professional);
