@@ -30,6 +30,7 @@ import OrderPlaced from "./product/orderplaced";
 import ConfirmOrder from "./product/confirmorder";
 import UpdateOrder from "./product/updateorder";
 import ProfessionalOrders from "./professional/professionalorder";
+import Review from "./professional/review";
 function App() {
   useEffect(() => {
     store.dispatch(loadUser());
@@ -39,6 +40,8 @@ function App() {
     <Router>
        
       <Routes>
+      <Route exact path="/review" element={<ProtectedRoute component={Review}/>}/>
+
       <Route exact path="/professionalorder" element={<ProfessionalRoute component={ProfessionalOrders}/>}/>
       
       <Route exact path="/updateorder/:id" element={<ProfessionalRoute component={UpdateOrder}/>}/>
