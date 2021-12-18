@@ -7,6 +7,7 @@ import {
   cancelOrder,
   clearErrors,
   getServicesFromCart,
+  deleteServicesFromCart
 } from "../actions/cartActions";
 import Loader from "../components/layout/Loader/Loader";
 import { useNavigate } from "react-router-dom";
@@ -131,6 +132,13 @@ function Cart() {
                                 style={{ backgroundColor: "blue" }}
                               >
                                 Submit Review
+                              </button>
+                              <button
+                                className="btn btn-danger"
+                                id="order-btn"
+                                onClick={() => {dispatch(deleteServicesFromCart(service.id)); window.location.reload();}}
+                              >
+                                Archive
                               </button>
                             </td>
                           )}

@@ -185,12 +185,11 @@ const updateProfile = AsyncErrorHandler(async (req, res, next) => {
 
     
     if (req.user.role === 'professional') {
-        const { exp: experience, spec: specialization, bio: about, rating } = req.body;
+        const { exp: experience, spec: specialization, bio: about } = req.body;
         updatedUserData.professional = {
             experience,
             specialization,
-            about,
-            rating  
+            about
         };
     }
 
@@ -240,13 +239,12 @@ const setupProfile = AsyncErrorHandler(async (req, res, next) => {
     }
     
     if (req.user.role === 'professional') {
-        const { exp: experience, spec: specialization, bio: about, rating } = req.body;
+        const { exp: experience, spec: specialization, bio: about } = req.body;
         
         data.professional = {
             experience,
             specialization,
-            about,
-            rating
+            about
         };
     }
 
@@ -308,7 +306,7 @@ const addReview = AsyncErrorHandler(async (req, res, next) => {
 
     let reviews = user.professional.reviews;
     let prevRating = 0;
-    let size = reviews.length + 1;
+    let size = reviews.length;
     reviews = reviews.filter(review => {
         if (review.user.toString() === req.user.id.toString()) {
             prevRating = review.rating;

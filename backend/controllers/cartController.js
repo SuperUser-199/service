@@ -2,6 +2,7 @@ const Cart = require('../models/cartModel');
 const Service = require('../models/service/serviceModel');
 const Order = require('../models/orderModel');
 const User = require('../models/userModel');
+const Archive = require('../models/archivedModel');
 const AsyncErrorHandler = require('../middlewares/asyncErrorHandler');
 const ErrorHandler = require('../utils/errorHandler');
 
@@ -72,6 +73,34 @@ const deleteServiceFromCart = AsyncErrorHandler(async (req, res, next) => {
             services: {serviceId}
         }
     });
+
+    const order = await Order.findOne({ user: req.user.id, service: serviceId });
+
+    let archive = await Archive.findOne({ user: req.user.id, professional: order.professional });
+
+    if (!archive) {
+        archive = await Archive.create({
+            user: req.user.id,
+            professional: order.professional,
+            orders: [order._id]
+        })
+    } else {
+        archive.orders.push(order._id);
+        await archive.save({ validateBeforeSave: false });
+    }
+
+    await Order.findByIdAndDelete(order._id);
+    
+    const profUser = await User.findById(order.professional);
+
+    let profOrders = profUser.professional.orders;
+    profOrders = profOrders.filter(item => {
+        return item.order.toString() !== order.id.toString()
+    });
+
+    profUser.professional.orders = profOrders;
+    await profUser.save({ validateBeforeSave: false });
+
     res.status(200).json({
         success: true
     });

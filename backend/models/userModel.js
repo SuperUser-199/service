@@ -44,7 +44,7 @@ const professionalSchema = new mongoose.Schema({
   },
   rating: {
     type: Number,
-    default: 3
+    default: 0
   },
   reviews: [
     {
