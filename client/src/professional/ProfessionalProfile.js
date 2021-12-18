@@ -115,14 +115,20 @@ function ProfessionalProfile() {
                         
                         <div className="col-6 col-lg-3">
                             <div className="count-data text-center">
-                                <h6 className="count h2" data-to="150" data-speed="150">150</h6>
+                                <h6 className="count h2" data-to="150" data-speed="150">{user.professional.ordersCompleted}</h6>
                                 <p className="m-0px font-w-600">Order Completed</p>
                             </div>
                         </div>
                         <div className="col-6 col-lg-3">
                             <div className="count-data text-center">
-                                <h6 className="count h2" data-to="850" data-speed="850">5</h6>
+                                <h6 className="count h2" data-to="850" data-speed="850">{user.professional.rating}</h6>
                                 <p className="m-0px font-w-600">Rating</p>
+                            </div>
+                        </div>
+                        <div className="col-6 col-lg-3">
+                            <div className="count-data text-center">
+                                <h6 className="count h2" data-to="850" data-speed="850">{user.professional.totalEarnings}</h6>
+                                <p className="m-0px font-w-600">Total Earnings</p>
                             </div>
                         </div>
                        

@@ -52,7 +52,8 @@ const getServices = AsyncErrorHandler(async (req, res, next) => {
             image: service.serviceImage,
             price: service.price,
             category: service.category,
-            isOrderAccepted: order ? order.isAccepted : undefined
+            isOrderAccepted: order ? order.isAccepted : undefined,
+            isCompleted: order && order.status === "Completed" ? true : false
         });
     }
 

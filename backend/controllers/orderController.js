@@ -42,6 +42,14 @@ const updateOrderStatus = AsyncErrorHandler(async (req, res, next) => {
     }
     const { status, description, value } = req.body;
     order.status = status;
+    if (status.toLowerCase() === "completed") {
+        const service = await Service.findById(order.service);
+        const profUser = await User.findById(order.professional);
+        const prof = profUser.professional;
+        prof.totalEarnings = Number(prof.totalEarnings) + Number(service.price) * 0.80;
+        prof.ordersCompleted = Number(prof.ordersCompleted) + 1;
+        await profUser.save({ validateBeforeSave: false });
+    }
     if (description.length > 0) {
         order.addCost = {
             description,

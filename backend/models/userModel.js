@@ -44,7 +44,7 @@ const professionalSchema = new mongoose.Schema({
   },
   rating: {
     type: Number,
-    default: 0
+    default: 3
   },
   reviews: [
     {
@@ -72,7 +72,15 @@ const professionalSchema = new mongoose.Schema({
         required: true
       }
     }
-  ]
+  ],
+  totalEarnings: {
+    type: Number,
+    default: 0
+  },
+  ordersCompleted: {
+    type: Number,
+    default: 0
+  }
 });
 
 const userSchema = new mongoose.Schema({
