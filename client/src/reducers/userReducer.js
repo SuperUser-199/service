@@ -24,6 +24,10 @@ import {
   SETUP_PROFILE_REQUEST,
   SETUP_PROFILE_RESET,
   SETUP_PROFILE_SUCCESS,
+  SUBMIT_REVIEW_FAIL,
+  SUBMIT_REVIEW_REQUEST,
+  SUBMIT_REVIEW_RESET,
+  SUBMIT_REVIEW_SUCCESS,
   UPDATE_PASSWORD_FAIL,
   UPDATE_PASSWORD_REQUEST,
   UPDATE_PASSWORD_RESET,
@@ -227,3 +231,38 @@ export const allProfsReducer = (state = { profs: [] }, action) => {
       return state;
   }
 };
+
+export const submitReviewReducer = ( state = { review: {} }, action ) => {
+  switch (action.type) {
+    case SUBMIT_REVIEW_REQUEST:
+      return {
+        ...state,
+        loading: true
+      };
+    case SUBMIT_REVIEW_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        success: action.payload.success,
+        review: action.payload.review
+      };
+    case SUBMIT_REVIEW_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload
+      }
+    case SUBMIT_REVIEW_RESET:
+      return {
+        loading: false,
+        review: {}
+      }
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
+    default:
+      return state;
+  }
+}

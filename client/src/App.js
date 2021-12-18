@@ -40,7 +40,7 @@ function App() {
     <Router>
        
       <Routes>
-      <Route exact path="/review" element={<ProtectedRoute component={Review}/>}/>
+      <Route exact path="/review/:id" element={<ProtectedRoute component={Review}/>}/>
 
       <Route exact path="/professionalorder" element={<ProfessionalRoute component={ProfessionalOrders}/>}/>
       

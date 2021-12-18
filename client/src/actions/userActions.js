@@ -29,6 +29,9 @@ import {
   UPDATE_PROFILE_FAIL,
   UPDATE_PROFILE_REQUEST,
   UPDATE_PROFILE_SUCCESS,
+  SUBMIT_REVIEW_REQUEST,
+  SUBMIT_REVIEW_SUCCESS,
+  SUBMIT_REVIEW_FAIL,
 } from "../constants/userConstants";
 import axios from "axios";
 
@@ -200,6 +203,22 @@ export const getAllProfs = () => async (dispatch) => {
     dispatch({ type: ALL_PROFS_FAIL, payload: error.response.data.message });
   }
 };
+
+// submit a review
+export const submitReview = (id, review) => async (dispatch) => {
+  try {
+    dispatch({ type: SUBMIT_REVIEW_REQUEST });
+    const config = {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    };
+    const { data } = await axios.put(`/api/v1/user/review/new/${id}`, review, config);
+    dispatch({ type: SUBMIT_REVIEW_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: SUBMIT_REVIEW_FAIL, payload: error.response.data.message });
+  }
+} 
 
 // Clearing all errors
 export const clearErrors = () => async (dispatch) => {

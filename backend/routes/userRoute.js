@@ -15,6 +15,6 @@ router.route('/me/profile/setup').put(isAuthenticatedUser, setupProfile);
 router.route('/professional/getAll').get(isAuthenticatedUser, getAllProfessionals);
 router.route('/professional/:category').get(isAuthenticatedUser, getAllProfessionalsByCategory);
 router.route('/professional/single/:id').get(isAuthenticatedUser, getProfessionalById);
-router.route('/review/new/:id').post(isAuthenticatedUser, addReview);
+router.route('/review/new/:id').put(isAuthenticatedUser, addReview);
 
 module.exports = router;

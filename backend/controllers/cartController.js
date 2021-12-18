@@ -53,7 +53,8 @@ const getServices = AsyncErrorHandler(async (req, res, next) => {
             price: service.price,
             category: service.category,
             isOrderAccepted: order ? order.isAccepted : undefined,
-            isCompleted: order && order.status === "Completed" ? true : false
+            isCompleted: order && order.status === "Completed" ? true : false,
+            professional: order ? order.professional : null 
         });
     }
 

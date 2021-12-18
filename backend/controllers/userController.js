@@ -296,19 +296,41 @@ const getAllProfessionalsByCategory = AsyncErrorHandler(async (req, res, next) =
 const addReview = AsyncErrorHandler(async (req, res, next) => {
     const { id: professionalId } = req.params;
     const { rating, comment } = req.body;
-
     const user = await User.findById(professionalId);
-    user.professional.reviews.push({
+    const review = {
         user: req.user.id,
         rating,
         comment
+    }
+    if (!user) {
+        return next(new ErrorHandler('Invalid request!! Professional Not Found.', 400));
+    }
+
+    let reviews = user.professional.reviews;
+    let prevRating = 0;
+    let size = reviews.length + 1;
+    reviews = reviews.filter(review => {
+        if (review.user.toString() === req.user.id.toString()) {
+            prevRating = review.rating;
+        }
+        return review.user.toString() !== req.user.id.toString();
     });
+
+    reviews.push(review);
+    
+    if (prevRating > 0) {
+        user.professional.rating = (Number(user.professional.rating) - prevRating + Number(rating)) / size;
+    } else {
+        size++;
+        user.professional.rating = (Number(user.professional.rating) + Number(rating)) / size;
+    }
+    user.professional.reviews = reviews;
 
     await user.save({ validateBeforeSave: false });
 
     res.status(200).json({
-        status: true,
-        professional: user
+        success: true,
+        review
     });
 })
 

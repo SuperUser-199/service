@@ -9,10 +9,12 @@ import {
   getServicesFromCart,
 } from "../actions/cartActions";
 import Loader from "../components/layout/Loader/Loader";
+import { useNavigate } from "react-router-dom";
 
 function Cart() {
   const alert = useAlert();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { loading, error, services, success } = useSelector(
     (state) => state.servicesInCart
@@ -111,9 +113,26 @@ function Cart() {
                               )}
                             </td>
                           ) : (
-                            <button className="btn btn-danger" id="order-btn" disabled style={{"backgroundColor": "green"}}>
-                              Completed
-                            </button>
+                            <td>
+                              <button
+                                className="btn btn-danger"
+                                id="order-btn"
+                                disabled
+                                style={{ backgroundColor: "green" }}
+                              >
+                                Completed
+                              </button>
+                              <button
+                                className="btn btn-danger"
+                                id="order-btn"
+                                onClick={() =>
+                                  navigate(`/review/${service.professional}`)
+                                }
+                                style={{ backgroundColor: "blue" }}
+                              >
+                                Submit Review
+                              </button>
+                            </td>
                           )}
                           <td>&#8377;{service.price}</td>
                         </tr>
