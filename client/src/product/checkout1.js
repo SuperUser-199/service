@@ -19,7 +19,13 @@ function Checout1() {
   const { error, profs, loading } = useSelector(
     (state) => state.getProfsByCategory
   );
-
+  const { user } = useSelector(state => state.user);
+  
+  // let users = []
+  // profs && {
+  //   users = profs.filter((prof) => prof.address.district.toLowerCase() === user.address.district.toLowerCase())
+  // }
+  // console.log(users);
   const useQuery = () => {
     return new URLSearchParams(useLocation().search);
   };
@@ -60,6 +66,7 @@ function Checout1() {
               <div className="service-product">
                 {profs &&
                   profs.map((prof, idx) => (
+                    prof.address.state.toLowerCase() === user.address.state.toLowerCase() &&
                     <div className="card" id="product-card" key={idx}>
                       <img
                         src={prof.avatar.url}

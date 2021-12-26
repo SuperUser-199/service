@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { clearErrors, loadUser, updateProfile } from "../actions/userActions";
 import Loader from "../components/layout/Loader/Loader";
 import {  getAllCategories } from "../actions/serviceActions";
+import { UPDATE_PROFILE_RESET } from "../constants/userConstants";
 
 
 function EditProfile() {
@@ -105,6 +106,7 @@ function EditProfile() {
 
     if (isUpdated) {
       alert.success("Profile updated successfully");
+      dispatch({ type: UPDATE_PROFILE_RESET })
       dispatch(loadUser());
       navigate("/profile");
     }

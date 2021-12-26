@@ -21,7 +21,7 @@ function Signup() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("");
+  const [role, setRole] = useState("user");
   const [avatar, setAvatar] = useState();
   const [avatarPreview, setAvatarPreview] = useState(Profile);
 
@@ -102,7 +102,7 @@ function Signup() {
                     placeholder="Enter your password"
                     onChange={(e) => setPassword(e.target.value)}
                   />
-                  <div className="select-style">
+                  {/* <div className="select-style">
                     <select
                       id="role"
                       name="role"
@@ -113,7 +113,7 @@ function Signup() {
                       <option value="user">user</option>
                       <option value="professional">professional</option>
                     </select>
-                  </div>
+                  </div> */}
                   <div id="registerImage">
                     <img src={avatarPreview} alt="Avatar Preview" />
                     <input

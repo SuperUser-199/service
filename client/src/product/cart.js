@@ -58,7 +58,7 @@ function Cart() {
                     <tr>
                       <th scope="col">#</th>
                       <th scope="col">Name</th>
-                      {/* <th scope="col">Remove</th> */}
+                      <th scope="col">Remove</th>
                       <th scope="col">Select</th>
                       <th scope="col">Price</th>
                     </tr>
@@ -75,11 +75,11 @@ function Cart() {
                             />
                           </th>
                           <td>{service.name}</td>
-                          {/* <td>
-                          <button id="cart-btn" class="btn btn-outline-danger" disabled={service.isOrderAccepted !== undefined} onClick={() => dispatch(deleteServicesFromCart(service.id))}>
+                          <td>
+                          <button id="cart-btn" class="btn btn-outline-danger" disabled={service.isOrderAccepted !== undefined} onClick={() => {dispatch(deleteServicesFromCart(service.id)); window.location.reload()}}>
                             Remove
                           </button>
-                        </td> */}
+                        </td>
                           {service.isCompleted === false ? (
                             <td>
                               <a

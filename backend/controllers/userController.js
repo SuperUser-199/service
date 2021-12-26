@@ -192,9 +192,12 @@ const updateProfile = AsyncErrorHandler(async (req, res, next) => {
             about
         };
     }
-
-    if (typeof req.body.avatar !== 'string') {
+    // console.log(typeof req.body.avatar);
+    // console.log(req.body.avatar);
+    if (req.body.avatar !== 'undefined' && typeof req.body.avatar === 'string') {
         const imageId = req.user.avatar.public_id;
+
+        // console.log('Inside edit photo');
 
         await cloudinary.v2.uploader.destroy(imageId);
 
