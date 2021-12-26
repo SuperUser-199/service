@@ -76,16 +76,29 @@ const deleteServiceFromCart = AsyncErrorHandler(async (req, res, next) => {
 
     const order = await Order.findOne({ user: req.user.id, service: serviceId });
 
+    const details = {
+        service: order.service,
+        status: order.status,
+        paymentMode: order.paymentMode,
+        addCost: {
+            description: order.addCost.description,
+            value: order.addCost.value
+        },
+        totalCost: order.totalCost,
+        isAccepted: order.isAccepted,
+        completedAt: order.completedAt
+    }
+
     let archive = await Archive.findOne({ user: req.user.id, professional: order.professional });
 
     if (!archive) {
         archive = await Archive.create({
             user: req.user.id,
             professional: order.professional,
-            orders: [order._id]
+            orders: [details]
         })
     } else {
-        archive.orders.push(order._id);
+        archive.orders.push(details);
         await archive.save({ validateBeforeSave: false });
     }
 
