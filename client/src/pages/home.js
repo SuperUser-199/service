@@ -6,6 +6,7 @@ import userimg from './user-img.png';
 import chetan from './chetan.jpeg';
 import { useSelector} from "react-redux";
 import avinash from './avinash-1.png';
+import { Link } from "react-router-dom";
 
 export default function Home() {
 
@@ -27,9 +28,9 @@ export default function Home() {
             <h5>
             Website for providing daily need services.<br/>We offer <span id="service-word">Development</span> <br/>SignUp now to get all service from your home</h5>
             <br/>
-            { isAuthenticated?            <a href="/dashboard"><button id="signup-btn"  className="btn btn-outline-success my-2 my-sm-0">Dashboard</button></a>
+            { isAuthenticated?            <Link to="/dashboard"><button id="signup-btn"  className="btn btn-outline-success my-2 my-sm-0">Dashboard</button></Link>
 :
-            <a href="/signup"><button id="signup-btn"  className="btn btn-outline-success my-2 my-sm-0">Sign Up</button></a>}
+            <Link to="/signup"><button id="signup-btn"  className="btn btn-outline-success my-2 my-sm-0">Sign Up</button></Link>}
             </div>
           </div>
           <div id="column">
@@ -43,15 +44,15 @@ export default function Home() {
           <div id="row33">
             <div id="column3" >
               <h2>Step 1</h2>
-              <p>Create an account by <a href="/signup">signup</a> and <br/><a href="/login">login</a> into your account.</p>
+              <p>Create an account by <Link to="/signup">signup</Link> and <br/><Link to="/login">login</Link> into your account.</p>
             </div>
             <div id="column3" >
               <h2>Step 2</h2>
-              <p>Go to <a href="/dashboard">Dashboard</a> page &<br/> select a category.</p>
+              <p>Go to <Link to="/dashboard">Dashboard</Link> page &<br/> select a category.</p>
             </div>
             <div id="column3" >
               <h2>Step 3</h2>
-              <p>Now after adding your service to cart .<br/>Visit <a href="/cart">Add to Cart</a> page for checkout</p>
+              <p>Now after adding your service to cart .<br/>Visit <Link to="/cart">Add to Cart</Link> page for checkout</p>
             </div>
             <div id="column3" >
               <h2>Step 4</h2>
@@ -72,35 +73,35 @@ export default function Home() {
           <hr/>
           <div id="service-cont">
                 <div id="service">
-                    <a href="/">
+                    <a href="#">
                         <img alt="..." id="service-icon" src="https://img.icons8.com/external-inipagistudio-mixed-inipagistudio/50/000000/external-ac-domotics-home-inipagistudio-mixed-inipagistudio.png"/>
                         <h4> AC Service & Repair</h4>
                     </a>
                 </div>
                 <div id="service">
-                    <a href="/">
+                    <a href="#">
                     <img alt="..." id="service-icon" src="https://img.icons8.com/external-kiranshastry-lineal-color-kiranshastry/64/000000/external-paint-roller-creative-kiranshastry-lineal-color-kiranshastry.png"/>
                     <h4>    Painters </h4>
                     </a>
                 </div>
-                <div id="service"><a href="/">
+                <div id="service"><a href="#">
                 <img  alt="..." id="service-icon" src="https://img.icons8.com/external-itim2101-lineal-color-itim2101/64/000000/external-electrician-male-occupation-avatar-itim2101-lineal-color-itim2101.png"/>
                   <h4>  Electricians </h4>
                     </a></div>
-                <div id="service"><a href="/">
+                <div id="service"><a href="#">
                 <img alt="..." id="service-icon"  src="https://img.icons8.com/external-ddara-lineal-color-ddara/64/000000/external-plumber-professions-ddara-lineal-color-ddara.png"/>
                     <h4>Plumber</h4></a></div>
                 
-                <div id="service"><a href="/">
+                <div id="service"><a href="#">
                 <img alt="..." id="service-icon" src="https://img.icons8.com/external-wanicon-lineal-color-wanicon/64/000000/external-carpenter-labour-day-wanicon-lineal-color-wanicon.png"/>
                     <h4>Carpenter</h4></a></div>
-                <div id="service"><a href="/">
+                <div id="service"><a href="#">
                 <img alt="..." id="service-icon" src="https://img.icons8.com/external-inipagistudio-lineal-color-inipagistudio/64/000000/external-bug-spray-agricultural-pest-control-inipagistudio-lineal-color-inipagistudio.png"/>
                     <h4>Pest Control</h4></a></div>
-                <div id="service"><a href="/">
+                <div id="service"><a href="#">
                 <img alt="..." id="service-icon" src="https://img.icons8.com/material-outlined/24/000000/domain.png"/>
                     <h4>Website Developer</h4></a></div>
-                <div id="service"><a href="/">
+                <div id="service"><a href="#">
                 <img alt="..."  id="service-icon" src="https://img.icons8.com/ios-filled/50/000000/developer-mode.png"/>
                     <h4>App Developer</h4></a></div>
 

@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
 import { clearErrors } from "../actions/serviceActions";
 import Loader from "../components/layout/Loader/Loader";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate,Link } from "react-router-dom";
 import { placeOrder } from "../actions/orderActions";
 
 function ConfirmOrder() {
@@ -99,12 +99,12 @@ function ConfirmOrder() {
                     <button id="order-btn" class="btn btn-primary" onClick={handlerConfirmOrder}>
                       Confirm Order
                     </button>
-                  <a href="/">
+                  <Link to="/">
                     <button id="order-btn" class="btn btn-primary" onClick={() => navigate('/cart')}>
                       {" "}
                       Cancel Order
                     </button>
-                  </a>
+                  </Link>
                 </div>
             </div>
           </div>

@@ -10,7 +10,7 @@ import {
   deleteServicesFromCart
 } from "../actions/cartActions";
 import Loader from "../components/layout/Loader/Loader";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Cart() {
   const alert = useAlert();
@@ -82,8 +82,8 @@ function Cart() {
                         </td>
                           {service.isCompleted === false ? (
                             <td>
-                              <a
-                                href={`/selectprofessional?category=${
+                              <Link
+                                to={`/selectprofessional?category=${
                                   service.category
                                 }&serviceId=${service.id.toString()}`}
                               >
@@ -99,7 +99,7 @@ function Cart() {
                                     ? "Request sent"
                                     : "Select Professional"}
                                 </button>
-                              </a>
+                              </Link>
                               <br />
                               {service.isOrderAccepted === false && (
                                 <button

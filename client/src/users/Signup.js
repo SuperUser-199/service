@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Register.css";
 import Header from "../components/header";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Profile from "../images/Profile.png";
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
@@ -128,9 +128,9 @@ function Signup() {
                   </button>
                   <p className="account">
                     Do you have an account?{" "}
-                    <a href="/login" className="switch">
+                    <Link to="/login" className="switch">
                       Login Now
-                    </a>
+                    </Link>
                   </p>
                 </form>
               </div>

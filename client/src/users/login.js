@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link} from "react-router-dom";
 import "./login.css";
 import Header from "../components/header";
 import { useSelector, useDispatch } from "react-redux";
@@ -85,14 +85,14 @@ function Login() {
 
                     <div className="login-row">
                       
-                      <a href="/forgotpassword">Forgot password</a>
+                      <Link to="/forgotpassword">Forgot password</Link>
                     </div>
                     <button type="submit">Login</button>
                     <p>
                       Don't have an account?{" "}
-                      <a href="/signup" className="switch">
+                      <Link to="/signup" className="switch">
                         Register Now
-                      </a>
+                      </Link>
                     </p>
                   </form>
                 </div>

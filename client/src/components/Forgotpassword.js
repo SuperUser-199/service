@@ -6,6 +6,7 @@ import Loader from './layout/Loader/Loader';
 import { useSelector, useDispatch } from "react-redux";
 import { useAlert } from "react-alert";
 import { clearErrors, forgotPassword } from "../actions/userActions";
+import { Link } from "react-router-dom";
 
 function Forgotpass() {
   const dispatch = useDispatch();
@@ -63,9 +64,9 @@ function Forgotpass() {
                   <button type="submit">Submit</button>
                   <p>
                     Do you have an account?{" "}
-                    <a href="/login" className="switch">
+                    <Link to="/login" className="switch">
                       Login Now
-                    </a>
+                    </Link>
                   </p>
                 </form>
               </div>

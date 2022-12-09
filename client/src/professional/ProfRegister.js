@@ -7,6 +7,7 @@ import { useAlert } from "react-alert";
 import { clearErrors, registerUser } from "../actions/userActions";
 import { useNavigate } from "react-router";
 import Loader from "../components/layout/Loader/Loader";
+import { Link } from "react-router-dom";
 
 function Register() {
   const alert = useAlert();
@@ -117,9 +118,9 @@ function Register() {
                   </button>
                   <p className="account">
                     Do you have an account?{" "}
-                    <a href="/login" className="switch">
+                    <Link to="/login" className="switch">
                       Login Now
-                    </a>
+                    </Link>
                   </p>
                 </form>
               </div>

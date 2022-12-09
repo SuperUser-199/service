@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
 import { clearErrors } from "../actions/userActions";
 import Loader from "../components/layout/Loader/Loader";
+import { Link } from "react-router-dom";
 
 function OrderPlaced() {
   const alert = useAlert();
@@ -39,16 +40,16 @@ function OrderPlaced() {
               Order placed successfully
             </h1>
             <h3>`Your Order id is "${order._id}"`</h3>
-            <a href="/orders">
+            <Link to="/orders">
               <button id="order-btn" className="btn btn-outline-dark">
                 Orders
               </button>
-            </a>
-            <a href="/dashboard">
+            </Link>
+            <Link to="/dashboard">
               <button id="order-btn" className="btn btn-outline-dark">
                 Dashboard
               </button>
-            </a>
+            </Link>
           </div>
         </>
       )}

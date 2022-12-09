@@ -3,7 +3,7 @@ import Header from "../components/header";
 import "./professionalorder.css";
 import MetaData from "../components/layout/MetaData";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import { acceptOrder, rejectOrder, getOrderDetails } from "../actions/orderActions";
 
 function ProfessionalOrders() {
@@ -99,11 +99,11 @@ function ProfessionalOrders() {
                       Track Order
                     </button>
 
-                    <a href={`/updateorder/${item.order._id}`}>
+                    <Link to={`/updateorder/${item.order._id}`}>
                       <button id="order-btn" className="btn btn-light">
                         Update Order Status
                       </button>
-                    </a>
+                    </Link>
                   </p>
                 </div>
               )}

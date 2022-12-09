@@ -8,7 +8,7 @@ import { useNavigate } from "react-router";
 import { clearErrors } from "../actions/userActions";
 import MetaData from "../components/layout/MetaData";
 import Loader from "../components/layout/Loader/Loader";
-
+import { Link } from "react-router-dom";
 function ProfessionalProfile() {
     const dispatch = useDispatch();
     const alert = useAlert();
@@ -84,13 +84,13 @@ function ProfessionalProfile() {
                                     </div>
                                 </div>
                                 <div className="btn-sub-can">
-                  <a id="edit-a" href="/editprofile">
+                  <Link id="edit-a" to="/editprofile">
                     <button type="submit" id="profile-btn" >
                     Edit Profile
                     </button>
-                  </a>
+                  </Link>
                   <br />
-                  <a id="edit-a" href="/updatepassword">
+                  <Link id="edit-a" to="/updatepassword">
                     <button
                       type="submit"
                       id="profile-btn"
@@ -99,7 +99,7 @@ function ProfessionalProfile() {
                     >
                       Update Password
                     </button>
-                    </a>
+                    </Link>
                     </div>
                             </div>
                         </div>
